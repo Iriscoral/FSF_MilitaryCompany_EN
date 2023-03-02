@@ -1,0 +1,46 @@
+{
+	"DRONE_FRONT":{
+		"engineColor":[255,145,75,255],
+		"contrailParticleSizeMult":4,
+		"contrailParticleDuration":2,
+		"contrailParticleFinalSizeMult":2,
+		"contrailMaxSpeedMult":0.1,
+		"contrailAngularVelocityMult":0,
+		"contrailColor":[100,100,100,25],
+		"contrailCampaignColor":[150,120,100,75],
+		"type":"GLOW" # GLOW or SMOKE
+	},
+	"FSF_MAIN":{
+		"engineColor":[245,165,75,245],
+		"contrailParticleSizeMult":2,
+		"contrailParticleDuration":2,
+		"contrailParticleFinalSizeMult":3,
+		"contrailMaxSpeedMult":0.5,
+		"contrailAngularVelocityMult":0,
+		"contrailColor":[100,100,100,60],
+		"contrailCampaignColor":[150,120,100,75],
+		"type":"SMOKE" # GLOW or SMOKE
+	},
+	"FSF_HaiLiang_MAIN":{
+		"engineColor":[120,80,35,120],
+		"contrailParticleSizeMult":2,
+		"contrailParticleDuration":2,
+		"contrailParticleFinalSizeMult":3,
+		"contrailMaxSpeedMult":0.5,
+		"contrailAngularVelocityMult":0,
+		"contrailColor":[50,50,50,30],
+		"contrailCampaignColor":[150,120,100,75],
+		"type":"SMOKE" # GLOW or SMOKE
+	},
+	"FSF_THRUSTER":{
+		"engineColor":[255,145,75,0],
+		"contrailParticleSizeMult":4,
+		"contrailParticleDuration":2,
+		"contrailParticleFinalSizeMult":2.5,
+		"contrailMaxSpeedMult":0.5,
+		"contrailAngularVelocityMult":0,
+		"contrailColor":[100,100,100,25],
+		"contrailCampaignColor":[150,120,100,75],
+		"type":"GLOW" # GLOW or SMOKE
+	},
+}

@@ -1,0 +1,20 @@
+{
+	"id":"aEP_chaingun_shot2",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+	"length":24.0,
+	"width":5.0,
+	"fadeTime":0.2,
+	#"fringeColor":[255,125,125,255],
+	#"coreColor":[255,200,200,150],
+	"fringeColor":[255,200,70,160],
+	"coreColor":[255,200,200,220],
+	"hitGlowRadius":10,	
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+	"bulletSprite":"graphics/missiles/shell_large_yellow.png"
+}

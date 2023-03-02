@@ -1,0 +1,41 @@
+{
+  "id": "aEP_heavy_fighter_gun",
+  "specClass": "projectile",
+  "projectileSpecId": "aEP_heavy_fighter_gun_shot",
+  "type": "BALLISTIC",
+  "size": "SMALL",
+  "turretSprite": "",
+  "hardpointSprite": "",
+  "renderAboveAllWeapons": 0,
+  "turretOffsets": [
+		0,0
+  ],
+  "turretAngleOffsets": [
+    0,
+  ],
+  "hardpointOffsets": [
+    0,0
+  ],
+  "hardpointAngleOffsets": [
+    0
+  ],
+  "barrelMode": "LINKED",
+  "animationType": "MUZZLE_FLASH",
+  "interruptibleBurst": true,
+  "autocharge": true,
+  "muzzleFlashSpec": {
+    "length": 15,
+    "spread": 5,
+    "particleSizeMin": 5,
+    "particleSizeRange": 5,
+    "particleDuration": 0.2,
+    "particleCount": 2,
+    "particleColor": [
+      255,
+      240,
+      155,
+      255
+    ]
+  },
+  "textureType": ROUGH
+}

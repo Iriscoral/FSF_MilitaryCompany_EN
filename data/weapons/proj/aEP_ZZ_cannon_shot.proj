@@ -1,0 +1,18 @@
+{
+	"id":"aEP_ZZ_cannon_shot",
+  "specClass":"projectile",
+	"spawnType":"BALLISTIC",
+	"collisionClass":"PROJECTILE_FF",
+	"collisionClassByFighter":"PROJECTILE_FIGHTER",
+	"length":200.0,
+	"width":4,
+	"hitGlowRadius":40,
+	"fadeTime":0.15,
+	#"fringeColor":[255,255,255,100],
+	#"coreColor":[255,255,255,125],
+	"fringeColor":[255,255,255,255],
+	"coreColor":[255,255,255,155],	
+	"textureScrollSpeed":10.0,
+	"pixelsPerTexel":5.0,
+	"bulletSprite":"graphics/missiles/flechette_med.png"
+}

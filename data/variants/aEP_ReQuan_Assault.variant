@@ -1,0 +1,57 @@
+{
+    "displayName": "Assault",
+    "fluxCapacitors": 6,
+    "fluxVents": 24,
+    "goalVariant": true,
+    "hullId": "aEP_ReQuan",
+    "hullMods": [
+        "hardenedshieldemitter",
+        "unstable_injector",
+        "targetingunit"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_ReQuan_Assault",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0001": "sabot",
+                "WS0002": "sabot"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0010": "aEP_hive_bay",
+                "WS0011": "aEP_hive_bay",
+                "WS0016": "aEP_rq_missile"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0003": "sabot",
+                "WS0004": "sabot",
+                "WS0005": "sabot",
+                "WS0006": "sabot"
+            }
+        },  
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0007": "aEP_long_barrel_chaingun",
+                "WS0008": "aEP_long_barrel_chaingun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "vulcan"}
+        }
+    ]
+}
