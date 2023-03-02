@@ -4,7 +4,7 @@
 		"only_on_FSF":"Can only be installed on FSF ships",
 		"effect":"Effect",
 		"no_link":"No linkage effect at present",
-		"not_compatible":"Incompatible",
+		"not_compatible":"Incompatible with ",
 		"when_soft_up":"When soft flux level is increasing",
 		"when_soft_not_up":"When soft flux level is no longer increasing",
 		"flux_gen_reduce":"Weapon flux generation is reduced by ",
@@ -33,9 +33,9 @@
 		"HotLoader_desc02":"When the shipsystem is active, the ammunition regeneration rate is increased by a further %s",
 		"reduce_flux_per_hit":"Reduces %s points of soft flux with each hit",
 		
-		"add":"Add",
-		"reduce":"Reduce",
-		"alter":"Alter",
+		"add":"increased by ",
+		"reduce":"reduced by ",
+		"alter":"altered by",
 	
 		"forward":"Forward",
 		"backward":"Backward",
@@ -173,6 +173,6 @@
 		"aEP_AttackCarrier01":"A speed bonus is provided to fighter wings within {%s} of the mothership and with a base top speed below {%s}: ",
 		"aEP_AttackCarrier02":"When the ship's fighter replacement rate is very low and its flux is less than {%s}, the forge is activated to immediately replace all lost fighters, this ability has a cooldown of {%s} seconds and generates a large amount of flux",
 		"aEP_AttackCarrier03":"Forge cooling in progress",
-		"aEP_AttackCarrier04":"Cooling status: %s",
+		"aEP_AttackCarrier04":"Cooling status: %s"
 	}
 }
