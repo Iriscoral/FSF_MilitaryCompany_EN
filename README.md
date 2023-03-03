@@ -8,4 +8,4 @@ Fractal Softworks Forum Thread: https://fractalsoftworks.com/forum/index.php?top
 
 Credits:
 
-Please contact Iriscoral#4689 on Discord for error reporting or other issues. 
+Please contact Iriscoral#4689 on Discord for error reporting or other issues. I do not own this material save translations; all copyright belongs to A111164 or Fractal Softworks.
