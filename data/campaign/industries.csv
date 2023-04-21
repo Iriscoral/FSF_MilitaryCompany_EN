@@ -1,10 +1,5 @@
 id,name,cost mult,build time,income,upkeep,downgrade,upgrade,tags,data,image,plugin,desc,order
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
-aEP_starfortress,Star Fortress - FSF,200,180,,5,battlestation_mid,,"station, starfortress, unraidable, structure","{
-radius:70,
-variant:aEP_FSFOrbitalStation3,
-fleetName:Star Fortress
-}",graphics/icons/industry/battlestation.png,com.fs.starfarer.api.impl.campaign.econ.impl.OrbitalStation,"The FSF special planetary fortress, whose internal structure and weapon configuration has been repeatedly optimized by the compamy, capable of warding off any possible trouble.
-
-Its presence will prevent any bombardment operations from taking place.",2060
+aEP_AdvanceHq,Elite Design Department,90,60,,6,,,"military, unraidable, tactical_bombardment, structure",,graphics/aEP_icons/industry/design_department.png,data.scripts.campaign.econ.industries.aEP_AdvanceHqPlugin,"It is difficult to speculate on why the FSF has undertaken such a massive arms expansion in the recent past, but its been known that only officers with several years of service and excellent grades, who have passed a background check, can join this particular service, which just so happens to have a high degree of secrecy about what they do. This expansion of the company's armaments at short notice and at no cost to resources is generally seen as preparation for the chaos that is to come.",
+,,,,,,,,
