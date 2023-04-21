@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="98de52b6-19ff-4e28-84f6-87890507b339" name="Changes" comment="3.19rc2 Update">
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/ExerelinCore.xml" beforeDir="false" />
@@ -18,8 +17,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/starsector_core.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/StarfarerLauncher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,11 +53,11 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.19/FSF_MilitaryCompany/mod_info.json&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.19/FSF_MilitaryCompany/data/campaign/industries.csv&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.19/FSF_MilitaryCompany/mod_info.json&quot;,
+    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.19/FSF_MilitaryCompany/data/campaign/industries.csv&quot;,
     &quot;two.files.diff.last.used.folder&quot;: &quot;C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.19/FSF_MilitaryCompany&quot;
   }
 }</component>
@@ -160,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682069210631</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="3.19rc2 Update">
+      <created>1682073076190</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682073076190</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
