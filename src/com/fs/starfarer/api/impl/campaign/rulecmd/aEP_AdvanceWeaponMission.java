@@ -1,5 +1,6 @@
 package com.fs.starfarer.api.impl.campaign.rulecmd;
 
+import com.fs.starfarer.api.EveryFrameScript;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin;
@@ -17,11 +18,11 @@ import com.fs.starfarer.api.loading.WeaponSpecAPI;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import combat.util.aEP_DataTool;
+import combat.util.aEP_ID;
 import combat.util.aEP_Tool;
-import data.scripts.campaign.intel.aEP_AWM1Intel;
-import data.scripts.campaign.intel.aEP_AWM2Intel;
-import data.scripts.campaign.intel.aEP_AWM3Intel;
-import data.scripts.campaign.intel.aEP_BaseMission;
+import data.scripts.campaign.intel.*;
+import data.scripts.campaign.submarkets.aEP_FSFMarketPlugin;
+import data.scripts.world.aEP_systems.aEP_FSF_DWR43;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static combat.util.aEP_DataTool.txt;
 import static data.scripts.campaign.intel.aEP_AWM1Intel.WEAPON_WEIGHT;
 
 /**
@@ -42,6 +44,8 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
   InteractionDialogAPI dialog;
   String ruleId;
   java.util.Map<java.lang.String, MemoryAPI> memoryMap;
+
+  public static final String MISSILE_CARRIER_SPEC_ID = "aEP_des_shendu_mk2";
 
   /**
    * @param params commodityId, check threshold, moreOrLess.
@@ -111,9 +115,13 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
           return giveShip3();
         case "addContact3":
           return addContact3();
-
+        case "shouldStart4":
+          return shouldStart4();
+        case "start4":
+          return start4();
+        case "checkPermission4":
+          return checkPermission4();
       }
-
     }
     return false;
   }
@@ -197,13 +205,13 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     Color g = Misc.getGrayColor();
     Color c = Global.getSector().getFaction("aEP_FSF").getBaseUIColor();
 
-    dialog.getTextPanel().addPara(aEP_DataTool.txt("AWM01_desc01"));
+    dialog.getTextPanel().addPara(txt("AWM01_desc01"));
     for (String fullId : requestWeaponList) {
       String weaponId = fullId.split(aEP_AWM1Intel.SPLITTER)[0];
       String weaponName = Global.getSettings().getWeaponSpec(weaponId).getWeaponName();
       dialog.getTextPanel().addPara("    - {%s}", g, h, weaponName);
     }
-    dialog.getTextPanel().addPara(aEP_DataTool.txt("AWM01_desc02"));
+    dialog.getTextPanel().addPara(txt("AWM01_desc02"));
 
     return true;
   }
@@ -213,11 +221,12 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     List<String> requestWeaponList = new ArrayList<>();
     if (memoryMap.get(MemKeys.FACTION).contains("$AWM_1showed")) {
       requestWeaponList = (List) memoryMap.get(MemKeys.FACTION).get("$AWM_1showed");
-      //加到这里才会调用advance方法
-      //使用IntelManager则不会
+      //不放进sector里面everyFrame是不会运行advance的
+      //要同时放入sector和intel才起效
       Global.getSector().addScript(new aEP_AWM1Intel(requestWeaponList,dialog.getInteractionTarget().getActivePerson()));
       return true;
     }
+    //不放进sector里面everyFrame是不会运行advance的
     Global.getSector().addScript(new aEP_AWM1Intel(aEP_AWM1Intel.genWeaponList(),dialog.getInteractionTarget().getActivePerson()));
     return true;
   }
@@ -254,7 +263,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     dialog.getOptionPanel().setEnabled(memoryMap.get("local").getString("$option"), false);
 
     if (!dialog.getOptionPanel().hasOption("aEP_researcher_stage1_talk05")) {
-      dialog.getOptionPanel().addOption(aEP_DataTool.txt("aEP_AdvanceWeaponMission01"), "aEP_researcher_stage1_talk05");
+      dialog.getOptionPanel().addOption(txt("aEP_AdvanceWeaponMission01"), "aEP_researcher_stage1_talk05");
     }
     return true;
   }
@@ -339,6 +348,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
 
       //Global.getSector().getIntelManager().addIntel(new aEP_AWM2Intel(token));
       //Global.getSector().getIntelManager().queueIntel(new aEP_AWM2Intel(token));
+      //不放进sector里面everyFrame是不会运行advance的
       Global.getSector().addScript(new aEP_AWM2Intel(token, "aEP_typeB28_variant", "TYPE_B_028"));
 
     }
@@ -464,7 +474,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
   boolean shouldGive3() {
     CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
     for (FleetMemberAPI member : fleet.getFleetData().getMembersListWithFightersCopy()) {
-      if (member.getHullSpec().getHullId().contains("aEP_ShenCeng_mk2")) {
+      if (member.getHullSpec().getHullId().contains(MISSILE_CARRIER_SPEC_ID)) {
         return true;
       }
     }
@@ -477,7 +487,7 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
 
     //找到特殊的任务舰，替换成一艘瀑布级
     for (FleetMemberAPI member : fleet.getFleetData().getMembersListWithFightersCopy()) {
-      if (member.getHullSpec().getHullId().contains("aEP_ShenCeng_mk2")) {
+      if (member.getHullSpec().getHullId().contains(MISSILE_CARRIER_SPEC_ID)) {
         toReplace = member;
         break;
       }
@@ -487,12 +497,12 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
         fleet.getFleetData().removeOfficer(toReplace.getCaptain());
       }
       fleet.getFleetData().removeFleetMember(toReplace);
-      fleet.getFleetData().addFleetMember("aEP_PuBu_Elite");
+      fleet.getFleetData().addFleetMember("aEP_cru_pubu_Elite");
     }
     fleet.forceSync();
 
-    dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_AdvanceWeaponMission02"), Color.white, Color.red, toReplace.getHullSpec().getNameWithDesignationWithDashClass());
-    dialog.getTextPanel().addPara(aEP_DataTool.txt("aEP_AdvanceWeaponMission03"), Color.white, Color.green, Global.getSettings().getHullSpec("aEP_PuBu").getNameWithDesignationWithDashClass());
+    dialog.getTextPanel().addPara(txt("aEP_AdvanceWeaponMission02"), Color.white, Color.red, toReplace.getHullSpec().getNameWithDesignationWithDashClass());
+    dialog.getTextPanel().addPara(txt("aEP_AdvanceWeaponMission03"), Color.white, Color.green, Global.getSettings().getHullSpec("aEP_PuBu").getNameWithDesignationWithDashClass());
     return true;
   }
 
@@ -505,6 +515,53 @@ public class aEP_AdvanceWeaponMission extends BaseCommandPlugin
     ContactIntel intel = new ContactIntel(person, market);
     Global.getSector().getIntelManager().addIntel(intel, false, dialog.getTextPanel());
     return true;
+  }
+
+  boolean shouldStart4() {
+    FactionAPI faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+    boolean has = false;
+    for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
+      if (market.getPrimaryEntity().getId().equals("aEP_FSF_DefStation") && Global.getSector().getPlayerFaction().getRelationship(aEP_ID.FACTION_ID_FSF) > 0.9f) {
+        for (PersonAPI person : market.getPeopleCopy()) {
+          if (person.getMemoryWithoutUpdate().contains("$isaEP_Researcher")) {
+            dialog.getInteractionTarget().setActivePerson(person);
+            has = true;
+            break;
+          }
+        }
+      }
+    }
+
+    boolean levelIsEnough = Global.getSector().getPlayerPerson().getStats().getLevel() >= 10;
+    return has && levelIsEnough;
+  }
+
+  boolean start4() {
+    FactionAPI faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+
+    for (MarketAPI market : Global.getSector().getEconomy().getMarketsCopy()) {
+      if(market.getId().equals(aEP_FSF_DWR43.FACTORY_STATION_MARKET_ID)){
+        market.addSubmarket(aEP_FSFMarketPlugin.ID);
+      }
+    }
+    Global.getSector().addScript(new aEP_AWM4Intel());
+
+    return false;
+  }
+
+  boolean checkPermission4() {
+    FactionAPI faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+    dialog.getOptionPanel().clearOptions();
+    if(faction.getMemoryWithoutUpdate().contains("$AWM_4Complete" ) ){
+      dialog.getOptionPanel().addOption(txt("AWM04_have_permission"), "aEP_researcher_stage3_guardian_met_have");
+    }
+    dialog.getOptionPanel().addOption(txt("AWM04_nothave_permission"),"aEP_researcher_stage3_guardian_met_nothave");
+
+    if(Global.getSettings().isDevMode()){
+      dialog.getOptionPanel().addOption("Dev mode force pass", "aEP_researcher_stage3_guardian_met_have");
+    }
+
+    return false;
   }
 }
 

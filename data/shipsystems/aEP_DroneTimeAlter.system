@@ -1,6 +1,7 @@
 {
 	"id":"aEP_DroneTimeAlter",
 	"type":"STAT_MOD",
+	#"aiType":"TEMPORAL_SHELL",
 	"aiType":"CUSTOM",
 	"aiScript":"data.shipsystems.scripts.ai.aEP_DroneTimeAlterAI",
 	"statsScript":"data.shipsystems.scripts.aEP_DroneTimeAlter",
@@ -15,8 +16,8 @@
 	"outOfUsesSound":"engine_disabled",
 	
 	"aiHints":{
-		"activeSpeedIncrease":450,
+		"activeSpeedIncrease":100,
 		"burstMovementPotential":0,
-		"averageSpeedIncrease":450,
+		"averageSpeedMult":2,
 	}
 }

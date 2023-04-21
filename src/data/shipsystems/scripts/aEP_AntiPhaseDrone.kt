@@ -22,7 +22,7 @@ import java.sql.RowIdLifetime
 class aEP_AntiPhaseDrone : BaseShipSystemScript() {
 
   companion object{
-    const val WING_SPEC_ID = "aEP_shenceng_drone_wing"
+    const val WING_SPEC_ID = "aEP_ftr_ut_shendu_wing"
 
     const val FIGHTER_LIFETIME = 24f
     const val MAX_DISTANCE = 1600f
@@ -154,7 +154,7 @@ class aEP_AntiPhaseDrone : BaseShipSystemScript() {
     constructor(f: ShipAPI, parent: ShipAPI, lifeTime: Float):super(lifeTime,f) {
       this.f = f
       this.parent = parent
-      if(parent.shipTarget != null && MathUtils.getDistance(parent.shipTarget.location,f.location) < MAX_DISTANCE * 2f /3f) {
+      if(parent.shipTarget != null && MathUtils.getDistance(parent.shipTarget.location,f.location) < MAX_DISTANCE) {
         target = parent.shipTarget
         //如果发射的时候锁定了目标，使用自定义ai
         moveAi = object : aEP_BaseShipAI(f) {
@@ -197,7 +197,6 @@ class aEP_AntiPhaseDrone : BaseShipSystemScript() {
         }
         f.shipAI = moveAi
       }
-
     }
 
     override fun advanceImpl(amount: Float) {

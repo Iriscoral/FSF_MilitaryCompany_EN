@@ -1,0 +1,42 @@
+{
+    "displayName": "Elite",
+    "fluxCapacitors": 7,
+    "fluxVents": 20,
+    "goalVariant": true,
+    "hullId": "aEP_cru_pingding",
+    "hullMods": [
+        "targetingunit",
+        "aEP_SoftfluxDissipate",
+        "missleracks"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_pingding_Elite",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"MAIN": "aEP_cru_pingding_main"}
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "aEP_as_large"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0006": "aEP_kinetic_flak"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "aEP_vulcan",
+                "WS0004": "vulcan",
+                "WS0007": "aEP_vulcan",
+                "WS0008": "vulcan"
+            }
+        }
+    ]
+}

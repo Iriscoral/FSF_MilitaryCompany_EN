@@ -121,43 +121,7 @@ class aEP_Tool {
       }
     }
 
-    /**
-     * 旋转舰船的速度方向，但不改变朝向
-     * */
-    fun moveToAngle(ship: CombatEntityAPI, velocity: Vector2f?, toAngle: Float, amount: Float) {
-      var angleDist = 0f
-      val angleNow = VectorUtils.getFacing(velocity)
-      val turnRateNow = 0f
-      var maxTurnRate = 0f
-      if (ship is ShipAPI) {
-        maxTurnRate = ship.maxTurnRate * amount
-      }
-      if (ship is MissileAPI) {
-        maxTurnRate = ship.maxTurnRate * amount
-      }
-      var turnRight = false //true == should turn right, false == should turn left
-      //judge how much to turn;
-      angleDist = if (Math.abs(angleNow - toAngle) < 360f - Math.abs(angleNow - toAngle)) {
-        Math.abs(angleNow - toAngle)
-      } else {
-        360f - Math.abs(angleNow - toAngle)
-      }
-      //judge which side to turn
-      turnRight = if (toAngle < 180f) {
-        angleNow - toAngle < 180f && angleNow - toAngle > 0f
-      } else {
-        angleNow - toAngle >= 0f || angleNow <= toAngle - 180f
-      }
 
-      //to turn the ship
-      if (angleDist > maxTurnRate) {
-        if (turnRight) {
-          VectorUtils.rotate(ship.velocity, -maxTurnRate)
-        } else {
-          VectorUtils.rotate(ship.velocity, maxTurnRate)
-        }
-      }
-    }
 
     //turn weapon to angle with accelerate
     fun moveToAngle(toAngle: Float, MAX_SPEED: Float, ACC: Float, w: WeaponAPI, turnRate: Float, amount: Float): Float {
@@ -500,12 +464,19 @@ class aEP_Tool {
       val xAxis = FastTrig.cos(Math.toRadians(directionAngle.toDouble())).toFloat() * acceleration
       val yAxis = FastTrig.sin(Math.toRadians(directionAngle.toDouble())).toFloat() * acceleration
 
-      moveToAngle(e, e.velocity, directionAngle, amount)
-      val X = e.velocity.getX()
-      val Y = e.velocity.getY()
-      e.velocity.setX(X + xAxis)
-      e.velocity.setY(Y + yAxis)
+      e.velocity.setX(e.velocity.getX() + xAxis)
+      e.velocity.setY(e.velocity.getY() + yAxis)
       e.velocity.set(clampVelocityTo(e.velocity,maxSpeed))
+
+      //如果速度方向和目标方向非常接近时，设置同步
+      //acc越接近speed，同步的角度越大,最多在加速度为10倍时，设为5度
+      val speedFacing = VectorUtils.getFacing(e.velocity)
+      val angleDist = MathUtils.getShortestRotation(speedFacing,directionAngle)
+      if(Math.abs(angleDist) < Math.min(acc/(maxSpeed*2f + 1f),5f) && angleDist != 0f ){
+        VectorUtils.rotate(e.velocity,angleDist)
+      }else{
+
+      }
     }
 
     @JvmStatic
@@ -516,7 +487,7 @@ class aEP_Tool {
     }
 
     /**
-     * (angle, speed)
+     * @return (angle, speed)
      * */
     @JvmStatic
     fun velocity2Speed(velocity: Vector2f): Vector2f {
@@ -630,6 +601,39 @@ class aEP_Tool {
       }
     }
 
+    @JvmStatic
+    fun isFriendlyInLine(from: Vector2f, to: Vector2f): ShipAPI? {
+      val dist = MathUtils.getDistance(from,to)
+      val facing = VectorUtils.getAngle(from,to)
+      val allShipsInArc: MutableList<CombatEntityAPI> = ArrayList()
+      val allShips = CombatUtils.getEntitiesWithinRange(from, dist) ?: return null
+      for (s in allShips) {
+        val targetFacing = VectorUtils.getAngle(from, s.location)
+        val targetWidth = getTargetWidthAngleInDistance(from, s)
+        if (Math.abs(MathUtils.getShortestRotation(facing, targetFacing)) < targetWidth / 2 && s is ShipAPI && !s.isFighter) {
+          //Global.getCombatEngine().addFloatingText(s.getLocation(),MathUtils.getShortestRotation(weaponFacing , targetFacing) + "", 20f ,new Color(100,100,100,100),s, 0.25f, 120f);
+          allShipsInArc.add(s)
+        }
+      }
+      var closestDist = 4000f
+      var closestShip: CombatEntityAPI? = null
+      for (c in allShipsInArc) {
+        if (MathUtils.getDistance(c, from) < closestDist) {
+          closestDist = MathUtils.getDistance(c, from)
+          closestShip = c
+        }
+      }
+      if (closestShip == null) {
+        return null
+      }
+      val ship = closestShip as ShipAPI
+      return if (ship.isAlly || ship.owner == 0) {
+        ship
+      } else {
+        null
+      }
+    }
+
     fun isEnemyInRange(from: WeaponAPI): ShipAPI? {
       val weaponRange = from.range
       val weaponFacing = from.currAngle
@@ -696,29 +700,6 @@ class aEP_Tool {
     fun aimToAngle(weapon: WeaponAPI, angle: Float) {
       val ship = weapon.ship
       val maxTurnRate = weapon.turnRate / 60f
-      val angleDist = MathUtils.getShortestRotation(weapon.currAngle, angle)
-      if (Math.abs(MathUtils.getShortestRotation(weapon.slot.angle + ship.facing, angle)) > weapon.slot.arc / 2) {
-      } else {
-        if (angleDist >= 0) {
-          if (angleDist > maxTurnRate) {
-            weapon.currAngle = weapon.currAngle + maxTurnRate
-          } else {
-            weapon.currAngle = angle
-          }
-        } else {
-          if (angleDist < -maxTurnRate) {
-            weapon.currAngle = weapon.currAngle - maxTurnRate
-          } else {
-            weapon.currAngle = angle
-          }
-        }
-      }
-    }
-
-    @JvmStatic
-    fun aimToAngle(weapon: WeaponAPI, angle: Float, speed: Float) {
-      val ship = weapon.ship
-      val maxTurnRate = speed
       val angleDist = MathUtils.getShortestRotation(weapon.currAngle, angle)
       if (Math.abs(MathUtils.getShortestRotation(weapon.slot.angle + ship.facing, angle)) > weapon.slot.arc / 2) {
       } else {
@@ -878,13 +859,13 @@ class aEP_Tool {
       return absOffset
     }
 
-    fun getDistForProjToHitShield(proj: CombatEntityAPI, ship: ShipAPI): Float {
+    fun getDistForLocToHitShield(loc: Vector2f, ship: ShipAPI): Float {
       if (ship.shield == null || ship.getShield().getType() == ShieldAPI.ShieldType.NONE) {
         return 9999f
       }
-      val inAngle = Math.abs(MathUtils.getShortestRotation(VectorUtils.getAngle(ship.location, proj.location), ship.shield.facing)) < ship.shield.activeArc / 2
+      val inAngle = Math.abs(MathUtils.getShortestRotation(VectorUtils.getAngle(ship.location, loc), ship.shield.facing)) < ship.shield.activeArc / 2
       return if (inAngle) {
-        MathUtils.getDistance(proj.location, ship.location) - ship.shield.radius
+        MathUtils.getDistance(loc, ship.location) - ship.shield.radius
       } else {
         9999f
       }
@@ -939,20 +920,6 @@ class aEP_Tool {
     }
 
     @JvmStatic
-    fun killMissile(missile: CombatEntityAPI, engine: CombatEngineAPI) {
-      engine.applyDamage(
-        missile,  //target
-        missile.location,  //point
-        missile.hitpoints * 10,  //damage
-        DamageType.ENERGY,
-        0f,
-        true,  //deal softflux
-        true,  //is bypass shield
-        missile
-      ) //damage source
-    }
-
-    @JvmStatic
     fun getNearestFriendCombatShip(e: CombatEntityAPI?): ShipAPI? {
       var distMost = 1000000f
       var returnShip: ShipAPI? = null
@@ -986,7 +953,11 @@ class aEP_Tool {
 
     @JvmStatic
     fun isNormalWeaponSlotType(slot: WeaponSlotAPI, containMissile: Boolean): Boolean {
-      return if (slot.weaponType != WeaponAPI.WeaponType.DECORATIVE && slot.weaponType != WeaponAPI.WeaponType.BUILT_IN && slot.weaponType != WeaponAPI.WeaponType.LAUNCH_BAY && slot.weaponType != WeaponAPI.WeaponType.SYSTEM && slot.weaponType != WeaponAPI.WeaponType.STATION_MODULE) {
+      return if (slot.weaponType != WeaponAPI.WeaponType.DECORATIVE &&
+        slot.weaponType != WeaponAPI.WeaponType.BUILT_IN &&
+        slot.weaponType != WeaponAPI.WeaponType.LAUNCH_BAY &&
+        slot.weaponType != WeaponAPI.WeaponType.SYSTEM &&
+        slot.weaponType != WeaponAPI.WeaponType.STATION_MODULE) {
         if (containMissile) {
           true
         } else {
@@ -997,7 +968,11 @@ class aEP_Tool {
 
     @JvmStatic
     fun isNormalWeaponType(w: WeaponAPI, containMissile: Boolean): Boolean {
-      return if (w.type != WeaponAPI.WeaponType.DECORATIVE && w.type != WeaponAPI.WeaponType.BUILT_IN && w.type != WeaponAPI.WeaponType.LAUNCH_BAY && w.type != WeaponAPI.WeaponType.SYSTEM && w.type != WeaponAPI.WeaponType.STATION_MODULE) {
+      return if (w.type != WeaponAPI.WeaponType.DECORATIVE &&
+        w.type != WeaponAPI.WeaponType.BUILT_IN &&
+        w.type != WeaponAPI.WeaponType.LAUNCH_BAY &&
+        w.type != WeaponAPI.WeaponType.SYSTEM &&
+        w.type != WeaponAPI.WeaponType.STATION_MODULE) {
         if (containMissile) {
           true
         } else {
@@ -1040,24 +1015,6 @@ class aEP_Tool {
       }
     }
 
-    fun applyImpulse(entity: CombatEntityAPI, applyPoint: Vector2f?, applyAngle: Float, impulse: Float) {
-      var entity = entity
-      if (entity is ShipAPI && entity.isStationModule) entity = entity.parentStation
-      val radius = Math.max(1f, getShipLength(entity))
-      val distToApplyPoint = Math.min(MathUtils.getDistance(entity.location, applyPoint), radius)
-      val angleToApplyPoint = MathUtils.getShortestRotation(VectorUtils.getAngle(entity.location, applyPoint), applyAngle)
-      val mass = Math.max(1f, entity.mass)
-      //addDebugText(""+radius);
-      val angularMomentum = impulse * distToApplyPoint * FastTrig.sin(Math.toRadians(angleToApplyPoint.toDouble())).toFloat()
-      val angularSpeedChange = angularMomentum / (1f / 2f * mass * radius + 1f)
-      entity.angularVelocity = limitToTop(entity.angularVelocity + angularSpeedChange, 720f, -720f)
-      val addVel = speed2Velocity(applyAngle, Math.max(1f, radius - distToApplyPoint) * impulse / (mass * radius + 1f))
-      var newVel = Vector2f(entity.velocity.x + addVel.x, entity.velocity.y + addVel.y)
-      newVel = velocity2Speed(newVel)
-      newVel.setY(Math.min(1000f, newVel.y))
-      newVel = speed2Velocity(newVel)
-      entity.velocity.set(newVel)
-    }
 
     fun getShipLength(s: CombatEntityAPI): Float {
       if (s is ShipAPI && s.getExactBounds() != null) {
@@ -1082,18 +1039,10 @@ class aEP_Tool {
       //游戏限速599
       angleAndSpeed.setY(Math.min(599f, angleAndSpeed.y))
 
-      newVel = speed2Velocity(newVel)
+      newVel = speed2Velocity(angleAndSpeed)
       entity.velocity.set(newVel)
     }
 
-    fun getEveryFrameScriptWithClass(clazz: Class<*>?): EveryFrameScript? {
-      for (EFS in Global.getSector().scripts) {
-        if (EFS.javaClass.isInstance(clazz)) {
-          return EFS
-        }
-      }
-      return null
-    }
 
     @JvmStatic
     fun isWithinArc(target: ShipAPI?, weapon: WeaponAPI): Boolean {
@@ -1153,18 +1102,6 @@ class aEP_Tool {
 
     fun getColorWithChange(ori: Color, alphaLevel: Float): Color {
       return Color((ori.blue * alphaLevel).toInt(), (ori.blue * alphaLevel).toInt(), (ori.blue * alphaLevel).toInt(), (ori.alpha * alphaLevel).toInt())
-    }
-
-    fun isHitMissileAndShip(toCheck: CollisionClass): Boolean {
-      return EnumSet.of(CollisionClass.MISSILE_FF, CollisionClass.MISSILE_NO_FF, CollisionClass.SHIP, CollisionClass.FIGHTER, CollisionClass.ASTEROID).contains(toCheck)
-    }
-
-    fun exponentialIncreaseSmooth(`in`: Float): Float {
-      return `in` * `in`
-    }
-
-    fun exponentialDecreaseSmooth(`in`: Float): Float {
-      return 1 - (1 - `in`) * (1 - `in`)
     }
 
     fun getPointRotateVector(point: Vector2f?, center: Vector2f, angle: Float): Vector2f {
@@ -1234,12 +1171,13 @@ class aEP_Tool {
       return closest
     }
 
-    fun findNearestEnemyFighter(entity: CombatEntityAPI): ShipAPI? {
+    //exclude fighters
+    fun findNearestFriendyShip(entity: CombatEntityAPI): ShipAPI? {
       var closest: ShipAPI? = null
       var distance: Float
       var closestDistance = Float.MAX_VALUE
-      for (tmp in AIUtils.getEnemiesOnMap(entity)) {
-        if (!tmp.isFighter || tmp.owner == entity.owner) continue
+      for (tmp in AIUtils.getAlliesOnMap(entity)) {
+        if (tmp.isFighter || tmp.owner != entity.owner) continue
         distance = MathUtils.getDistance(tmp, entity.location)
         if (distance < closestDistance) {
           closest = tmp
@@ -1247,21 +1185,6 @@ class aEP_Tool {
         }
       }
       return closest
-    }
-
-    fun isEntityHit(entity: CombatEntityAPI): Boolean {
-      var distance: Float
-      for (tmp in Global.getCombatEngine().ships) {
-        if (tmp.isFighter) continue
-        if (tmp === entity || tmp.isHulk || tmp.isShuttlePod || !tmp.isAlive || !Global.getCombatEngine().isEntityInPlay(tmp)) continue
-        if (tmp.collisionClass != CollisionClass.SHIP) continue
-        distance = MathUtils.getDistance(tmp, entity.location)
-        if (distance > tmp.collisionRadius) continue
-        if (CollisionUtils.isPointWithinBounds(entity.location, tmp)) {
-          return true
-        }
-      }
-      return false
     }
 
     //angle, length
@@ -1373,14 +1296,28 @@ class aEP_Tool {
       return Global.getSettings().getHullModSpec(spec).displayName
     }
 
+    /**
+     * 加上自身的碰撞半径但是不加上对面的碰撞半径
+     * */
     fun checkTargetWithinSystemRange(ship: ShipAPI?, baseRange: Float): Boolean{
-      val range = ship?.mutableStats?.systemRangeBonus?.computeEffective(baseRange) ?: -9999999999f
+      //默认返回false，所以初始为-1f
+      val range = ship?.mutableStats?.systemRangeBonus?.computeEffective(baseRange) ?: -1f
       if(ship?.shipTarget != null) {
         if(MathUtils.getDistance(ship.shipTarget.location,ship.location) - ship.collisionRadius< range){
           return true
         }
       }
       return false
+    }
+
+    fun getTargetWithinSystemRange(ship: ShipAPI?, baseRange: Float): Float{
+      val range = ship?.mutableStats?.systemRangeBonus?.computeEffective(baseRange) ?: 9999999999f
+      if(ship?.shipTarget != null) {
+        if(MathUtils.getDistance(ship.shipTarget.location,ship.location) - ship.collisionRadius< range){
+          return range
+        }
+      }
+      return 9999999999f
     }
 
     fun txtOfTargetWithinSystemRange(ship: ShipAPI?, baseRange: Float): String{
@@ -1512,6 +1449,10 @@ class aEP_Tool {
       var beamMult = 1f
       if(weapon?.isBeam == true) beamMult = source?.mutableStats?.beamWeaponDamageMult?.modifiedValue ?: 1f
 
+      //对护盾易伤加成
+      var allDamageToShieldDealtMult = source?.mutableStats?.damageToTargetShieldsMult?.modifiedValue ?: 1f
+
+
       //对舰体级别加成
       var targetSizeMult = 1f
       when (target?.hullSize?: ShipAPI.HullSize.DEFAULT) {
@@ -1527,7 +1468,7 @@ class aEP_Tool {
           targetSizeMult = source?.mutableStats?.damageToFighters?.modifiedValue ?: 1f
       }
 
-      //目标舰体易伤加成
+      //目标舰体/装甲易伤加成
       var targetDamageTakenMult = 1f
       when (type) {
         DamageType.KINETIC ->
@@ -1541,6 +1482,7 @@ class aEP_Tool {
         DamageType.OTHER ->
           targetDamageTakenMult = 1f
       }
+
       //目标护盾易伤加成
       var targetShieldDamageTakenMult = 1f
       when (type) {
@@ -1565,18 +1507,18 @@ class aEP_Tool {
 
       //目标投射物易伤加成
       var projDamageTakenMult = 1f
-      if(weapon?.isBeam == false) projDamageTakenMult = source?.mutableStats?.projectileDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == false) projDamageTakenMult = target?.mutableStats?.projectileDamageTakenMult?.modifiedValue ?: 1f
       //目标投射物对护盾易伤加成
       var projShieldDamageTakenMult = 1f
-      if(weapon?.isBeam == false) projShieldDamageTakenMult = source?.mutableStats?.projectileShieldDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == false) projShieldDamageTakenMult = target?.mutableStats?.projectileShieldDamageTakenMult?.modifiedValue ?: 1f
       projShieldDamageTakenMult *= projDamageTakenMult
 
       //目标光束易伤加成
       var beamDamgeTakenMult = 1f
-      if(weapon?.isBeam == true) beamDamgeTakenMult = source?.mutableStats?.beamDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == true) beamDamgeTakenMult = target?.mutableStats?.beamDamageTakenMult?.modifiedValue ?: 1f
       //目标光束对护盾易伤加成
       var beamShieldDamgeTakenMult = 1f
-      if(weapon?.isBeam == true) beamShieldDamgeTakenMult = source?.mutableStats?.beamShieldDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == true) beamShieldDamgeTakenMult = target?.mutableStats?.beamShieldDamageTakenMult?.modifiedValue ?: 1f
       beamShieldDamgeTakenMult *= beamDamgeTakenMult
 
 
@@ -1584,7 +1526,7 @@ class aEP_Tool {
         return (d * weaponMult * beamMult * targetSizeMult * targetDamageTakenMult * targetAllDamageTakenMult *
             projDamageTakenMult * beamDamgeTakenMult)
       else
-        return (d * weaponMult * beamMult * targetSizeMult * targetShieldDamageTakenMult * targetShieldAllDamageTakenMult *
+        return (d * weaponMult * beamMult * targetSizeMult * allDamageToShieldDealtMult * targetShieldDamageTakenMult * targetShieldAllDamageTakenMult *
             projShieldDamageTakenMult * beamShieldDamgeTakenMult)
     }
 
@@ -1649,6 +1591,9 @@ class aEP_ID{
   companion object{
     val VECTOR2F_ZERO = Vector2f(0f,0f)
     const val FACTION_ID_FSF = "aEP_FSF"
+    const val FACTION_ID_FSF_ADV = "aEP_FSF_adv"
+    const val HULLMOD_POINT = "#"
+    const val HULLMOD_BULLET = "     --"
     const val CONFIRM = "Confirm"
     const val CANCEL = "Cancel"
     const val RETURN = "Return"

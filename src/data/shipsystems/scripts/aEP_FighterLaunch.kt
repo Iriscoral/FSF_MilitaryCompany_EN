@@ -67,7 +67,6 @@ class aEP_FighterLaunch : BaseShipSystemScript() {
             f?: continue
             if(!isValidWing(wing)) continue
             if(aEP_Tool.getSystemRange(ship,MathUtils.getDistance(ship.location,f.location)) > RECALL_RANGE) continue
-            aEP_Tool.addDebugLog(f.customData.contains(id).toString())
             if(!f.isAlive || f.isHulk || f.customData.contains("aEP_RecallFighter")) continue
             aEP_CombatEffectPlugin.addEffect(RecallFighter(RECALL_TIME,f))
             didSend = true
@@ -433,7 +432,7 @@ class aEP_FighterLaunch : BaseShipSystemScript() {
 
       //生成proj
       proj = Global.getCombatEngine().spawnProjectile(
-        ship, null,"aEP_pubu_shot",
+        ship, null,"aEP_cru_pubu_main",
         findLaunchPoint(ship),ship.facing,null) as DamagingProjectileAPI
 
       fighter.mutableStats.maxSpeed.modifyFlat(id, max_speed_flat_bonus)

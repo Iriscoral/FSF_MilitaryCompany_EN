@@ -1,7 +1,8 @@
 {
 	"id":"aEP_NBFiringJet",
-	"type":"ENGINE_MOD",
+	#"type":"STAT_MOD",
 	#"aiType":"CUSTOM",
+	"type":"ENGINE_MOD",
 	"aiType":"MANEUVERING_JETS",
 	#"aiScript":"data.shipsystems.scripts.ai.aEP_ApproachThrusterAI",
 	"statsScript":"data.shipsystems.scripts.aEP_NBFiringJet",
@@ -9,19 +10,28 @@
 	#"runScriptWhileIdle":true,  # this means unapply() never gets called	
 	
 	
-	"engineGlowColor":[255,60,60,255],
-	"engineGlowContrailColor":[255,100,100,25],
-	"engineGlowLengthMult":2,
-	"engineGlowWidthMult":1.5,
-	"engineGlowGlowMult":1.5,
+	#"engineGlowColor":[255,60,60,255],
+	#"engineGlowContrailColor":[255,100,100,25],
+	"engineGlowLengthMult":1,
+	"engineGlowWidthMult":0.5,
+	"engineGlowGlowMult":1.1,
 	
 	"flameoutOnImpactChance":0,
 
-	"clampTurnRateAfter":true,
-	"clampMaxSpeedAfter":true,
-	#"alwaysAccelerate":false,
+	"clampTurnRateAfter":false,
+	"clampMaxSpeedAfter":false,
+	#"alwaysAccelerate":true,
 
 	
+	
+	
+	"requiresZeroFluxBoost":false,
+	
+	"vulnerableChargeup":false,
+	"vulnerableChargedown":false,
+	"renderCopyDuringTeleport":false,
+	
+	"fadeActivationSoundOnChargedown":false,
 	
 	"useSound":"aEP_DroneDash",
 	"loopSound":"aEP_NBJetFlying",
@@ -30,8 +40,8 @@
 	
 		
 	"aiHints":{
-		"activeSpeedIncrease":25,
-		"burstMovementPotential":0,
-		"averageSpeedIncrease":15,
+		"activeSpeedIncrease":300,
+		"burstMovementPotential":500,
+		"averageSpeedIncrease":200,
 	}
 }

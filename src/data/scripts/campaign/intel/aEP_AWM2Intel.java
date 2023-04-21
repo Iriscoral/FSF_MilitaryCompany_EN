@@ -29,15 +29,9 @@ public class aEP_AWM2Intel extends aEP_BaseMission
   String shipName;
 
   public aEP_AWM2Intel(SectorEntityToken whereToSpawn, String variantId, String targetShipId) {
-    this.sector = Global.getSector();
-    this.faction = Global.getSector().getFaction(aEP_ID.FACTION_ID_FSF);
+    super(0f);
     this.shipName = targetShipId;
-    ending = false;
-    ended = false;
     this.token = whereToSpawn;
-    setName(this.getClass().getSimpleName());
-    setPostingLocation(token);
-
 
     //add Fleet
     CampaignFleetAPI targetFleet = Global.getFactory().createEmptyFleet("derelict", "奇怪的无人舰", true);
@@ -59,20 +53,16 @@ public class aEP_AWM2Intel extends aEP_BaseMission
     person.getStats().setLevel(8);
     person.getStats().setSkillLevel(Skills.CONTAINMENT_PROCEDURES,1);
     person.getStats().setSkillLevel(Skills.COMBAT_ENDURANCE,1);
-    person.getStats().setSkillLevel(Skills.COORDINATED_MANEUVERS,1);
     person.getStats().setSkillLevel(Skills.POLARIZED_ARMOR,1);
-    person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS,1);
-    person.getStats().setSkillLevel(Skills.BALLISTIC_MASTERY,2);
-    person.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION,2);
+    person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS,2);
     person.getStats().setSkillLevel(Skills.HELMSMANSHIP,2);
     person.getStats().setSkillLevel(Skills.POINT_DEFENSE,2);
     person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION,2);
     person.getStats().setSkillLevel(Skills.SYSTEMS_EXPERTISE,2);
-    person.getStats().setSkillLevel(Skills.FIELD_MODULATION,1);
 
 
     person.setRankId(Ranks.SPACE_CAPTAIN);
-    person.setPersonality(Personalities.RECKLESS);
+    person.setPersonality(Personalities.AGGRESSIVE);
 
     person.setFleet(targetFleet);
     targetFleet.getFlagship().setCaptain(person);
@@ -93,9 +83,7 @@ public class aEP_AWM2Intel extends aEP_BaseMission
     this.targetFleet = targetFleet;
     setMapLocation(targetFleet);
 
-    setImportant(true);
     Global.getSector().getIntelManager().addIntel(this);
-    Global.getSector().getIntelManager().queueIntel(this);
   }
 
   @Override

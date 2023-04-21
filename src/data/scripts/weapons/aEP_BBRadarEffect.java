@@ -15,15 +15,17 @@ import org.lazywizard.lazylib.combat.WeaponUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+import static data.scripts.a111164ModPlugin.BB_Radar_ID;
+
 public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
 {
 
   public static final String id = "aEP_BBRadarEffect";
   public static final Map<WeaponAPI.WeaponSize, Float> BONUS_PERCENT = new HashMap<>();
   static {
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.LARGE, 0.85f);
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.MEDIUM, 0.85f);
-    BONUS_PERCENT.put(WeaponAPI.WeaponSize.SMALL, 0.85f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.LARGE, 0.8f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.MEDIUM, 0.8f);
+    BONUS_PERCENT.put(WeaponAPI.WeaponSize.SMALL, 0.8f);
   }
 
   static final float ANGLE_BEST = 15f;
@@ -56,7 +58,7 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
     @Override
     public float getWeaponRangePercentMod(ShipAPI ship, WeaponAPI weapon) {
 
-      if (weapon.getSpec().getWeaponId().equals("aEP_BB_radar")) {
+      if (weapon.getSpec().getWeaponId().equals(BB_Radar_ID)) {
         radar = weapon;
         hittingTarget = null;
         for (BeamAPI beam : Global.getCombatEngine().getBeams()) {
@@ -85,7 +87,7 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
         //保底起效百分之25
         buffPercent = MathUtils.clamp(buffPercent, MIN_BONUS, 1f);
         //帮助一下ai，武器不开火的时候加满范围
-        if(Global.getCombatEngine().getPlayerShip() != weapon.getShip() && weapon.getChargeLevel() == 0f) buffPercent = 1f;
+        if(ship.getShipAI() != null && weapon.getChargeLevel() == 0f) buffPercent = 1f;
         return BONUS_PERCENT.get(weapon.getSize()) * buffPercent;
       }
 
@@ -101,7 +103,7 @@ public class aEP_BBRadarEffect implements EveryFrameWeaponEffectPlugin
   static class Buff extends aEP_Buff {
     ShipAPI target;
     Buff(ShipAPI target){
-      setBuffType("aEP_BBRadarEffect");
+      setBuffType(id);
       setEntity(target);
       setLifeTime(0.5f);
       setMaxStack(1f);

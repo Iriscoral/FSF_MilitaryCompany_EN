@@ -26,8 +26,8 @@ public class MissionDefinition implements MissionDefinitionPlugin
 
     // Set a small blurb for each fleet that shows up on the mission detail and
     // mission results screens to identify each side.
-    api.setFleetTagline(FleetSide.PLAYER, "FSF舰船测试");
-    api.setFleetTagline(FleetSide.ENEMY, "模拟目标");
+    api.setFleetTagline(FleetSide.PLAYER, "FSF Test");
+    api.setFleetTagline(FleetSide.ENEMY, "Test");
 
     // These show up as items in the bulleted list under
     // "Tactical Objectives" on the mission detail screen
@@ -38,41 +38,46 @@ public class MissionDefinition implements MissionDefinitionPlugin
     // Set up the player's fleet.  Variant names come from the
     // files in data/variants and data/variants/fighters
     //主力
-    api.addToFleet(FleetSide.PLAYER, "aEP_decomposer_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_BiaoBing_Burst", FleetMemberType.SHIP, "FSF ship", true);
-    api.addToFleet(FleetSide.PLAYER, "aEP_DuiLiu_Standard", FleetMemberType.SHIP, "FSF ship", true);
-    api.addToFleet(FleetSide.PLAYER, "aEP_NuanChi_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_NeiBo_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShangShengLiu_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShangShengLiu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShangShengLiu_mk3_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_decomposer_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_biaobing_Burst", FleetMemberType.SHIP, "FSF ship", true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_duiliu_Standard", FleetMemberType.SHIP, "FSF ship", true);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_nuanchi_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_neibo_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_shangshengliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_shangshengliu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cap_shangshengliu_mk3_Standard", FleetMemberType.SHIP, "FSF ship", false);
 
     //巡洋
-    api.addToFleet(FleetSide.PLAYER, "aEP_HaiLiang_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ZhongLiu_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ReQuan_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShanHu_Standard", FleetMemberType.SHIP, "FSF ship1", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_PuBu_Standard", FleetMemberType.SHIP, "FSF ship1", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_hailiang_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_zhongliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_requan_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_shanhu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_pubu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_pingding_Standard", FleetMemberType.SHIP, "FSF ship", false);
 
 
     //驱逐
-    api.addToFleet(FleetSide.PLAYER, "aEP_LiAnLiu_Standard", FleetMemberType.SHIP, "FSF ship 12", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_CengLiu_Standard", FleetMemberType.SHIP, "FSF ship 12", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_YangJi_Standard", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_YouJiYan_Def", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_YouJiYan_mk2_Def", FleetMemberType.SHIP, "FSF ship", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShenCeng_Standard", FleetMemberType.SHIP, "FSF ship 15", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_lianliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_cengliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_yangji_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_youjiyan_Def", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_youjiyan_mk2_Def", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_shendu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_yonglang_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
+
+
 
     //护卫
-    api.addToFleet(FleetSide.PLAYER, "aEP_XiLiu_Standard", FleetMemberType.SHIP, "FSF ship 08", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_XiLiu_p_Standard", FleetMemberType.SHIP, "FSF ship 08", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_RaoLiu_PD", FleetMemberType.SHIP, "FSF ship 11", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_FanChongLi_Mixed", FleetMemberType.SHIP, "FSF ship 01", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_wanliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_xiliu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_raoliu_PD", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_fga_yonglang_Mixed", FleetMemberType.SHIP, "FSF ship", false);
 
     //特殊
-    api.addToFleet(FleetSide.PLAYER, "aEP_typeB28_variant", FleetMemberType.SHIP, "FSF ship 01", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_ShenCeng_mk2_Standard", FleetMemberType.SHIP, "FSF ship 01", false);
-    api.addToFleet(FleetSide.PLAYER, "aEP_LengShe_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_typeB28_variant", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_des_shendu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
+    api.addToFleet(FleetSide.PLAYER, "aEP_cru_lengshe_Standard", FleetMemberType.SHIP, "FSF ship", false);
 
 
     //在这加敌人的船，一样用装配文件里的ID，加了一艘统治者的Support装配

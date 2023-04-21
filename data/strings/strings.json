@@ -2,13 +2,15 @@
 	"aEP":{
 		"manufacturer":"FSF Manufacturing",
 		"only_on_FSF":"Can only be installed on FSF ships",
+		"not_capital":"Cannot be installed on capitals",
+		"not_cruiser":"Cannot be installed on cruisers",
 		"effect":"Effect",
 		"no_link":"No linkage effect at present",
 		"not_compatible":"Incompatible with ",
 		"when_soft_up":"When soft flux level is increasing",
 		"when_soft_not_up":"When soft flux level is no longer increasing",
 		"flux_gen_reduce":"Weapon flux generation is reduced by ",
-		"flux_diss":"Flux dispersion is ",
+
 		"hard_diss":"Hard flux dispersion",
 		"hard_convert":"Hard Flux conversion in progress",
 		"overload_time_reduce":"Reduced Overload Time",
@@ -17,39 +19,52 @@
 		"MD_des03":"Reduction in damage taken",
 		"MD_des04":"* Does not take into account soft flux gain due to taking damage, such as beam weapon hits to shields",
 		"missile_health_up":"Missile health increased by",
+
+		"MP_des00": "Overall Loading Rate",
 		"MP_des01":"For small slots, the ship produces missiles equivalent to %s ordnance points every 100 seconds",
 		"MP_des02":"For medium slots, the ship produces missiles equivalent to %s ordnance points every 100 seconds",
 		"MP_des03":"For large slots, the ship produces missiles equivalent to %s ordnance points every 100 seconds",
 		"MP_des04":"Missile rate of fire increased",
 		"MP_des05":"Missile rate of fire reduced ",
-		"missile_reload_speed_down":"Reduced missile rate of fire by ",
-		"zero_flux_speed_reduce":"Reduced zero-flux speed bonus by ",
-		
+		"MP_des06":"When the overall loading rate is {%s}, the maximum production rates for different missile weapons are as follows: ",
+		"MP_des07":"Response rate of total loading rate, is calculated as {%s} of the sum of the maximum production rates of all missile weapons installed on this ship ",
+		"MP_des08":"* For example, a missile weapon with an assembly point of 30 and a base reserve of 10 rounds would be worth 3 points per round",
+
 		"extra":"Extra",
-		"weapon_range_up":"Weapon range increased by ",
-		"shield_absorb_down":"Shield flux/damage increased by ",
-		"shield_damge_taken_reduce":"Shield damage reduced by ",
-		"ammo_regen_speed_up":"Increase in ammunition regeneration rate by ",
-		"HotLoader_desc02":"When the shipsystem is active, the ammunition regeneration rate is increased by a further %s",
-		"reduce_flux_per_hit":"Reduces %s points of soft flux with each hit",
-		
+		"weapon_range_up":"Weapon range increased by %s when nearby friendly ships are capitals",
+		"weapon_range_up2":"Weapon range increased by %s when nearby friendly ships are cruisers",
+		"weapon_range_up3":"Weapon range increased by %s when nearby friendly ships are destroyers",
+		"weapon_range_up4":"Weapon range increased by %s when nearby friendly ships are frigates",
+		"max_speed_down":"Max speed reduced",
+		"shield_damge_taken_reduce":"Shield damage reduction",
+		"ammo_regen_speed_up":"Ammo recovery rate increased by %s",
+		"HotLoader_desc02":"When the shipsystem is active, the ammo recovery rate is increased by a further %s",
+		"reduce_flux_per_hit":"Reduces flux by %s with each hit",
+
 		"add":"increased by ",
 		"reduce":"reduced by ",
 		"alter":"altered by",
-	
+
 		"forward":"Forward",
 		"backward":"Backward",
 		"only_on_small_ship":"Can only be fitted to frigates and destroyers",
 		"VA_des01":"Each time the ship takes damage, there is a %s chance that the damage will be reduced by %s points",
-		
+
+		"aEP_HotLoader01": "All non-built-in, non-missile weapons receive a resident {%s} bonus to reload speed",
+
 		"CMCarrier01":"Loading of a cruise missile for this ship is complete",
 		"CMCarrier02":"CR too low for reloading",
 		"CMCarrier03":"Not loading",
 		"CMCarrier04":"Missile loading status",
-		
+
 		"ArmorShield01":"Armour charged",
 		"ArmorShield02":"%s Damage is converted to hard flux",
-		
+
+		"aEP_BBLockOn01": "Increased weapon flux production",
+
+		"aEP_TargetSystem01": "Increase in weapon range by one percent: ",
+		"aEP_TargetSystem02": "Extremely fast reduction: ",
+
 		"ExtremeOverload01":"Soft flux has been generated",
 		"ExtremeOverload02":"Weapon cooldown time ",
 		"ExtremeOverload03":"Increased rate of fire of ballistic weapons",
@@ -74,13 +89,13 @@
 		"CruiseMissileItem02":"There are currently no cruise missile carriers in the fleet that are fully loaded",
 		"CruiseMissileItem03":"Fleet with loaded cruise missiles: %s rounds",
 		"CruiseMissileItem04":"You must be in the cargo hold page to use",
-		
+
 		"AWM_special_title":"Special Title",
 		"AWM_special_usage":"Special Usage",
 		"SpecialAmmo01":"The following ships in the current fleet are equipped with special items",
 		"SpecialAmmo02":"Select fleet members",
 		"SpecialAmmo03":"Configure special items for the ship - top: in stock, bottom: now equipped",
-		
+
 		"AWM01_title":"AWM01: Collecting Weapons",
 		"AWM01_mission01":"You also need to find the %s, %s",
 		"AWM01_mission02":"You have found the %s",
@@ -89,7 +104,7 @@
 		"AWM01_mission05":"Find %s",
 		"AWM01_desc01":"Search for the following weapons",
 		"AWM01_desc02":"In return for handing them over to me, you will be given some of the Company's latest products",
-		
+
 		"AWM02_title":"AWM02: Destroy the Target",
 		"AWM02_mission01":"The target is located in an asteroid field within {%s}",
 		"mission_require":"Mission requirements",
@@ -97,14 +112,20 @@
 		"mission_destroyed":"The target has been destroyed",
 		"mission_complete":"Mission Completed",
 		"mission_ended":"Mission Completed",
-	
+
 		"AWM03_title":"AWM03: Destroy the target fleet",
 		"AWM03_mission01":"The target is located near planet %s within %s",
 		"AWM03_mission02":"The %s fleet contains the following ships",
 		"AWM03_mission03":"Lost Fleet",
 		"AWM03_mission04":"Recovery of prototype ships",
 		"AWM03_mission05":"Mission Completed",
-		
+
+		"AWM04_title":"AWM04: Find the Hidden Star System",
+		"AWM04_mission01":"Search for hidden jump points near the coordinates",
+		"AWM04_mission02":"The paper has an approximate coordinate written on it, and a short time after you have finished reading it, the paper burns in your hand. The lavender flame isn't that hot, but now you can only get the coordinates from your memory.",
+		"AWM04_have_permission":"Present documents",
+		"AWM04_nothave_permission":"What in Ludd's name are you talking about?",
+
 		"MarineTrain_title":"Marine training",
 		"MarineTrain01":"Training is complete",
 		"MarineTrain02":"Marine training has begun",
@@ -112,14 +133,11 @@
 		"MarineTrain04":"Your %s crew is in training and is expected to be completed in %s days",
 
 		"MissileEntity_after":"After a burst of flame, peace quickly returned to the universe",
-		
+
 		"compatible":"Conflict",
 		"NotCompatible":"Conflict with fitting：",
 		"HaveToBeWith":"Ships must have",
 		"NeedToBalance:":"Needs to be balanced：",
-
-		"aEP_RapidDissipate01":"Converts {%s} damage taken by the hull before armour reduction to hard flux",
-		"aEP_RapidDissipate02":"* Damage taken by unseen modules can also provide dissipation for the main hull",
 
 		"aEP_LADamper01":"Increase in calculated armour value: ",
 		"aEP_LADamper02":"Increase in weapon rate of fire: ",
@@ -165,7 +183,7 @@
 		"aEP_CruiseMissileLoadIntel03":"Not loading",
 		"aEP_CruiseMissileLoadIntel04":"Select a cruise missile to load on this ship",
 		"aEP_CruiseMissileLoadIntel05":"Loading progress: {%s} ",
-			
+
 		"aEP_Market00":"This is the Sales Floor",
 		"aEP_Market01":"Sorry, you seem to have a bad reputation here. (requires FSF - Neutral)",
 
@@ -173,6 +191,35 @@
 		"aEP_AttackCarrier01":"A speed bonus is provided to fighter wings within {%s} of the mothership and with a base top speed below {%s}: ",
 		"aEP_AttackCarrier02":"When the ship's fighter replacement rate is very low and its flux is less than {%s}, the forge is activated to immediately replace all lost fighters, this ability has a cooldown of {%s} seconds and generates a large amount of flux",
 		"aEP_AttackCarrier03":"Forge cooling in progress",
-		"aEP_AttackCarrier04":"Cooling status: %s"
+		"aEP_AttackCarrier04":"Cooling status: %s",
+
+		"aEP_SoftfluxDissipate01":"Increased flux dissipation: ",
+		"aEP_SoftfluxDissipate02":"Each point in flux vents no longer causes a resident flux dissipation increase, but instead gain a floating bonus of %s; these bonuses gradually decrease to %s as the ship's hard flux level rises",
+		"aEP_SoftfluxDissipate03":"Normal bonus per point of flux vent reduced by %s",
+		"aEP_SoftfluxDissipate04":"Change in flux dissipation: ",
+
+		"aEP_RapidDissipate01":"Dissipate up to %s of the damage each time the ship takes damage, depending on the current flux level",
+		"aEP_RapidDissipate02":"* Damage taken by uncheckable modules can also provide dissipation to the body",
+
+		"aEP_BurstDissipate01": "Increase in normal bonus by %s per point of flux vent ",
+		"aEP_BurstDissipate02": "Each point in flux vents no longer provides a resident extra bonus, but instead causes a {%s} reduction in dissipation",
+		"aEP_BurstDissipate03": "Variation in flux dissipation: ",
+		"aEP_BurstDissipate04": "Shield damage absorption rate reduced by %s",
+
+		"aEP_ApproachingTo":"Approaching ",
+
+		"aEP_Mission01_01": "Your fleet",
+		"aEP_Mission01_02": "Simulation Objective",
+		"aEP_Mission01_03": "The company's destroyers were less able to take damage and lacked missile weapons",
+		"aEP_Mission01_04": "Direct your harassing warships to draw fire and create space for concentrated fire",
+		"aEP_Mission01_05": "Rapid destruction of targets using tactical systems in a many-to-one situation",
+
+		"aEP_Mission02_01": "Lamdor Star Patrol",
+		"aEP_Mission02_02": "A 'pirate' fleet that pirates couldn't have possibly put together",
+		"aEP_Mission02_03": "The enemy is much faster than you, don't get surrounded, let the Seaweight cover you",
+		"aEP_Mission02_04": "The Seaweight has run out of fuel and there is no way you can catch up with any of the enemy",
+		"aEP_Mission02_05": "Your peak performance time is longer than theirs, persistence is victory",
+
+
 	}
 }

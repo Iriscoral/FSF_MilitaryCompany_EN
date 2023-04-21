@@ -18,6 +18,7 @@ class aEP_Tugboat: aEP_BaseHullMod() {
 
   var lastTime = 0f
 
+
   override fun advanceInCampaign(member: FleetMemberAPI?, amount: Float) {
     if(member?.fleetData?.fleet == null) return
     val allMemberList = member.fleetData.combatReadyMembersListCopy
@@ -64,7 +65,9 @@ class aEP_Tugboat: aEP_BaseHullMod() {
     for(otherShip in allMemberList){
       //aEP_Tool.addDebugLog(otherShip.hullId+" + "+otherShip.stats.maxBurnLevel.modifiedValue)
       //在buff的构造函数里面要修改，否则advance就要等到下一帧了
-      otherShip.buffManager.addBuff(TowCableBuff(givenId, member ,otherShip))
+      if(otherShip.buffManager.getBuff(givenId) == null){
+        otherShip.buffManager.addBuff(TowCableBuff(givenId, member ,otherShip))
+      }
       return
     }
     //Global.getLogger(this.javaClass).info(test.toString())
@@ -72,7 +75,7 @@ class aEP_Tugboat: aEP_BaseHullMod() {
 
   class TowCableBuff( ) : Buff {
     private var days = 0f
-    private val maxDur = 0.25f
+    private val maxDur = 0.2f
     private var shouldEnd = false
     private var buffId = ""
     lateinit var tug:FleetMemberAPI

@@ -15,13 +15,12 @@ import data.scripts.world.aEP_gen;
 
 public class a111164ModPlugin extends BaseModPlugin
 {
-  public static final String RepairDrone_ID = "aEP_repairing_drone";
-  public static final String DecomposeDrone_ID = "aEP_decompose_drone";
-  public static final String DefenseDrone_ID = "aEP_defense_drone";
-  public static final String BB_Radar_ID = "aEP_BB_radar";
-  public static final String TearingBeam_ID = "aEP_tearing_beam";
-  public static final String TearingBeamFighter_ID = "aEP_tearing_beam_fighter";
-  public static final String MaoDianDrone_ID = "aEP_MaoDian_drone";
+  public static final String RepairDrone_ID = "aEP_ftr_ut_repair";
+  public static final String DecomposeDrone_ID = "aEP_ftr_ut_decompose";
+  public static final String DefenseDrone_ID = "aEP_ftr_sup_shield";
+  public static final String BB_Radar_ID = "aEP_cap_biaobing_radar";
+  public static final String TearingBeamFighter_ID = "aEP_ftr_ut_decompose_beam";
+  public static final String MaoDianDrone_ID = "aEP_ftr_ut_maodian";
   public static final String CruiseMissile_ID = "aEP_CruiseMissile";
   public static final String CruiseMissile2_ID = "aEP_CruiseMissile2";
 
@@ -56,7 +55,9 @@ public class a111164ModPlugin extends BaseModPlugin
   public PluginPick<MissileAIPlugin> pickMissileAI(MissileAPI missile, ShipAPI launchingShip) {
     switch (missile.getProjectileSpecId()) {
       case "aEP_harpoon_missile":
-      return new PluginPick<MissileAIPlugin>(new aEP_MissileAI(missile,launchingShip), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+      case "aEP_harpoon_missile_small":
+        return new PluginPick<MissileAIPlugin>(new aEP_MissileAI(missile,launchingShip), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+
     }
     return null;
   }
@@ -65,9 +66,6 @@ public class a111164ModPlugin extends BaseModPlugin
   @Override
   public PluginPick<AutofireAIPlugin> pickWeaponAutofireAI(WeaponAPI weapon) {
 
-    if (weapon.getId().equals(TearingBeam_ID)) {
-      return new PluginPick<AutofireAIPlugin>(new aEP_TearingBeamAI(weapon), CampaignPlugin.PickPriority.MOD_SPECIFIC);
-    }
     if (weapon.getId().equals(TearingBeamFighter_ID)) {
       return new PluginPick<AutofireAIPlugin>(new aEP_TearingBeamAI(weapon), CampaignPlugin.PickPriority.MOD_SPECIFIC);
     }

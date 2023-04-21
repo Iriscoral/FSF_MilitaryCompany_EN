@@ -2,13 +2,13 @@
   "id": "a111164_ExtendPack",
   "name": "FSF Miltary Company - [a111164_ExtendPack]",
   "author": "a111164 && 北冰洋大海豹",
-  "version": "3.17rc2",
+  "version": "3.19rc2",
   "description": "A development in the core worlds，Use the company's unique design to destroy enemies with bursts of firepower",
   "gameVersion": "0.95.1a-RC6",
   "jars": [
     "jars/a111164_ExtendPack.jar"
   ],
-   "dependencies": [
+  "dependencies": [
     {"id": "lw_lazylib", "name": "LazyLib"},
     {"id": "MagicLib", "name": "MagicLib"},
     {"id": "shaderLib", "name": "GraphicsLib"}

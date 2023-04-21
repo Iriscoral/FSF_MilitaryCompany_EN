@@ -35,9 +35,9 @@ import static java.lang.Math.PI;
 
 public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
 {
-  static final float MAX_ROF_BUFF = 3f;
+  static final float ROF_BONUS = 1.5f;
   static final float FLUX_PERCENT_TO_OVERLOAD_TIME = 0.1f;//how many percent accumulated flux of total flux convert to 1 second overload
-  static final float MAX_OVERLOAD_TIME = 6f;
+  static final float MAX_OVERLOAD_TIME = 10f;
   static final float WEAPON_COST_REDUCE_MULT = 0.5f;
   static final float FLUX_DISS_RUDUCE_MULT = 0.25f;
 
@@ -86,7 +86,7 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
     smokeTracker.advance(amount);
     if (smokeTracker.intervalElapsed()) {
       for (WeaponAPI w : ship.getAllWeapons()) {
-        if (w.getId().contains("aEP_duiliu_limiter_glow")) {
+        if (w.getId().contains("aEP_cap_duiliu_limiter_glow")) {
           float angle = w.getCurrAngle();
           aEP_MovingSmoke smoke = new aEP_MovingSmoke(w.getLocation());
           smoke.setInitVel(aEP_Tool.Util.speed2Velocity(angle, 10));
@@ -128,8 +128,8 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
     openDeco(ship, effectLevel);
 
     //施加buff
-    stats.getBallisticRoFMult().modifyFlat(id, chargeLevel * MAX_ROF_BUFF);
-    stats.getBallisticAmmoRegenMult().modifyMult(id,chargeLevel* MAX_ROF_BUFF);
+    stats.getBallisticRoFMult().modifyFlat(id, chargeLevel * ROF_BONUS);
+    stats.getBallisticAmmoRegenMult().modifyMult(id,chargeLevel* ROF_BONUS);
     stats.getBallisticWeaponFluxCostMod().modifyMult(id, 1f - effectLevel * WEAPON_COST_REDUCE_MULT);
     stats.getFluxDissipation().modifyMult(id, 1f - effectLevel * FLUX_DISS_RUDUCE_MULT);
 
@@ -162,7 +162,6 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
   @Override  //run once when unapply
   public void unapply(MutableShipStatsAPI stats, String id) {
     ShipAPI ship = (ShipAPI) stats.getEntity();
-    if(!didUse) return;
 
     //在这修改数值
     stats.getBallisticRoFMult().unmodify(id);
@@ -170,6 +169,7 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
     stats.getBallisticWeaponFluxCostMod().unmodify(id);
     stats.getFluxDissipation().unmodify(id);
 
+    if(!didUse) return;
     //stop weapon glowing
     ship.setWeaponGlow(0f,//float glow,
       new Color(240, 240, 150, 100),//java.awt.Color color,
@@ -182,7 +182,6 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
     if (overloadTime > 0.1f)
       endSystem(ship);
     accumulatedFlux.reset();
-    overloadTime = 0f;
     didUse = false;
   }
 
@@ -194,7 +193,7 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
       return new StatusData(txt("ExtremeOverload02") + ": " + ((int) (overloadTime * 100f)) / 100f, true);
     } else if (index == 2) {
       float chargeLevel = 1f - (1f-effectLevel) * (1f-effectLevel);
-      return new StatusData(txt("ExtremeOverload03") + ": " +(int)(chargeLevel * MAX_ROF_BUFF * 100) +"%", false);
+      return new StatusData(txt("ExtremeOverload03") + ": " +(int)(chargeLevel * ROF_BONUS * 100) +"%", false);
     }else if (index == 3) {
       return new StatusData(txt("ExtremeOverload04") + ": " +(int)(effectLevel * WEAPON_COST_REDUCE_MULT * 100) +"%", false);
     }else if (index == 4) {
@@ -223,11 +222,13 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
         }
         if (weapon.getSlot().getId().contains("03")) {
           ((aEP_DecoAnimation) weapon.getEffectPlugin()).setMoveToLevel(effectLevel);
-          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setRevoToLevel(to);
+          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setMoveToSideLevel(effectLevel);
+          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setRevoToLevel(effectLevel);
         }
         if (weapon.getSlot().getId().contains("06")) {
           ((aEP_DecoAnimation) weapon.getEffectPlugin()).setMoveToLevel(effectLevel);
-          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setRevoToLevel(to);
+          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setMoveToSideLevel(effectLevel );
+          ((aEP_DecoAnimation) weapon.getEffectPlugin()).setRevoToLevel(effectLevel);
         }
       }
       if (weapon.getSlot().getId().contains("LM")) {
@@ -337,6 +338,23 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
 
     @Override
     public void advanceImpl(float amount) {
+      overloadTime -= amount;
+      if(overloadTime <= 0f){
+        setShouldEnd(true);
+        return;
+      }
+
+      if (Global.getCombatEngine().getPlayerShip() == ship) {
+        String name = aEP_ExtremeOverloadScript.class.getSimpleName().replace("Script","");
+
+        Global.getCombatEngine().maintainStatusForPlayerShip(
+                this.getClass().getSimpleName(),  //key
+                Global.getSettings().getShipSystemSpec(name).getIconSpriteName(),  //sprite name,full, must be registed in setting first
+                txt("ExtremeOverload02"),  //title
+                (((int) (overloadTime * 100f)) / 100f)+"",  //data
+                true);
+      }
+
       //start weapon glowing
       ship.setWeaponGlow(1f,//float glow,
               new Color(240, 240, 150, 100),//java.awt.Color color,
@@ -344,6 +362,11 @@ public class aEP_ExtremeOverloadScript extends BaseShipSystemScript
       //禁止自动开火，禁止手动开火，完事
       ship.setHoldFireOneFrame(true);
       ship.blockCommandForOneFrame(ShipCommand.FIRE);
+
+      //如果系统立刻再次激活，立刻打断禁开火
+      if(ship.getSystem() != null && ship.getSystem().isActive()){
+        setShouldEnd(true);
+      }
     }
 
     @Override

@@ -2,11 +2,11 @@
     "knownShips":{      
       "tags":[],
       "hulls":[
-			"aEP_BiaoBing",
-			"aEP_decomposer",
-			"aEP_LiAnLiu",
-			"aEP_FanChongLi",
-			"aEP_RaoLiu",
+			"aEP_cap_biaobing",
+			"aEP_cap_decomposer",
+			"aEP_des_lianliu",
+			"aEP_fga_yonglang",
+			"aEP_fga_raoliu",
         ],
 	    },
 	  "knownFighters":{
@@ -17,7 +17,7 @@
 		"knownWeapons":{
 			"tags":[],
 			"weapons":[
-			"aEP_long_barrel_chaingun",
+			"aEP_b_m_mb32",
 			"aEP_trauma_cannon",
 			"aEP_breakin_hammer",
 			"aEP_breakin_bay",

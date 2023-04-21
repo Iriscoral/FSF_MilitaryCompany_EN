@@ -3,38 +3,36 @@ package data.scripts.world.aEP_systems;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
-import com.fs.starfarer.api.impl.campaign.ids.Conditions;
-import com.fs.starfarer.api.impl.campaign.ids.Industries;
-import com.fs.starfarer.api.impl.campaign.ids.Submarkets;
-import com.fs.starfarer.api.impl.campaign.ids.Terrain;
+import com.fs.starfarer.api.impl.campaign.DerelictShipEntityPlugin;
+import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.procgen.NebulaEditor;
+import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
+import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator;
+import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
+import com.fs.starfarer.api.impl.campaign.terrain.DebrisFieldTerrainPlugin;
 import com.fs.starfarer.api.impl.campaign.terrain.HyperspaceTerrainPlugin;
 import com.fs.starfarer.api.util.Misc;
+import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
+import java.util.Random;
 
-public class aEP_IND_Lamdor implements SectorGeneratorPlugin
-{
+public class aEP_IND_Lamdor implements SectorGeneratorPlugin {
+
+  public static String SHENDU_SPEC_ID = "aEP_des_shendu";
+
   @Override
   public void generate(SectorAPI sector) {
     StarSystemAPI system = sector.createStarSystem("Lamdor");
     system.getLocation().set(3650f, -22480f);
-    system.setLightColor(new Color(255, 160, 120, 100));// light color in entire system, affects all entities
+    system.setLightColor(new Color(255, 210, 160));// 不可以有透明度，不是叠加而是覆盖
     LocationAPI hyper = Global.getSector().getHyperspace();
     system.setBackgroundTextureFilename("graphics/backgrounds/background4.jpg");
 
     //system.getMemoryWithoutUpdate().set(MusicPlayerPluginImpl.MUSIC_SET_MEM_KEY, "music_title");
 
-    // create the star and generate the hyperspace anchor for this system
-   /*  	PlanetAPI FSF_HomeStar = system.initStar("aEP_FSF_HomeStar", // unique id for this star
-				                         StarTypes.RED_GIANT, // id in planets.json
-										 1000f,		// radius (in pixels at default zoom)
-										 1500, // corona radius, from star edge
-										 5f, // solar wind burn level
-										 0.5f, // flare probability
-										 2f); // cr loss mult
-   */
-    //add center start
+
+    //add center star
     PlanetAPI IND_HomeStar = system.initStar("aEP_IND_HomeStar",
       "aEP_IND_Homestar",
       250f,
@@ -83,8 +81,6 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin
     IND_HomePlanet.setMarket(M02);
     //这把市场粘到星球上
     IND_HomePlanet.setFaction(M02.getFactionId());
-
-
     Global.getSector().getEconomy().addMarket(M02, true);// marketAPI, isJunkAround
 
 
@@ -96,7 +92,7 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin
       -35, //Starting angle in orbit, i.e. 0 = to the right of the star
       120, // Planet radius, pixels at default zoom
       2800, //Orbit radius, pixels at default zoom
-      240);//Days it takes to complete an orbit. 1 day = 10 seconds.
+      360);//Days it takes to complete an orbit. 1 day = 10 seconds.
 
 
     //add station 2 for planet 2
@@ -104,7 +100,7 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin
       null,// name
       "aEP_IND_Piratestation",// type id in planets.json
       "pirates");//faction id
-    IND_PirateStation.setCircularOrbit(IND_PiratePlanet, 0, 300, 30);//which to orbit, starting angle, radius, orbit days
+    IND_PirateStation.setCircularOrbitPointingDown(IND_PiratePlanet, 0, 300, 30);//which to orbit, starting angle, radius, orbit days
 
     //add market for station2
     MarketAPI M01 = Global.getFactory().createMarket("IND_PirateStation", IND_PirateStation.getName(), 3);//id, name, size
@@ -151,6 +147,76 @@ public class aEP_IND_Lamdor implements SectorGeneratorPlugin
     // generates hyperspace destinations for in-system jump points
     system.autogenerateHyperspaceJumpPoints(true, true);
 
+    //在边缘生成2个随机的先进航母
+    //创造一个的残骸实体，并绑上打捞参数
+    DerelictShipEntityPlugin.DerelictShipData params = new DerelictShipEntityPlugin.DerelictShipData(new ShipRecoverySpecial.PerShipData(SHENDU_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.WRECKED, 0f), false);
+    params.ship.nameAlwaysKnown = true;
+    params.durationDays = 999999999f;
+    params.ship.addDmods = true;
+    SectorEntityToken ship = BaseThemeGenerator.addSalvageEntity(IND_HomeStar.getContainingLocation(),
+            Entities.WRECK, Factions.NEUTRAL, params);
+    //设置实体位置
+    ship.setCircularOrbit(IND_HomeStar,
+            102,
+            5400f,
+            600f);
+    ship.setDiscoverable(true);
+
+    //创造一份特殊舰船打捞数据
+    ShipRecoverySpecial.ShipRecoverySpecialData specialData = new ShipRecoverySpecial.ShipRecoverySpecialData("abandoned");
+    ShipRecoverySpecial.PerShipData perData = new ShipRecoverySpecial.PerShipData(SHENDU_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.WRECKED);
+    perData.addDmods = true;
+    perData.condition = ShipRecoverySpecial.ShipCondition.AVERAGE;
+    perData.nameAlwaysKnown = true;
+    specialData.addShip(perData);
+    specialData.storyPointRecovery = true;
+    //把特殊打捞数据绑给实体
+    Misc.setSalvageSpecial(ship, specialData);
+
+
+    //创造第二个残骸实体
+    DerelictShipEntityPlugin.DerelictShipData params2 = new DerelictShipEntityPlugin.DerelictShipData(new ShipRecoverySpecial.PerShipData(SHENDU_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.WRECKED, 0f), false);
+    params2.ship.nameAlwaysKnown = true;
+    params2.durationDays = 999999999f;
+    params2.ship.addDmods = true;
+    SectorEntityToken ship2 = BaseThemeGenerator.addSalvageEntity(IND_HomeStar.getContainingLocation(),
+            Entities.WRECK, Factions.NEUTRAL, params2);
+    //设置实体位置
+    ship2.setCircularOrbit(IND_HomeStar,
+            103,
+            5460f,
+            600f);
+    ship2.setDiscoverable(true);
+
+    //创造第二份特殊舰船打捞数据
+    ShipRecoverySpecial.ShipRecoverySpecialData specialData2 = new ShipRecoverySpecial.ShipRecoverySpecialData("abandoned");
+    ShipRecoverySpecial.PerShipData perData2 = new ShipRecoverySpecial.PerShipData(SHENDU_SPEC_ID+"_Standard", ShipRecoverySpecial.ShipCondition.AVERAGE);
+    perData2.addDmods = true;
+    perData2.condition = ShipRecoverySpecial.ShipCondition.AVERAGE;
+    perData2.nameAlwaysKnown = true;
+    specialData2.addShip(perData2);
+    specialData2.storyPointRecovery = true;
+    //把特殊打捞数据绑给实体
+    Misc.setSalvageSpecial(ship2, specialData2);
+
+    //加一片废墟
+    //add debris field
+    DebrisFieldTerrainPlugin.DebrisFieldParams debrisFieldParams = new DebrisFieldTerrainPlugin.DebrisFieldParams(
+            200f, // field radius - should not go above 1000 for performance reasons
+            1.6f, // density, visual - affects number of debris pieces
+            999999999f, // duration in days
+            30f); // days the field will keep generating glowing pieces
+
+    debrisFieldParams.source = DebrisFieldTerrainPlugin.DebrisFieldSource.GEN;
+    SectorEntityToken debris = Misc.addDebrisField(IND_HomeStar.getContainingLocation(), debrisFieldParams, StarSystemGenerator.random);
+    // makes the debris field always visible on map/sensors and not give any xp or notification on being discovered
+    debris.setSensorProfile(null);
+    debris.setDiscoverable(null);
+
+    debris.setCircularOrbit(IND_HomeStar,
+            102.5f,
+            5400f,
+            600f);
 
     cleanup(system);
   }

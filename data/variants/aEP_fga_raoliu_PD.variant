@@ -1,0 +1,36 @@
+{
+    "displayName": "PD",
+    "fluxCapacitors": 3,
+    "fluxVents": 2,
+    "goalVariant": true,
+    "hullId": "aEP_fga_raoliu",
+    "hullMods": [
+        "heavyarmor",
+        "aEP_VanguardHull",
+        "aEP_RapidDissipate"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_raoliu_PD",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0001": "railgun"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "aEP_b_s_pom",
+                "WS0003": "vulcan",
+                "WS0006": "vulcan"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "aEP_forcus_laser"}
+        }
+    ]
+}

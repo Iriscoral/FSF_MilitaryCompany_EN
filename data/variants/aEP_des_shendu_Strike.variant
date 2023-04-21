@@ -1,0 +1,29 @@
+{
+    "displayName": "Strike",
+    "fluxCapacitors": 2,
+    "fluxVents": 2,
+    "goalVariant": true,
+    "hullId": "aEP_des_shendu",
+    "hullMods": ["hardenedshieldemitter"],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_des_shendu_Strike",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "aEP_harpoon_large"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "aEP_vulcan",
+                "WS0002": "aEP_vulcan",
+                "WS0003": "aEP_vulcan",
+                "WS0004": "aEP_vulcan"
+            }
+        }
+    ],
+    "wings": ["aEP_ftr_bom_attacker_wing"]
+}

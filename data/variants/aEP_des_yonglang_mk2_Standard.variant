@@ -1,0 +1,35 @@
+{
+  "variantId": "aEP_des_yonglang_mk2_Standard",
+  "hullId": "aEP_des_yonglang_mk2",
+  "displayName": "Standard",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "LANCE01": "aEP_bomb_lance",
+        "WS0006": "aEP_bomb_lance",
+        "WS0007": "aEP_bomb_lance",
+        "WS0008": "aEP_bomb_lance"
+      }
+    }
+  ],
+  "modules": [
+    {
+      "L": "aEP_des_yonglang_mk2_l_Standard"
+    },
+    {
+      "R": "aEP_des_yonglang_mk2_r_Standard"
+    },
+    {
+      "M": "aEP_des_yonglang_mk2_m_Standard"
+    }
+  ],
+  "wings": []
+}

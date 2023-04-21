@@ -25,25 +25,29 @@ import data.shipsystems.scripts.aEP_FCLBurstScript
 import com.fs.starfarer.api.combat.ShipEngineControllerAPI.ShipEngineAPI
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import combat.impl.aEP_BaseCombatEffect
+import combat.util.aEP_ID
 import java.awt.Color
 
 class aEP_FCLBurstScript : BaseShipSystemScript() {
   companion object {
     //开火时自己受到的后向冲量，也是对敌人施加的冲量
-    const val IMPULSE = 30000f
-    const val MIN_DAMAGE_PERCENT = 0.25f
+    const val IMPULSE = 35000f
+    const val MIN_DAMAGE_PERCENT = 0.33f
 
     const val MAX_GLOW_SIZE = 200f
     val GLOW_COLOR = Color(225, 235, 255, 240)
 
     const val FULL_DAMAGE_RANGE = 400f
 
-    const val MAX_SPEED_PERCENT_BONUS = 120f
-    const val ACC_MULT_PUNISH = 0.35f
+    const val MAX_SPEED_PERCENT_BONUS = 100f
+    const val ACC_MULT_PUNISH = 0.5f
     const val ON_FIRE_SPEED_MULT_PUNISH = 0.25f
+
+    const val WEAPON_ID = "aEP_fga_yonglang_main"
+    const val WEAPON_GLOW_ID = "aEP_fga_yonglang_glow"
   }
 
-  var smokeTimer = IntervalUtil(0.04f, 0.06f)
+  var smokeTimer = IntervalUtil(0.05f, 0.05f)
   private var ship: ShipAPI? = null
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     ship = stats.entity as ShipAPI
@@ -55,18 +59,18 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
     for (weapon in ship.allWeapons) {
       if (!weapon.slot.id.contains("FCL_DECO")) continue
       val toSpawn = getExtendedLocationFromPoint(weapon.location, weapon.currAngle, 24f)
-      if (weapon.spec.weaponId == "aEP_FCL") {
+      if (weapon.spec.weaponId == WEAPON_ID) {
         if (ship.system.effectLevel >= 1f) {
           //将开火武器数量＋1
           weaponNum += 1
           val pro = engine.spawnProjectile(
             ship, weapon,
-            "aEP_FCL",
+            WEAPON_ID,
             toSpawn,
             weapon.currAngle,
-            ship!!.velocity
+            ship.velocity
           )
-          addEffect(Blink(pro as DamagingProjectileAPI))
+          //addEffect(Blink(pro as DamagingProjectileAPI))
           engine.addSmoothParticle(
             toSpawn,  //Vector2f loc,
             Vector2f(0f, 0f),  //Vector2f vel,
@@ -75,11 +79,18 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
             0.4f,  //float duration,
             Color(200, 200, 200, 250)
           ) //java.awt.Color
+
+          Global.getCombatEngine().addSmoothParticle(
+            toSpawn,
+            aEP_ID.VECTOR2F_ZERO,
+            300f,1f,0.33f,0.15f,
+            Color.white)
+
           Global.getSoundPlayer().playSound(
             "heavy_mortar_fire",
             1f, 1.2f,  // pitch,volume
-            ship!!.location,  //location
-            ship!!.velocity
+            ship.location,  //location
+            ship.velocity
           ) //velocity
         }
       }
@@ -88,7 +99,7 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
       val anima = weapon.effectPlugin as aEP_DecoAnimation
       //glow to 1 at instant when fire
       if (weaponNum > 0) {
-        if (weapon.spec.weaponId == "aEP_FCL_glow") anima.setGlowEffectiveLevel(1f)
+        if (weapon.spec.weaponId == WEAPON_GLOW_ID) anima.setGlowEffectiveLevel(1f)
       }
       //move forward when charging up
       if (state == ShipSystemStatsScript.State.IN) {
@@ -100,7 +111,7 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
 
           //热炮管拖烟
           smokeTimer.advance(amount)
-          if (smokeTimer.intervalElapsed() && weapon.spec.weaponId == "aEP_FCL") {
+          if (smokeTimer.intervalElapsed() && weapon.spec.weaponId == WEAPON_ID) {
             Global.getCombatEngine().addNebulaParticle(toSpawn, Vector2f(0f,0f),
               40f,2f,
               0.1f,0.4f,2f,
@@ -110,13 +121,12 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
           //增加极速，减少加速度
           stats.maxSpeed.modifyPercent(id, MAX_SPEED_PERCENT_BONUS)
           stats.acceleration.modifyMult(id, ACC_MULT_PUNISH)
-
           //调整发光贴图
-          if (weapon.spec.weaponId == "aEP_FCL_glow") anima.setGlowToLevel((effectLevel - 0.5f) * 2f)
+          if (weapon.spec.weaponId == WEAPON_GLOW_ID) anima.setGlowToLevel((effectLevel - 0.5f) * 2f)
 
         } else {
           anima.setMoveToLevel(0f)
-          if (weapon.spec.weaponId == "aEP_FCL_glow") anima.setGlowToLevel(0f)
+          if (weapon.spec.weaponId == WEAPON_GLOW_ID) anima.setGlowToLevel(0f)
         }
       }
     }
@@ -124,7 +134,7 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
 
     //当任何武器开火，立刻大幅度减少自己当前的速度，然后每一个武器施加一定的后向冲量
     if (weaponNum > 0) {
-      ship.velocity[ship.velocity.x * ON_FIRE_SPEED_MULT_PUNISH] = ship.velocity.y * ON_FIRE_SPEED_MULT_PUNISH
+      ship.velocity.scale(ON_FIRE_SPEED_MULT_PUNISH)
       applyImpulse(ship, ship.facing, -IMPULSE * weaponNum)
     }
 
@@ -173,7 +183,7 @@ class aEP_FCLBurstScript : BaseShipSystemScript() {
 
       s.damageAmount = s.projectileSpec.damage.damage * effectiveLevel
       if (s.didDamage() && s.damageTarget != null) {
-        applyImpulse(s.damageTarget, s.location, s.facing, IMPULSE * effectiveLevel)
+        applyImpulse(s.damageTarget, s.facing, IMPULSE * effectiveLevel)
         cleanup()
       }
 

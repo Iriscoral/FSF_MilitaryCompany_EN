@@ -15,7 +15,7 @@ import kotlin.math.abs
 class aEP_FighterLaunchAI:aEP_BaseSystemAI(){
 
   override fun initImpl() {
-    thinkTracker.setInterval(0.5f,0.5f)
+    thinkTracker.setInterval(1f,1f)
   }
 
   override fun advanceImpl(amount: Float, missileDangerDir: Vector2f?, collisionDangerDir: Vector2f?, target: ShipAPI?) {
@@ -76,13 +76,13 @@ class aEP_FighterLaunchAI:aEP_BaseSystemAI(){
           willingToUse += 25f
         } else if(dist < 3500f && dist > 2500f){
           willingToUse += 50f
-        }else if(dist < 2500f && dist > 1500f){
+        }else if(dist < 2500f && dist > 1600f){
           willingToUse += 100f
-        }else if (dist< 1500 && dist >1000){
+        }else if (dist< 1600 && dist >1200){
           willingToUse += 75f
-        }else if (dist< 1000 && dist > 500){
-          willingToUse += 25f
-        } else if (dist < 500){
+        }else if (dist< 1200 && dist > 600){
+          willingToUse += 0f
+        } else if (dist < 600){
           willingToUse += -100f
         }
         t = enemy

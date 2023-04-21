@@ -1,9 +1,9 @@
 name,id,planetary,decivRemove,script,desc,icon,order
 Underground Storage,aEP_UndergroundStorage,TRUE,TRUE,data.scripts.campaign.econ.environment.aEP_UndergroundStorage,"Underneath the planet is a fully equipped base with enough resources to last for several cycles even if it is cut off from the outside world.
 
-Minimum stability of the colony will not fall below 1.",graphics/aEP_icons/UndergroundStorage.png,807956
-,,,,,,,
-,,,,,,,
-,,,,,,,
+Minimum stability of the colony will not fall below 1.",graphics/aEP_icons/UndergroundStorage.png,
+Military Zone,aEP_MilitaryZone,,TRUE,data.scripts.campaign.econ.environment.aEP_MilitaryZone,"A large military garrison is installed herre, eliminating the need for Recreational Drugs, Luxury Goods and Harvested Organs from all facilities in the colony, while increasing the maximum number of industrial facilities by 2.",graphics/aEP_icons/UndergroundStorage.png,
+Space Farm,aEP_SpaceFarm,,TRUE,data.scripts.campaign.econ.environment.aEP_SpaceFarm,"Large-scale endocyclic ecosystems that produce a variety of organic compounds needed for industry as long as energy and inorganic material are input, generating a certain amount of Food and Organics supply depending on the size of the colony.",graphics/aEP_icons/hydroponics.png,
+Extermination Virus,aEP_ExtinctiveVirus,,TRUE,data.scripts.campaign.econ.environment.aEP_ExtinctiveVirus,The ecosystem is full of microorganisms that are extremely lethal to humans and all operations must be carried out in a completely airtight environment. Significantly reduced output for all facilities.,graphics/aEP_icons/xenoplague.png,
 ,,,,,,,
 ,,,,,,,

@@ -35,13 +35,13 @@ public class aEP_SystemAnimation implements EveryFrameWeaponEffectPlugin
     timer = timer + amount;
 
     switch (id) {
-      case "aEP_NC_pool":
+      case "aEP_cap_nuanchi_reloaddeco":
         if (effectLevel > 0.5f) {
           loopOnce();
 
         }
         break;
-      case "aEP_HL_tower":
+      case "aEP_antenna_binker":
         upAndDown(effectLevel > 0.5f);
         break;
     }

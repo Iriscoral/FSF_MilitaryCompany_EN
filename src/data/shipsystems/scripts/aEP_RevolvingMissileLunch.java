@@ -23,7 +23,7 @@ public class aEP_RevolvingMissileLunch extends BaseShipSystemScript
   boolean forceUse = false;
   boolean disablePermanent = false;
 
-  IntervalUtil fireTimer = new IntervalUtil(0.25f, 0.25f);
+  IntervalUtil fireTimer = new IntervalUtil(0.2f, 0.2f);
   IntervalUtil particleTimer = new IntervalUtil(0.05f, 0.15f);
 
   @Override

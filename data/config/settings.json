@@ -4,8 +4,8 @@
 			"background1":"graphics/aEP_background/background1.jpg",
 		},
 		"blueprint_packages":{
-      		"FSF_bp":"graphics/aEP_items/FSF_bp.png",
-      		"FSF_openbp":"graphics/aEP_items/FSF_openbp.png",
+			"FSF_rarebp":"graphics/aEP_items/FSF_rarebp.png",
+			"FSF_openbp":"graphics/aEP_items/FSF_openbp.png",
      
 		},
 		"aEP_FX":{
@@ -36,7 +36,6 @@
 			
 			"ring":"graphics/aEP_FX/controledshieldring.png",
 			"half_ring":"graphics/aEP_FX/half_ring.png",
-			"fluctuation":"graphics/aEP_FX/slowfieldfluctuation.png",
 			"shred":"graphics/weapons/aEP_large_kinetic_flak/shred.png",
 			"aEP_empty":"graphics/aEP_empty.png",
 
@@ -69,18 +68,13 @@
 			"small_shell":"graphics/weapons/small_shell.png",
 			"mid_shell":"graphics/weapons/mid_shell.png",
 			
-			"PD_f":"graphics/weapons/aEP_PD_support/f.png",
-			"PD_b":"graphics/weapons/aEP_PD_support/b.png",
-
-			"aEP_MD_empty_slot":"graphics/ships/aEP_maodian02.png"
-		}, 
+			"aEP_PD_f":"graphics/weapons/aEP_pingding/f.png",
+			"aEP_PD_b":"graphics/weapons/aEP_pingding/b.png",
+			"aEP_PD_br":"graphics/weapons/aEP_pingding/br.png",
+		},
 		"aEP_hullstyle":{
 			"aEP_shield_inner":"graphics/aEP_hullstyle/shield_inner.png",
 			"aEP_shield_outer":"graphics/aEP_hullstyle/shield_outer.png",
-			"aEP_shield_inner02":"graphics/aEP_hullstyle/shield_inner02.png",
-			"aEP_shield_outer02":"",
-			"aEP_shield_inner03":"graphics/aEP_hullstyle/shield_inner03.png",
-			"aEP_shield_outer03":"graphics/aEP_hullstyle/shield_outer03.png",
 		}, 
 		"aEP_ui":{
  			"multi_turret":"graphics/aEP_hullsys/multi_turret.png",
@@ -102,6 +96,9 @@
 			"none":"graphics/aEP_items/aEP_none.png",
 			"cruise_missile":"graphics/aEP_items/aEP_cruise_missile.png",
 			"cruise_missile2":"graphics/aEP_items/aEP_cruise_missile.png"
+		},
+		"aEP_hullsys":{
+			"aEP_MissilePlatform":"graphics/aEP_hullsys/aEP_missile_platform.png"
 		}
 	},
 
@@ -121,6 +118,7 @@
 		"FSF Manufacturing":[180,180,150,255],
 		"FSF Design":[180,180,150,255],
 		"FSF Advanced Weapons Program":[180,180,150,255],
+		"FSF Haphazard Modification":[255,120,100,255],
 		"FSF":[180,180,150,255]
 	},
 

@@ -9,13 +9,15 @@ import data.scripts.weapons.aEP_DecoAnimation
 import org.lazywizard.lazylib.MathUtils
 import com.fs.starfarer.api.plugins.ShipSystemStatsScript.StatusData
 import combat.util.aEP_DataTool
+import data.shipsystems.scripts.aEP_DamperBoost.Companion.LARGE_FOLD_ARMOR
+import data.shipsystems.scripts.aEP_DamperBoost.Companion.LARGE_FOLD_BELOW
 import java.awt.Color
 
 class aEP_DamperTanker : BaseShipSystemScript() {
 
   companion object {
-    private const val EFFECT_ARMOR_FLAT_BONUS = 400f
-    private const val EFFECT_ARMOR_PERCENT_BONUS = 0.25f
+    private const val EFFECT_ARMOR_FLAT_BONUS = 500f
+    private const val EFFECT_ARMOR_PERCENT_BONUS = 0.33f
     private const val ARMOR_DAMAGE_REDUCE = 0.5f //by mult
     private const val HULL_DAMAGE_REDUCE = 0.5f
   }
@@ -38,22 +40,22 @@ class aEP_DamperTanker : BaseShipSystemScript() {
       //控制侧面甲同时展开
       if (convertedLevel < 0.5f) {
         val level = MathUtils.clamp(convertedLevel * 2f, 0f, 1f)
-        if (w.spec.weaponId == "aEP_shangshengliu_armor") {
+        if (w.spec.weaponId == LARGE_FOLD_ARMOR) {
           w.sprite.color = Color(0, 0, 0, 0)
           anima.setMoveToLevel(level)
         }
-        if (w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
+        if (w.spec.weaponId == LARGE_FOLD_BELOW) {
           w.sprite.color = Color(255, 255, 255)
           anima.setMoveToLevel(level)
         }
       } else {
         val level = MathUtils.clamp(2f - convertedLevel * 2f, 0f, 1f)
-        if (w.spec.weaponId == "aEP_shangshengliu_armor") {
+        if (w.spec.weaponId == LARGE_FOLD_ARMOR) {
           val black = (255 * effectLevel).toInt()
           w.sprite.color = Color(black, black, black)
           anima.setMoveToLevel(level)
         }
-        if (w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
+        if (w.spec.weaponId == LARGE_FOLD_BELOW) {
           anima.setMoveToLevel(level)
         }
       }
@@ -81,11 +83,11 @@ class aEP_DamperTanker : BaseShipSystemScript() {
     for (w in ship?.allWeapons?:ArrayList()) {
       if (!w.slot.id.startsWith("TOP_LV") && !w.slot.id.startsWith("RL_DECO")) continue
       val anima = w.effectPlugin as aEP_DecoAnimation
-      if (w.spec.weaponId == "aEP_shangshengliu_armor") {
+      if (w.spec.weaponId == LARGE_FOLD_ARMOR) {
         w.sprite.color = Color(0, 0, 0, 0)
         anima.setMoveToLevel(0f)
       }
-      if ( w.spec.weaponId == "aEP_shangshengliu_armor_dark") {
+      if ( w.spec.weaponId == LARGE_FOLD_BELOW) {
         w.sprite.color = Color(0, 0, 0, 0)
         anima.setMoveToLevel(0f)
       }

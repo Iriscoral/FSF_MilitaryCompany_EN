@@ -1,0 +1,39 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 0,
+    "fluxVents": 1,
+    "goalVariant": true,
+    "hullId": "aEP_fga_raoliu",
+    "hullMods": [
+        "heavyarmor",
+        "aEP_VanguardHull",
+        "armoredweapons",
+        "aEP_RapidDissipate"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_fga_raoliu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "railgun",
+                "WS0002": "railgun"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0003": "vulcan",
+                "WS0006": "vulcan"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "aEP_forcus_laser"}
+        }
+    ]
+}

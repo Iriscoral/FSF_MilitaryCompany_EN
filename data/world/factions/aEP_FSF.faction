@@ -7,15 +7,15 @@
 	"displayNameLongWithArticle":"the FSF Military Corporation",
 	"entityNamePrefix":"FSF",
 	"personNamePrefix":"",
-	"personNamePrefixAOrAn":"an",
-	"displayNameIsOrAre":"are",
+	"personNamePrefixAOrAn":"a",
+	"displayNameIsOrAre":"is",
 	"logo":"graphics/aEP_factions/FSF.png",
 	"crest":"graphics/aEP_factions/crest_FSF.png",
 	"shipNamePrefix":"FSF",
 	"showInIntelTab":true,
 	"shipNameSources":{
 		"GREEK":0,
-		"CELTIC":2,
+		"CELTIC":0,
 		"SPACE":4,
 		"GENERAL":1,
 	},
@@ -25,22 +25,23 @@
 		"future":1,
 		"myth":1,
 	},
-	# variantOverrides restricts hulls to listed variants and adjusts their probability
+	# variantOverrides restricts hulls to listed variants and adjusts their probabilityz
 	# multiplier for how often hulls show up in the faction's fleets
 	"hullFrequency":{
-		"tags":{"FSF_bp":1,	
+		"tags":{
+			"FSF_advancebp": 0.2
 		},
 		"hulls":{
-			"aEP_YouJiYan":0.75,
-			"aEP_YouJiYan_mk2":0.75,
-			"aEP_ShangShengLiu":0.75,
-			"aEP_ShangShengLiu_mk3":0.75,
+			"aEP_des_youjiyan":0.75,
+			"aEP_des_youjiyan_mk2":0.75,
+			"aEP_cap_shangshengliu":0.75,
+			"aEP_cap_shangshengliu_mk2":0.75,
 		},
 	},
 	# ships the faction gets access to when importing S&W out-of-faction
 	# 注意更新以后要重写开档才生效，生成势力的时候读一次
 	"shipsWhenImporting":{
-		"tags":["base_bp", "midline_bp"],
+		"tags":["midline_bp"],
 		"hulls":[
 		],
 	},
@@ -51,7 +52,7 @@
 	},
 	# listing ships here will make the faction mostly use them even if other hulls become available
 	"priorityShips":{
-		"tags":["FSF_bp"],
+		"tags":["FSF_openbp","FSF_rarebp","FSF_advancebp"],
 		"hulls":[
 				
 		],
@@ -62,28 +63,28 @@
 		],
 	},
 	"priorityFighters":{
-		"tags":[],
+		"tags":["FSF_bp"],
 		"fighters":[
 		],
 	},
 	"knownWeapons":{
-		"tags":["base_bp", "independent","midline_bp", "FSF_bp"],
+		"tags":["base_bp", "midline_bp", "FSF_bp"],
 		"weapons":[
 			"lightneedler",
 			"railgun",
 			"vulcan",
-			"lightdualac",
 
 			"flak",
 			"dualflak",
 
 			"autopulse",
 			"gauss",
+			"mjolnir",
+			"devastator",
 
 			"hurricane",
 			"squall",
 			"locust",
-		
 		],
 	},
 	"priorityWeapons":{
@@ -91,9 +92,12 @@
 		"weapons":[
 			"vulcan",
 			"dualflak",
-			"flak",
 			"lightac",
-			"sabot"
+			"railgun",
+
+			"flak",
+
+			"mjolnir",
 		],
 	},
 	"knownHullMods":{
@@ -145,7 +149,7 @@
 		"combatFreighterProbability":0.25, 	# instead of some portion of the freighters in a fleet
 		"combatFreighterCombatUseFraction":0,	# as part of the normal combat lineup
 		"combatFreighterCombatUseFractionWhenPriority":0,   # as part of normal combat lineup, when marked as priority ship
-		"autofitRandomizeProbability":0.2,
+		"autofitRandomizeProbability":0.25,
 
 		"commanderSkillsShuffleProbability":0.5,
 		"commanderSkills":[
@@ -168,7 +172,8 @@
 			"encounter_neutral":"aEP_fsf_neutral_fleet",
 			"encounter_hostile":"aEP_fsf_enemy_fleet",
 			"encounter_friendly":"aEP_fsf_friendly_fleet"
-	},	
+	},
+	"internalComms":"aEP_FSF_internal",
 	"portraits":{
 		"standard_male":[	
 			"graphics/portraits/portrait_mercenary03.png",

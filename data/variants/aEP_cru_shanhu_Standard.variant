@@ -1,0 +1,54 @@
+{
+    "displayName": "Standard",
+    "fluxCapacitors": 7,
+    "fluxVents": 8,
+    "goalVariant": true,
+    "hullId": "aEP_cru_shanhu",
+    "hullMods": [],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "aEP_cru_shanhu_Standard",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS0005": "aEP_harpoon_large"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0007": "aEP_hive_small",
+                "WS0012": "aEP_hive_small"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS0004": "aEP_hive_bay",
+                "WS0008": "aEP_hive_bay"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0002": "lightdualac"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "vulcan",
+                "WS0003": "vulcan",
+                "WS0006": "aEP_b_s_pom"
+            }
+        }
+    ],
+    "wings": [
+        "aEP_ftr_icp_gunship_wing",
+        "aEP_ftr_ftr_hvfighter_wing",
+        "aEP_ftr_ftr_hvfighter_wing",
+        "aEP_ftr_icp_gunship_wing"
+    ]
+}

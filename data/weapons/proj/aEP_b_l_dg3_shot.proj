@@ -1,0 +1,26 @@
+{
+	"id":"aEP_b_l_dg3_shot",
+	"specClass":"projectile",
+  "spawnType":"BALLISTIC",
+  "collisionClass":"PROJECTILE_FF",
+  "collisionClassByFighter":"PROJECTILE_FIGHTER",
+  "length":20.0,
+  "width":4.0,
+  "fadeTime":0.3,
+
+  "onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "onFireEffect":"data.scripts.weapons.aEP_WeaponEffect",
+  "fringeColor":[255,200,70,160],
+  "coreColor":[255,200,200,220],
+  "glowColor":[240,240,240,20], # 发光的颜色
+  "glowRadius":10,
+  "hitGlowRadius":20,
+
+  #"textureType":"SMOOTH",  # only needed for BEAM spawnType
+  #"textureType":["graphics/aEP_FX/trails/1.png","graphics/aEP_FX/trails/1.png"],
+  #"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF],
+  "textureScrollSpeed":64.0,
+  "pixelsPerTexel":5.0,
+  "passThroughMissiles":false,
+  "bulletSprite":"graphics/weapons/aEP_b_l_dg3/shell.png"
+}

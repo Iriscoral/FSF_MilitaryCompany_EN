@@ -1,5 +1,6 @@
 package combat.impl
 
+import com.fs.starfarer.api.EveryFrameScript
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.combat.*
 import combat.util.aEP_ID.Companion.VECTOR2F_ZERO
@@ -20,7 +21,7 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
   //特效中心，如果拥有entity则默认为entity的位置，否则需要手动初始化
   var loc = VECTOR2F_ZERO
   //特效半径，特效中心距离窗口边缘距离大于特效半径时不再渲染
-  var radius:Float = 999999999f
+  var radius:Float = 9999999999f
   var renderInShader = false
 
   constructor(){
@@ -125,12 +126,14 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
 
   override fun render(layer: CombatEngineLayers, viewport: ViewportAPI) {
     if(!layers.contains(layer)) return
-    val screenDist = Math.max(viewport.convertWorldHeightToScreenHeight(radius),viewport.convertWorldWidthToScreenWidth(radius))
-    if(!viewport.isNearViewport(loc,screenDist * 1.5f))return
+    val screenDist = radius * viewport.viewMult
+    if(!viewport.isNearViewport(loc,screenDist * 1.1f))return
     renderImpl(layer,viewport)
   }
 
   open fun renderImpl(layer: CombatEngineLayers, viewport: ViewportAPI){
 
   }
+
+
 }
