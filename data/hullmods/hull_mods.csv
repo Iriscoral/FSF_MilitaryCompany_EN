@@ -36,5 +36,11 @@ FSF Hull Design,aEP_MarkerDissipation,0,FSF Design,,,,0,,TRUE,,0,0,0,0,data.hull
 
 When the ship's flux capacity is much greater than its flux dissipation, it is easier for it to maintain its warm-up state.
 When the ship's flux dissipation is close to its flux capacity, it is quicker to switch between preheat and non-preheat states.",,graphics/aEP_hullmods/aEP_marker_dissipation.png
-Launch Platform Design,aEP_MissilePlatform,0,FSF Design,,,,0,,TRUE,,0,0,0,0,data.hullmods.aEP_MissilePlatform,"An advanced missile autoforge occupies most of the ship's hull, allowing it to produce a steady stream of high-quality missiles at the expense of launch speed and capacity.",,graphics/aEP_hullmods/aEP_missile_platform.png
+Launch Platform Design,aEP_MissilePlatform,0,FSF Design,,,,0,,TRUE,,0,0,0,0,data.hullmods.aEP_MissilePlatform,"The advanced missile factory built into this ship takes up space that would otherwise be used for missile storage, allowing it to produce a constant stream of high quality missiles at the expense of initial ammo capacity. Effective for all missile weapons mounted in missile and compound slots.
+
+
+
+Ships have a resource called {%s} that is based on the inital ammo capacity to produce ammunition for a missile weapon whenever it is low on ammunition. The total reload rate will naturally revert over time. The higher the total reload rate, the faster the ammunition is produced.
+
+",,graphics/aEP_hullmods/aEP_missile_platform.png
 Multi-turret Optimization,aEP_HLMultiTurret,0,FSF Design,,,,0,,TRUE,,0,0,0,0,data.hullmods.aEP_MultiTurret,"This ship has been built more efficiently in a way that allows it to withstand the weight of additional weapon mounts, and as such weapons mounted consume {%s/%s/%s} less OP for small, medium and large slots.",,graphics/aEP_hullmods/aEP_HL_multi_turret.png
