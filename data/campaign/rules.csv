@@ -31,13 +31,10 @@ OR
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #通用市场描述,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,## 巡航导弹更替,## 巡航导弹更替
 flavorTextMarketFSF,TradePanelFlavorText,"$global.tradePanelMode == MARKET
-$faction.id == aEP_FSF","AddText ""The harbour is divided into several areas, where one can see the warships of the FSF Company parked in a line on the opposite side. Vsitors can be seen convergeing in several interconnected commercial areas, where merchants and principals from different places talk about their matters in the halls. At the edge of the hall, checkpoints of soldiers and security gates clearly separate the restricted area from the public areas, and should attempt to look inside the walls of the restricted area, they would simply be greeted by a protective grey layer, still cold and metallic, as if they were two worlds away from the bustling environment."" 
-marketFlavorTextColor",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+$faction.id == aEP_FSF","AddText ""The harbour is divided into several areas, where one can see the warships of the FSF Company parked in a line on the opposite side. Vsitors can be seen convergeing in several interconnected commercial areas, where merchants and principals from different places talk about their matters in the halls. At the edge of the hall, checkpoints of soldiers and security gates clearly separate the restricted area from the public areas, and should attempt to look inside the walls of the restricted area, they would simply be greeted by a protective grey layer, still cold and metallic, as if they were two worlds away from the bustling environment.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 flavorTextMarketFSFMilitrayStation,TradePanelFlavorText,"$global.tradePanelMode == MARKET
 $faction.id == aEP_FSF
-$id == aEP_FSF_SpaceFactory","AddText ""As soon as you land you are greeted by staff with security guards, who lead you through the ship-like interior structure of metal and pipes, and eventually to a lounge-like area where you spot the company staff, dressed in black uniforms, talking and laughing with each other. The atmosphere feels slightly awkward, given that outsiders like you are rarely seen here, but at least there is the normal greenery and decorations, with a panoramic screen with simulated sunlight and a natural background playing on a loop, giving you a sense of place.
-
-"" marketFlavorTextColor",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+$id == aEP_FSF_SpaceFactory","AddText ""As soon as you land you are greeted by staff with security guards, who lead you through the ship-like interior structure of metal and pipes, and eventually to a lounge-like area where you spot the company staff, dressed in black uniforms, talking and laughing with each other. The atmosphere feels slightly awkward, given that outsiders like you are rarely seen here, but at least there is the normal greenery and decorations, with a panoramic screen with simulated sunlight and a natural background playing on a loop, giving you a sense of place.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ##  fsf consult greet,##,##,##,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_ConsultGreeting01,PickGreeting,"$isaEP_Consult
@@ -371,8 +368,9 @@ $faction.AWM_4MetYang == false
 ","ShowPersonVisual
 ","""So I'll leave it in your hands for now. Don't get us into trouble, okay?""","0:cutCommLink:""See you later.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ##第四个任务开头,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-#aEP_researcher_stage3_contact_greeting,PickGreeting,"MissionHubCMD hasHub 
-","ShowPersonVisual
+aEP_researcher_stage3_contact_greeting,PickGreeting,"MissionHubCMD hasHub
+","
+ShowPersonVisual
 FireAll PopulateOptions",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_researcher_stage3,MarketPostOpen,"$id == aEP_FSF_DefStation
 !$faction.isHostile
