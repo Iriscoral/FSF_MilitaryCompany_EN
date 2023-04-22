@@ -17,7 +17,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/starsector_core.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/StarfarerLauncher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/shipsystems/ship_systems.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +172,28 @@
       <option name="project" value="LOCAL" />
       <updated>1682087509784</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="3.19rc2 Update">
+      <created>1682122839469</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682122839469</updated>
+    </task>
+    <task id="LOCAL-00010" summary="3.19rc2 Update">
+      <created>1682122861313</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682122861313</updated>
+    </task>
+    <task id="LOCAL-00011" summary="3.19rc2 Update">
+      <created>1682123140207</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682123140207</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
