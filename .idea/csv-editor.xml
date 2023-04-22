@@ -24,6 +24,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\procgen\planet_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\procgen\star_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\rules.csv">
           <value>
             <Attribute>
@@ -32,6 +46,20 @@
           </value>
         </entry>
         <entry key="\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\title_screen_variants.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -74,6 +102,13 @@
           </value>
         </entry>
         <entry key="\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\world\factions\factions.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

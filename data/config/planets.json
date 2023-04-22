@@ -38,7 +38,7 @@
 		"lightPosition":[12,-2,-3], # in planet radii.  Not used for stars.  z > 0 is above the playing field.
 	},
 	"aEP_FSF_Companyplanet":{
-		"name":"荒芜",
+		"name":"Overgrown",
 		"tilt":-27, # left-right (>0 tilts to the left)
 		"pitch":2, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-3, # degrees/second
@@ -139,7 +139,7 @@
 		"cloudRotation":-10, # degrees/second, optional
 	},
 	"aEP_FSF_Earth":{
-		"name":"Anomalous Land",
+		"name":"Anomalous",
 		"tilt":-25, # left-right (>0 tilts to the left)
 		"pitch":-20, # towards-away from the viewer (>0 pitches towards)
 		"rotation":-3, # degrees/second

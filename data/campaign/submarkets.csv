@@ -1,2 +1,2 @@
 id,name,faction,desc,script,icon,order
-aEP_FSFMarket,FSF Sales Center,aEP_FSF,FSF's internal showroom - responsible for selling all kinds of weapons and equipment to all captains with good reputations with the Company in the Sector,data.scripts.campaign.submarkets.aEP_FSFMarketPlugin,,799
+aEP_FSFMarket,FSF Sales Center,aEP_FSF,FSF's internal showroom - responsible for selling all kinds of weapons and equipment to all captains with good reputations with the Company in the Sector.,data.scripts.campaign.submarkets.aEP_FSFMarketPlugin,,799
