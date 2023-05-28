@@ -7,9 +7,7 @@
     <list default="true" id="98de52b6-19ff-4e28-84f6-87890507b339" name="Changes" comment="3.21rc2 Update">
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/config/custom_entities.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/custom_entities.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hullmods/hull_mods.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/strings/descriptions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/strings/descriptions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/hulls/ship_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/hulls/ship_data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/weapons/weapon_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/weapons/weapon_data.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -207,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685269755636</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="3.21rc2 Update">
+      <created>1685280347470</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1685280347470</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

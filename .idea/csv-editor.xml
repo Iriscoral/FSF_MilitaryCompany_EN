@@ -108,6 +108,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\commodities_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\industries - Copy.csv">
           <value>
             <Attribute>
@@ -122,6 +129,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\industries_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\market_conditions - Copy.csv">
           <value>
             <Attribute>
@@ -130,6 +144,13 @@
           </value>
         </entry>
         <entry key="\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\market_conditions_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -164,6 +185,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\rules_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\sim_opponents.csv">
           <value>
             <Attribute>
@@ -192,6 +220,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\special_items_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\submarkets - Copy.csv">
           <value>
             <Attribute>
@@ -200,6 +235,13 @@
           </value>
         </entry>
         <entry key="\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\submarkets_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -262,7 +304,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\hulls\ship_data_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\hulls\wing_data_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -290,6 +346,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\shipsystems\ship_systems_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\strings\descriptions.csv">
           <value>
             <Attribute>
@@ -305,6 +368,13 @@
           </value>
         </entry>
         <entry key="\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\weapons\weapon_data_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
