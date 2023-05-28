@@ -1,123 +1,248 @@
-/¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª/
+/â€”â€”â€”â€”â€”â€”â€”â€”/
 3.20rc5
-ÐÂÔö£º
-	Õ½ÒÛ£º³õ´Î½Ó´¥
-	Õ½ÒÛ£ºÇå³ýÈÎÎñ
-	ÎäÆ÷£ºDF-1ÖØÐÍ·´Ó¦×°¼×
-	ÎäÆ÷£ºRK-107»ð¼ýÅÚ ÖÐÐÍÆÆÆ¬¸´ºÏÎäÆ÷
-	ÎäÆ÷£ºH-37·´½¢ÅÚ Ð¡ÐÍ¸ß±¬Êµµ¯ÎäÆ÷
-	ÎäÆ÷£ºH-88·´½¢ÅÚ ÖÐÐÍ¸ß±¬Êµµ¯ÎäÆ÷
-	ÎäÆ÷£ºEB-300k¶àÓÃÍ¾¹âÊø Ð¡ÐÍ¸ß±¬¹âÊøÄÜÁ¿ÎäÆ÷
-	Áª¶Ó£º³¤¶¤ÖØÐÍÕ½»ú
-	Áª¶Ó£ºÖúÊÖÖ§Ô®»ú
-Æ½ºâÐÔ£º
-	Å¯³Ø¼¶£º
-		ÓîÖæº½ËÙ6->7
-	±ê±ø¼¶£º
-		À×´ï²»ÔÙÌá¹©10%µÄ¶îÍâÉËº¦
-		À×´ïµÄÉä³Ì¼Ó³É80%->45%
-		ÄÚÖÃ²å¼þÏÖÔÚÌá¹©»ù´¡µÄ40%µÄÉä³Ì¼Ó³É
-	·Ö½âÕß¼¶£º
-		²¿Êðµã32->33
-		×°Åäµã205->200
-		ÄÚÖÃ²å¼þ£º´òÀÌÆðÖØ»ú
-		Õ½ÊõÏµÍ³µ¼ÖÂµÄÁª¶ÓÁÓ»¯ÏÖÔÚ³ýÁËÊ¹ÉËº¦¼õÉÙ50%£¬»¹»áÊ¹³ÐÊÜµÄÉËº¦Ò²Ôö¼Ó20%
-		Õ½ÊõÏµÍ³µ¼ÖÂÕû±¸ÖµÏÂ½µ15->20
-		Õ½ÊõÏµÍ³ÀäÈ´28->25
-		Õ½ÊõÏµÍ³¶îÍâ²¿ÊðÊ±¼ä20->16
-	ÎÂÔ¾²ã¼¶£º
-		²¿Êðµã36->37
-		Õ½ÊõÏµÍ³×î´ó½ûÖ¹¿ª»ðÊ±¼ä10->12Ãë
-		·ùÄÜÈÝÁ¿20000->18000
-	ÄÚ²¨¼¶£º
-		×î´óËÙ¶È45->50£¬»ú¶¯ÐÔÒ²ÓÐËùÉÏµ÷
-		Õ½ÊõÏµÍ³Ë²¼ä±¬·¢ËÙ¶ÈÉÏµ÷
-	Æ½¶¨¼¶£º
-		²¿Êðµã30->28
-		ÐÞ¸ÄÁËÖ÷ÅÚ¶¯»­
-	ÆÙ²¼¼¶£º
-		²¿Êðµã35->33
-	Ê¯Éºº÷¼¶£º
-		ÄÚÖÃÁË1ÃÅÃªµãadsÏµÍ³£¬ÓÃÓÚÕ¹Ê¾Õ½ÊõÏµÍ³ÎÞÈË»úÎäÆ÷µÄÌØÐ§
-		Õ½ÊõÏµÍ³ÏÖÔÚ¿ÉÒÔÀ¹½Øµ¯Íè£¬²»Ö»ÊÇµ¼µ¯
-		Õ½ÊõÏµÍ³cd25->20
-		ÌùÍ¼ÂÔÎ¢ÐÞ¸Ä
-	º£Á¿¼¶£º
-		²¿Êðµã31->32
-	ÖÐÁ÷¼¶£º
-		ÌùÍ¼ÂÔÎ¢ÐÞ¸Ä
-		²¿Êðµã22->23
-	ÈÈÈª¼¶£º
-		ÌùÍ¼ÂÔÎ¢ÐÞ¸Ä
-		²¿Êðµã24->25
-		·ùÄÜºÄÉ¢300->250
-		×°Åäµã150->140
-		ÈÈÈªµ¼µ¯·ùÄÜÏûºÄÔö¼Ó
-    Õ½ÊõÏµÍ³ÓÃÓÚ2´Î³äÄÜ£¬µ«»Ö¸´ËÙ¶ÈÊÇÔ­À´µÄ50%
-		µ¼µ¯²ÛÎ»±ä¶¯£¬3¸öÔ­ÏÈµÄÐ¡µ¼µ¯²ÛÎ»¸ÄÎª2¸öÐ¡Êµµ¯²ÛÎ»ºÍ1¸öÖÐµ¼µ¯²ÛÎ»
-	Éî¶È¼¶£º
-		²¿Êðµã13->14
-	²ãÁ÷¼¶£º
-		²¿Êðµã12->13
-	·ÀÀËµÌ¼¶£º
-		½á¹¹3000->2750
-		·ùÄÜÈÝÁ¿4000->3500
-		×î´ó»¤¶Ü½Ç¶È120->240
-		Õ½ÊõÏµÍ³¼¤»îÊ±£¬»¤¶Ü¼õÉË90%->80%£¬²¢Ê¹»¤¶Ü½Ç¶ÈÏÂ½µ90¶È
-	ÈÅÁ÷¼¶£º
-		·ùÄÜÈÝÁ¿1600->1800
-	Ï¸Á÷¼¶MK.II£º
-		×°Åäµã60->55
-    Õ½ÊõÏµÍ³Ê¹ÓÃ´ÎÊý4->3
-	Ï¸Á÷¼¶£º
-    ·ùÄÜÈÝÁ¿2400->2750
-  "Ç¦´¹"ÖØÐÍÕ½»úÁª¶Ó£º
-    ·ùÄÜÈÝÁ¿200->250
-    ·ùÄÜºÄÉ¢50->60
-	"ËéÊ¯"·ÉÐÐÌ¹¿ËÁª¶Ó£º
-		·ùÄÜÈÝÁ¿200->500
-		Ö÷ÅÚÉä³Ì¸ÄÎª¹Ì¶¨1100£¬¶ø·Ç¸úËæÄ¸½¢±ä»¯
-	"ÖØËÜ"Î¬ÐÞÎÞÈË»úÁª¶Ó£º
-		ÖØÐ´ai£¬ÌáÉýÁËÎ¬ÐÞÁ¿
-	²å¼þ£ºÉÕÊ´ºÄÉ¢
-		×î´ó×ª»¯ÂÊ65%->60%
-	ÎäÆ÷£º¼ôÀ«Æ÷ÏµÁÐ
-		·ùÄÜÏûºÄ200->100
+æ–°å¢žï¼š
+	æˆ˜å½¹ï¼šåˆæ¬¡æŽ¥è§¦
+	æˆ˜å½¹ï¼šæ¸…é™¤ä»»åŠ¡
+	æ­¦å™¨ï¼šDF-1é‡åž‹ååº”è£…ç”²
+	æ­¦å™¨ï¼šRK-107ç«ç®­ç‚® ä¸­åž‹ç ´ç‰‡å¤åˆæ­¦å™¨
+	æ­¦å™¨ï¼šH-37åèˆ°ç‚® å°åž‹é«˜çˆ†å®žå¼¹æ­¦å™¨
+	æ­¦å™¨ï¼šH-88åèˆ°ç‚® ä¸­åž‹é«˜çˆ†å®žå¼¹æ­¦å™¨
+	æ­¦å™¨ï¼šEB-300kå¤šç”¨é€”å…‰æŸ å°åž‹é«˜çˆ†å…‰æŸèƒ½é‡æ­¦å™¨
+	è”é˜Ÿï¼šé•¿é’‰é‡åž‹æˆ˜æœº
+	è”é˜Ÿï¼šåŠ©æ‰‹æ”¯æ´æœº
+å¹³è¡¡æ€§ï¼š
+	æš–æ± çº§ï¼š
+		å®‡å®™èˆªé€Ÿ6->7
+	æ ‡å…µçº§ï¼š
+		é›·è¾¾ä¸å†æä¾›10%çš„é¢å¤–ä¼¤å®³
+		é›·è¾¾çš„å°„ç¨‹åŠ æˆ80%->45%
+		å†…ç½®æ’ä»¶çŽ°åœ¨æä¾›åŸºç¡€çš„40%çš„å°„ç¨‹åŠ æˆ
+	åˆ†è§£è€…çº§ï¼š
+		éƒ¨ç½²ç‚¹32->33
+		è£…é…ç‚¹205->200
+		å†…ç½®æ’ä»¶ï¼šæ‰“æžèµ·é‡æœº
+		æˆ˜æœ¯ç³»ç»Ÿå¯¼è‡´çš„è”é˜ŸåŠ£åŒ–çŽ°åœ¨é™¤äº†ä½¿ä¼¤å®³å‡å°‘50%ï¼Œè¿˜ä¼šä½¿æ‰¿å—çš„ä¼¤å®³ä¹Ÿå¢žåŠ 20%
+		æˆ˜æœ¯ç³»ç»Ÿå¯¼è‡´æ•´å¤‡å€¼ä¸‹é™15->20
+		æˆ˜æœ¯ç³»ç»Ÿå†·å´28->25
+		æˆ˜æœ¯ç³»ç»Ÿé¢å¤–éƒ¨ç½²æ—¶é—´20->16
+	æ¸©è·ƒå±‚çº§ï¼š
+		éƒ¨ç½²ç‚¹36->37
+		æˆ˜æœ¯ç³»ç»Ÿæœ€å¤§ç¦æ­¢å¼€ç«æ—¶é—´10->12ç§’
+		å¹…èƒ½å®¹é‡20000->18000
+	å†…æ³¢çº§ï¼š
+		æœ€å¤§é€Ÿåº¦45->50ï¼ŒæœºåŠ¨æ€§ä¹Ÿæœ‰æ‰€ä¸Šè°ƒ
+		æˆ˜æœ¯ç³»ç»Ÿçž¬é—´çˆ†å‘é€Ÿåº¦ä¸Šè°ƒ
+	å¹³å®šçº§ï¼š
+		éƒ¨ç½²ç‚¹30->28
+		ä¿®æ”¹äº†ä¸»ç‚®åŠ¨ç”»
+	ç€‘å¸ƒçº§ï¼š
+		éƒ¨ç½²ç‚¹35->33
+	çŸ³çŠç‘šçº§ï¼š
+		å†…ç½®äº†1é—¨é”šç‚¹adsç³»ç»Ÿï¼Œç”¨äºŽå±•ç¤ºæˆ˜æœ¯ç³»ç»Ÿæ— äººæœºæ­¦å™¨çš„ç‰¹æ•ˆ
+		æˆ˜æœ¯ç³»ç»ŸçŽ°åœ¨å¯ä»¥æ‹¦æˆªå¼¹ä¸¸ï¼Œä¸åªæ˜¯å¯¼å¼¹
+		æˆ˜æœ¯ç³»ç»Ÿcd25->20
+		è´´å›¾ç•¥å¾®ä¿®æ”¹
+	æµ·é‡çº§ï¼š
+		éƒ¨ç½²ç‚¹31->32
+	ä¸­æµçº§ï¼š
+		è´´å›¾ç•¥å¾®ä¿®æ”¹
+		éƒ¨ç½²ç‚¹22->23
+	çƒ­æ³‰çº§ï¼š
+		è´´å›¾ç•¥å¾®ä¿®æ”¹
+		éƒ¨ç½²ç‚¹24->25
+		å¹…èƒ½è€—æ•£300->250
+		è£…é…ç‚¹150->140
+		çƒ­æ³‰å¯¼å¼¹å¹…èƒ½æ¶ˆè€—å¢žåŠ 
+    æˆ˜æœ¯ç³»ç»Ÿç”¨äºŽ2æ¬¡å……èƒ½ï¼Œä½†æ¢å¤é€Ÿåº¦æ˜¯åŽŸæ¥çš„50%
+		å¯¼å¼¹æ§½ä½å˜åŠ¨ï¼Œ3ä¸ªåŽŸå…ˆçš„å°å¯¼å¼¹æ§½ä½æ”¹ä¸º2ä¸ªå°å®žå¼¹æ§½ä½å’Œ1ä¸ªä¸­å¯¼å¼¹æ§½ä½
+	æ·±åº¦çº§ï¼š
+		éƒ¨ç½²ç‚¹13->14
+	å±‚æµçº§ï¼š
+		éƒ¨ç½²ç‚¹12->13
+	é˜²æµªå ¤çº§ï¼š
+		ç»“æž„3000->2750
+		å¹…èƒ½å®¹é‡4000->3500
+		æœ€å¤§æŠ¤ç›¾è§’åº¦120->240
+		æˆ˜æœ¯ç³»ç»Ÿæ¿€æ´»æ—¶ï¼ŒæŠ¤ç›¾å‡ä¼¤90%->80%ï¼Œå¹¶ä½¿æŠ¤ç›¾è§’åº¦ä¸‹é™90åº¦
+	æ‰°æµçº§ï¼š
+		å¹…èƒ½å®¹é‡1600->1800
+	ç»†æµçº§MK.IIï¼š
+		è£…é…ç‚¹60->55
+    æˆ˜æœ¯ç³»ç»Ÿä½¿ç”¨æ¬¡æ•°4->3
+	ç»†æµçº§ï¼š
+    å¹…èƒ½å®¹é‡2400->2750
+  "é“…åž‚"é‡åž‹æˆ˜æœºè”é˜Ÿï¼š
+    å¹…èƒ½å®¹é‡200->250
+    å¹…èƒ½è€—æ•£50->60
+	"ç¢ŽçŸ³"é£žè¡Œå¦å…‹è”é˜Ÿï¼š
+		å¹…èƒ½å®¹é‡200->500
+		ä¸»ç‚®å°„ç¨‹æ”¹ä¸ºå›ºå®š1100ï¼Œè€Œéžè·Ÿéšæ¯èˆ°å˜åŒ–
+	"é‡å¡‘"ç»´ä¿®æ— äººæœºè”é˜Ÿï¼š
+		é‡å†™aiï¼Œæå‡äº†ç»´ä¿®é‡
+	æ’ä»¶ï¼šçƒ§èš€è€—æ•£
+		æœ€å¤§è½¬åŒ–çŽ‡65%->60%
+	æ­¦å™¨ï¼šå‰ªé˜”å™¨ç³»åˆ—
+		å¹…èƒ½æ¶ˆè€—200->100
 		emp250->200
-		Ð¡²Û±¸µ¯20->24
-		ÖÐ²Û±¸µ¯40->48
-	ÎäÆ÷£º¾ÞÐÍ±¬ÆÆ´¸·¢ÉäÏµÍ³
-		µ¥·¢ÉËº¦3900->3600
-	ÎäÆ÷£ºÆø¶¤Ç¹µ¼µ¯£º
-		Éä³Ì2500->3000
-		µ¥·¢ÉËº¦500->400£¬ÏÖÔÚ»÷ÖÐ»¤¶ÜÔì³É¶îÍâµÄ400¶¯ÄÜÉËº¦£¬µ«ÊÇ¶îÍâ²¿·ÖÖ»Ôì³ÉÈí·ùÄÜ
-	ÎäÆ÷£ºÆø¶¤Ç¹·¢ÉäÏµÍ³£º
-		Éä³Ì2500->3000
-		µ¥·¢ÉËº¦750->500£¬ÏÖÔÚ»÷ÖÐ»¤¶ÜÔì³É¶îÍâµÄ500¶¯ÄÜÉËº¦£¬µ«ÊÇ¶îÍâ²¿·ÖÖ»Ôì³ÉÈí·ùÄÜ
-	ÎäÆ÷£ºAM-630½ü·ÀÅÚ£º
-    Éä»÷¼ä¸ô0.1->0.08333
-	ÎäÆ÷£ºAA-40Í¨ÓÃÅÚ£º
-		×î´óÉ¢²¼8->10
-		dps²»±ä£¬·ùÄÜÐ§ÂÊ1.28->1.34
-	ÎäÆ÷£ºDG-3¾ÞÐÍ×ª¹ÜÅÚ£º
-    ×î´óÉ¢²¼10->16
-		ÏÖÔÚ½á¹¹ÒÆ³ýÌØÐ§Ö»»á¼ÆËã×Ô¼ºµÄÉËº¦ÐÞ¸Ä£¬¶ø²»¼ÆËãÄ¿±êµÄÉËº¦ÐÞ¸Ä
-	ÎäÆ÷£ºSR-125×ªÌÅ×Ô¶¯ÅÚ£º
+		å°æ§½å¤‡å¼¹20->24
+		ä¸­æ§½å¤‡å¼¹40->48
+	æ­¦å™¨ï¼šå·¨åž‹çˆ†ç ´é”¤å‘å°„ç³»ç»Ÿ
+		å•å‘ä¼¤å®³3900->3600
+	æ­¦å™¨ï¼šæ°”é’‰æžªå¯¼å¼¹ï¼š
+		å°„ç¨‹2500->3000
+		å•å‘ä¼¤å®³500->400ï¼ŒçŽ°åœ¨å‡»ä¸­æŠ¤ç›¾é€ æˆé¢å¤–çš„400åŠ¨èƒ½ä¼¤å®³ï¼Œä½†æ˜¯é¢å¤–éƒ¨åˆ†åªé€ æˆè½¯å¹…èƒ½
+	æ­¦å™¨ï¼šæ°”é’‰æžªå‘å°„ç³»ç»Ÿï¼š
+		å°„ç¨‹2500->3000
+		å•å‘ä¼¤å®³750->500ï¼ŒçŽ°åœ¨å‡»ä¸­æŠ¤ç›¾é€ æˆé¢å¤–çš„500åŠ¨èƒ½ä¼¤å®³ï¼Œä½†æ˜¯é¢å¤–éƒ¨åˆ†åªé€ æˆè½¯å¹…èƒ½
+	æ­¦å™¨ï¼šAM-630è¿‘é˜²ç‚®ï¼š
+    å°„å‡»é—´éš”0.1->0.08333
+	æ­¦å™¨ï¼šAA-40é€šç”¨ç‚®ï¼š
+		æœ€å¤§æ•£å¸ƒ8->10
+		dpsä¸å˜ï¼Œå¹…èƒ½æ•ˆçŽ‡1.28->1.34
+	æ­¦å™¨ï¼šDG-3å·¨åž‹è½¬ç®¡ç‚®ï¼š
+    æœ€å¤§æ•£å¸ƒ10->16
+		çŽ°åœ¨ç»“æž„ç§»é™¤ç‰¹æ•ˆåªä¼šè®¡ç®—è‡ªå·±çš„ä¼¤å®³ä¿®æ”¹ï¼Œè€Œä¸è®¡ç®—ç›®æ ‡çš„ä¼¤å®³ä¿®æ”¹
+	æ­¦å™¨ï¼šSR-125è½¬è†›è‡ªåŠ¨ç‚®ï¼š
 		dph75->100
-		·ùÄÜÐ§ÂÊ1.1->1.13
-	ÎäÆ÷£ºÉÁµçÈÅ¶¯»úÅÚ£º
-		»¤¶ÜÎ¬³ÖÔö³¤debuff²»ÔÙÓÐ×î´ó¶ÑµþÉÏÏÞ
-		debuffÊ±¼ä8->5Ãë
-		debuffÃ¿Ãë¶îÍâ·ùÄÜ10->16
-		Ã¿Ãëµ¯Ò©»Ø¸´8->6
-	ÎäÆ÷£º¹ÅË¹Ëþ·ò¾ÞÅÚ£º
-		ÏÖÔÚµÚ¶þ¶Îµ¯ÍèÔÚ¿ª»ð²úÉú£¬¶ø²»ÊÇ»÷ÖÐÊ±
-ÆäËû£º	
-	ÐÞÕýÁË·¢ÉäÆ½Ì¨Éè¼Æ²»×¼È·µÄÃèÊö
-	ÔÚÕ½¶·ÖÐ·¢ÉäÑ²º½µ¼µ¯£¬ÏÖÔÚ»áÓÅÏÈÒÔÄ¸½¢Ëø¶¨µÄÄ¿±êÎªÄ¿±ê
-	ÒÆ³ýÁËÎäÆ÷£ºµç»÷¶¤Ã¬
-	ÒÆ³ýÁËÎäÆ÷£ºÑ¹ÖÆÕë´ÌÏµÁÐ
-	ÒÆ³ýÁËÎäÆ÷£º´´ÉËÅÚ
-	Îª·¢Éäµ¼µ¯µÄÊµµ¯ÎäÆ÷ÔÚ°²×°eccmµÄÇé¿öÏÂÔö¼ÓÁË²¹³¥£¬²»»áÔÙµ¼ÖÂÊµ¼ÊÉä³Ì½µµÍ
-	·¢ÉäÆ½Ì¨Éè¼Æ²»ÔÙ¼æÈÝmissile autoloader
-	ÐÞÕýÁËÈë³¡¼ÓËÙ»á×²»÷Ç°Ãæ¶ÓÓÑµÄÎÊÌâ
+		å¹…èƒ½æ•ˆçŽ‡1.1->1.13
+	æ­¦å™¨ï¼šé—ªç”µæ‰°åŠ¨æœºç‚®ï¼š
+		æŠ¤ç›¾ç»´æŒå¢žé•¿debuffä¸å†æœ‰æœ€å¤§å †å ä¸Šé™
+		debuffæ—¶é—´8->5ç§’
+		debuffæ¯ç§’é¢å¤–å¹…èƒ½10->16
+		æ¯ç§’å¼¹è¯å›žå¤8->6
+	æ­¦å™¨ï¼šå¤æ–¯å¡”å¤«å·¨ç‚®ï¼š
+		çŽ°åœ¨ç¬¬äºŒæ®µå¼¹ä¸¸åœ¨å¼€ç«äº§ç”Ÿï¼Œè€Œä¸æ˜¯å‡»ä¸­æ—¶
+å…¶ä»–ï¼š	
+	ä¿®æ­£äº†å‘å°„å¹³å°è®¾è®¡ä¸å‡†ç¡®çš„æè¿°
+	åœ¨æˆ˜æ–—ä¸­å‘å°„å·¡èˆªå¯¼å¼¹ï¼ŒçŽ°åœ¨ä¼šä¼˜å…ˆä»¥æ¯èˆ°é”å®šçš„ç›®æ ‡ä¸ºç›®æ ‡
+	ç§»é™¤äº†æ­¦å™¨ï¼šç”µå‡»é’‰çŸ›
+	ç§»é™¤äº†æ­¦å™¨ï¼šåŽ‹åˆ¶é’ˆåˆºç³»åˆ—
+	ç§»é™¤äº†æ­¦å™¨ï¼šåˆ›ä¼¤ç‚®
+	ä¸ºå‘å°„å¯¼å¼¹çš„å®žå¼¹æ­¦å™¨åœ¨å®‰è£…eccmçš„æƒ…å†µä¸‹å¢žåŠ äº†è¡¥å¿ï¼Œä¸ä¼šå†å¯¼è‡´å®žé™…å°„ç¨‹é™ä½Ž
+	å‘å°„å¹³å°è®¾è®¡ä¸å†å…¼å®¹missile autoloader
+	ä¿®æ­£äº†å…¥åœºåŠ é€Ÿä¼šæ’žå‡»å‰é¢é˜Ÿå‹çš„é—®é¢˜
+	
+3.20rc5
+Added:
+	Battle: First Contact
+	Campaign: Elimination Mission
+	Weapon: DF-1 Heavy Reactive Armor
+	Weapon: RK-107 Rocket Launcher - Medium Fragmentation Composite Weapon
+	Weapon: H-37 Anti-Ship Cannon - Small High Explosive Ballistic Weapon
+	Weapon: H-88 Anti-Ship Cannon - Medium High Explosive Ballistic Weapon
+	Weapon: EB-300k Multi-Purpose Beam - Small High Explosive Beam Energy Weapon
+	Wing: Longspike Heavy Fighter
+	Wing: Assistant Support Craft
+Balance:
+	Warmpool Class:
+	  Burn Level 6 -> 7
+	Javelin Class:
+		Radar no longer provides 10% extra damage
+		Radar range bonus of 80% -> 45%
+		Built-in plug-in now provides a base 40% range bonus
+	Decomposer Class:
+		Deployment points 32->33
+		Ordnance points 205 -> 200
+		Built-in add-on: Salvage crane
+		Shipsystem now increase the damage taken by 20% in addition to reducing the damage by 50%.
+		Shipsystem causes a 15->20 reduction in readiness value
+		Shipsystem cooldown 28->25
+		Shipsystem extra deployment time 20->16
+	Thermocline Class:
+		Deployment point 36->37
+		Tactical system maximum no-fire time 10->12 seconds
+		Flux capacity 20,000->18,000
+	Internalwave Class:
+		Max speed 45->50, manoeuvrability also adjusted upwards
+		Tactical system instantaneous burst speed adjusted upwards
+	Pacifier Class:
+		Deployment points 30->28
+		Modified main gun animation
+	Waterfall Class:
+		Deployment point 35->33
+	Stony Coral Class:
+		1 Anchor ADS System built in to showcase the effects of the tactical system drone weapon
+		Tactical systems can now intercept projectiles, not just missiles
+		Tactical system cd 25->20
+		Slightly modified mapping
+	Seaweight Class:
+		Deployment points 31->32
+	Midstream Class:
+		Slightly modified mapping
+		Deployment point 22->23
+	Hotspring Class:
+		Slightly modified mapping
+		Deployment point 24->25
+		Energy dissipation 300->250
+		Assembly point 150->140
+		Increased energy consumption of Hotspring missiles
+    Tactical system used for 2 recharges, but recovery rate is 50% of the original
+		Missile slot changes, 3 former small missile slots replaced by 2 small live missile slots and 1 medium missile slot
+	Depth Class:
+		Deployment point 13->14
+	Laminar Flow Class:
+		Deployment point 12->13
+	Breakwater Class:
+		Hull 3000->2750
+		Flux Capacity 4000->3500
+		Maximum shield angle 120->240
+		Shield damage reduction 90%->80% and shield angle reduction 90 degrees when Tactical System is active
+	Turbulence Class:
+		Flux capacity 1600->1800
+	Finestream MK.II Class:
+		Assembly points 60->55
+        Shipsystem charges 4 -> 3
+	Finestream class:
+        Flux Capacity 2400->2750
+    "Plumb" Heavy Fighter Wing:
+        Flux Capacity 200->250
+        Flux Dissipation 50->60
+    "Crusher" Flying Tank Wing:
+		Flux Capacity 200->500
+		Main gun range changed to a fixed 1100 instead of following the mothership
+	"Reinvention" Repair Drone Wing:
+		Rewritten ai to increase repair capacity
+	Hullmod Ablative Dissipation
+		Max conversion rate 65% -> 60%
+	Weapon: Scissor series
+		Flux cost 200->100
+		EMP damage 250->200
+		Small version ammo capacity 20->24
+		Medium version ammo capacity 40->48
+	Weapon: Blasting Hammer Large Missile System
+		Single shot damage 3900->3600
+	Weapon: Harpoon Missile:
+		Range 2500->3000
+		Single shot damage 500->400, now hits shields for an additional 400 kinetic damage, but the extra part only deals soft flux
+	Weapon: Harpoon Missile System:
+		Range 2500->3000
+		Single shot damage 750->500, now hits shields for an additional 500 kinetic damage, but the extra part only deals soft flux
+	Weapon: AM-630 CIWS:
+        Shot interval 0.1 -> 0.08333
+	Weapon: AA-40 Universal Cannon:
+		Maximum dispersion 8->10
+		DPS unchanged, flux efficiency 1.28->1.34
+	Weapon: DG-3 Large Rotary Cannon:
+        Maximum dispersion 10->16
+		The structure removal effect now only calculates its own damage modifier and not that of the target
+	Weapon: SR-125 Revolver Autocannon:
+		dph75->100
+		Magnitude efficiency 1.1 -> 1.13
+	Weapon: Lightning Disruptor Cannon
+		Shield maintenance growth debuff no longer has a maximum stacking limit
+		Debuff duration 8->5 seconds
+		debuff has additional energy per second 10->16
+		Ammo return per second 8->6
+	Weapon: Gustav Cannon:
+		Second projectile now spawns on fire, not on hit
+Other:	
+	Fixed inaccurate description of Launch Platform Design
+	Firing cruise missiles in combat now gives priority to targets locked by the mothership
+	Removed Weapon: EMP Pike
+	Removed weapon: Suppression Needle series
+	Removed weapon: Trauma Cannon
+	Compensation has been added for missile-launched live weapons with eccm installed, which no longer results in a reduction in actual range
+	The launch platform design is no longer compatible with the missile autoloader
+	Fixed an issue where entry acceleration would hit a ship in front of you
+
+Translated with www.DeepL.com/Translator (free version)
