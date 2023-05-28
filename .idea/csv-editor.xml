@@ -3,6 +3,104 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\config\modFiles\magicTrail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.21rc2\FSF_MilitaryCompany\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\commodities - Copy.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\commodities.csv">
           <value>
             <Attribute>
@@ -10,7 +108,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\industries - Copy.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\market_conditions - Copy.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -38,6 +150,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\rules - Copy.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\rules.csv">
           <value>
             <Attribute>
@@ -59,7 +178,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\special_items - Copy.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\submarkets - Copy.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -101,7 +234,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\hullmods\ref_hullmod.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\hulls\ref.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\hulls\ref_wing.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -144,6 +291,13 @@
           </value>
         </entry>
         <entry key="\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\strings\descriptions_CN.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

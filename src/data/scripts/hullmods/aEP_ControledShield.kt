@@ -14,19 +14,20 @@ import java.awt.Color
 class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
   companion object {
     private val mag: MutableMap<HullSize, Float> = HashMap()
-    private const val REDUCE_MULT = 0.75f
+    //REDUCE_MULT 是 1 - x
+    private const val REDUCE_MULT = 0.5f
     private const val UPKEEP_PUNISH = 2f
     private const val MAX_WEAPON_RANGE_CAP = 900f
     private val SHIELD_COLOR = Color(240, 5, 240, 160)
     private const val COLOR_RECOVER_INTERVAL = 0.05f //by seconds
-    private const val id = "aEP_ControledShield"
+    private const val ID = "aEP_ControledShield"
 
     init {
-      mag[HullSize.FIGHTER] = 800f
-      mag[HullSize.FRIGATE] = 850f
-      mag[HullSize.DESTROYER] = 950f
-      mag[HullSize.CRUISER] = 1025f
-      mag[HullSize.CAPITAL_SHIP] = 1100f
+      mag[HullSize.FIGHTER] = 900f
+      mag[HullSize.FRIGATE] = 1000f
+      mag[HullSize.DESTROYER] = 1100f
+      mag[HullSize.CRUISER] = 1250f
+      mag[HullSize.CAPITAL_SHIP] = 1400f
     }
   }
 
@@ -56,7 +57,7 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
     if (index == 1) return "" + mag[HullSize.DESTROYER]!!.toInt()
     if (index == 2) return "" + mag[HullSize.CRUISER]!!.toInt()
     if (index == 3) return "" + mag[HullSize.CAPITAL_SHIP]!!.toInt()
-    if (index == 4) return "" + (REDUCE_MULT * 100f).toInt() + "%"
+    if (index == 4) return "" + (100f - REDUCE_MULT * 100f).toInt() + "%"
     if (index == 5) return "" + (MAX_WEAPON_RANGE_CAP).toInt()
     return ""
   }
@@ -67,16 +68,16 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
     override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI, damage: DamageAPI, point: Vector2f, shieldHit: Boolean): String? {
       param?: return null
       if (param is DamagingProjectileAPI && shieldHit) {
-        val from = param.spawnLocation
+        val from = param.spawnLocation?:param.location
         if (ship != null && ship.isAlive) {
           val dist = Misc.getDistance(from, point)
           if (dist > (mag[ship.hullSize] ?: 1000f)) {
-            ship.mutableStats.shieldDamageTakenMult.modifyMult(id, REDUCE_MULT)
-            ship.mutableStats.shieldUpkeepMult.modifyFlat(id, UPKEEP_PUNISH)
+            ship.mutableStats.shieldDamageTakenMult.modifyMult(ID,1f - REDUCE_MULT)
+            ship.mutableStats.shieldUpkeepMult.modifyFlat(ID, UPKEEP_PUNISH)
             ship.shield.innerColor = SHIELD_COLOR
             timer = COLOR_RECOVER_INTERVAL
             didChange = true
-            return id
+            return null
           }
         }
       }
@@ -91,8 +92,8 @@ class aEP_ControledShield internal constructor() : aEP_BaseHullMod() {
       timer = MathUtils.clamp(timer,0f, COLOR_RECOVER_INTERVAL)
       if (timer <= 0f && didChange) {
         ship.shield.innerColor = ship.hullSpec.shieldSpec.innerColor
-        ship.mutableStats.shieldDamageTakenMult.unmodify(id)
-        ship.mutableStats.shieldUpkeepMult.unmodify(id)
+        ship.mutableStats.shieldDamageTakenMult.unmodify(ID)
+        ship.mutableStats.shieldUpkeepMult.unmodify(ID)
         didChange = false
       }
     }

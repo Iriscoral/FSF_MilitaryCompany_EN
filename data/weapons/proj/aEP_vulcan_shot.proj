@@ -7,19 +7,21 @@
 	#"onFireEffect":"data.scripts.weapons.aEP_SplitAfterFire",
 	#"onHitEffect":"data.scripts.weapons.aEP_RWOnHit",
 	"collisionRadius":2,
+	"fringeColor":[240,120,100,140], # 默认拖尾颜色
+	"coreColor":[255,200,200,220], # 弹体颜色
+	"glowColor":[255,200,185,94], # 发光的颜色
+	"glowRadius":6,
 	"hitGlowRadius":10,
-	"length":20,
+	"length":32,
 	"width":4,
 	"fadeTime":0.1,
-	"fringeColor":[240,220,180,160],
-	"coreColor":[245,245,225,105],
 	"textureScrollSpeed":64.0,
 	"pixelsPerTexel":5.0,
 	"bulletSprite":"graphics/missiles/shell_small_yellow.png",
 	"behaviorSpec":{
 	  "behavior":"PROXIMITY_FUSE",
 	  "range":0,
-	  "vsMissileRange":15,
+	  "vsMissileRange":20,
 	  "explosionSpec":{
 	    "duration":0.0001f,
 	    "radius":15,

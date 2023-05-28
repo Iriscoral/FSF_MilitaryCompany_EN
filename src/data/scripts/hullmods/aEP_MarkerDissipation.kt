@@ -1,10 +1,7 @@
 package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.combat.BeamAPI
-import com.fs.starfarer.api.combat.CombatEntityAPI
-import com.fs.starfarer.api.combat.DamageAPI
-import com.fs.starfarer.api.combat.ShipAPI
+import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.listeners.ApplyDamageResultAPI
@@ -18,6 +15,7 @@ import combat.util.aEP_DataTool.floatDataRecorder
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
+import data.scripts.weapons.aEP_b_m_rk107_shot
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
@@ -30,6 +28,11 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
     const val DECREASE_SPEED = 0.5f // 缓冲区每秒下降幅能耗散的百分之多少
     const val DECREASE_PERCENT= 0.5f // 缓冲区每秒下降实际幅能降低的多少
     const val OVERLOAD_TIME_DECREASE = 0.25f
+
+    const val ZERO_FLUX_SPEED_BONUS = 30f
+    const val ZERO_FLUX_EXTRA_THREHOLD = 2f
+    const val TIME_TO_BUFF = 6f
+
     const val MAX_OVERLOAD_TIME = 8f
     const val ID = "aEP_MarkerDissipation"
     @JvmStatic
@@ -48,6 +51,11 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
   override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
     //减少过载时间
     ship.mutableStats.overloadTimeMod.modifyMult(ID, 1f - OVERLOAD_TIME_DECREASE)
+
+    //加0幅能加速
+    //ship.mutableStats.zeroFluxSpeedBoost.modifyFlat(ID,ZERO_FLUX_SPEED_BONUS)
+    //ship.mutableStats.zeroFluxMinimumFluxLevel.modifyFlat(ID, ZERO_FLUX_EXTRA_THREHOLD/100f)
+
     //修改护盾贴图
     if (ship.shield != null) {
       //set shield inner, outer ring
@@ -64,6 +72,10 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
       ship.setCustomData("$ID _ ${ship.id}",fluxData)
       ship.addListener(FluxRecorder(ship, fluxData))
     }
+
+  }
+
+  override fun applySmodEffectsAfterShipCreationImpl(ship: ShipAPI, stats: MutableShipStatsAPI, id: String) {
 
   }
 
@@ -93,21 +105,55 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
     val titleTextColor: Color = faction.getColor()
 
     //主效果
-    tooltip.addSectionHeading(aEP_DataTool.txt("effect"), Alignment.MID, 5f)
-    tooltip.addPara("{%s}"+txt("overload_time_reduce")+"{%s}", 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", (OVERLOAD_TIME_DECREASE * 100f))+ "%")
+    tooltip.addSectionHeading(txt("effect"), Alignment.MID, 5f)
+    tooltip.addPara("{%s}"+txt("aEP_MarkerDissipation03"), 5f, arrayOf(Color.green,highLight),
+      aEP_ID.HULLMOD_POINT,
+      String.format("%.0f", (OVERLOAD_TIME_DECREASE * 100f))+ "%")
+    tooltip.addPara("{%s}"+txt("aEP_MarkerDissipation01"), 5f, arrayOf(Color.green,highLight, highLight),
+      aEP_ID.HULLMOD_POINT,
+      String.format("%.0f", MAX_OVERLOAD_TIME))
+    tooltip.addPara("{%s}"+txt("aEP_MarkerDissipation02"), 5f, arrayOf(Color.green,highLight, highLight, highLight),
+      aEP_ID.HULLMOD_POINT,
+      String.format("%.0f", TIME_TO_BUFF),
+      String.format("%.0f", ZERO_FLUX_EXTRA_THREHOLD)+ "%",
+      String.format("%.0f", ZERO_FLUX_SPEED_BONUS))
+
+
     //灰字额外说明
     tooltip.addPara(aEP_DataTool.txt("MD_des04"), grayColor, 5f)
   }
 
 
+
+
   internal inner class FluxRecorder(private val ship: ShipAPI, val fluxData: floatDataRecorder) : DamageListener, DamageTakenModifier, AdvanceableListener {
     private var param: Any? = null
     private var damage: DamageAPI? = null
+    private var zeroBuffTime = 0f
 
     override fun advance(amount: Float) {
       val maxFlux = ship.fluxTracker.maxFlux
       val softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
       val totalDiss = aEP_Tool.getRealDissipation(ship)
+
+      //0幅能加成
+      if(ship.fluxLevel <= ZERO_FLUX_EXTRA_THREHOLD/100f){
+
+        zeroBuffTime += amount
+        if(!ship.mutableStats.maxSpeed.flatMods.containsKey(ID) && zeroBuffTime > TIME_TO_BUFF){
+          ship.mutableStats.maxSpeed.modifyFlat(ID, ZERO_FLUX_SPEED_BONUS)
+          ship.mutableStats.acceleration.modifyFlat(ID, ZERO_FLUX_SPEED_BONUS/2f)
+          ship.mutableStats.deceleration.modifyFlat(ID, ZERO_FLUX_SPEED_BONUS/2f)
+        }
+      }else{
+
+        zeroBuffTime = 0f
+        if(ship.mutableStats.maxSpeed.flatMods.containsKey(ID) ){
+          ship.mutableStats.maxSpeed.unmodify(ID)
+          ship.mutableStats.acceleration.unmodify(ID)
+          ship.mutableStats.deceleration.unmodify(ID)
+        }
+      }
 
       //更新上一帧幅能变化
       var fluxDecreaseCompareToLastFrame = 0f
@@ -141,8 +187,17 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
           "graphics/aEP_hullsys/marker_dissipation.png",  //sprite name,full, must be registed in setting first
           Global.getSettings().getHullModSpec(ID).displayName,  //title
           aEP_DataTool.txt("MD_des01") + (bufferLevel * 100).toInt() + "%",  //data
-          false
-        ) //is debuff
+          false) //is debuff
+
+        if(zeroBuffTime > TIME_TO_BUFF){
+          Global.getCombatEngine().maintainStatusForPlayerShip(
+            this.javaClass.simpleName+"01",  //key
+            "graphics/aEP_hullsys/marker_dissipation.png",  //sprite name,full, must be registed in setting first
+            Global.getSettings().getHullModSpec(ID).displayName,  //title
+            txt("aEP_MarkerDissipation04").format(String.format("%.0f", ZERO_FLUX_SPEED_BONUS)) ,  //data
+            false) //is debuff
+        }
+
       }
     }
 

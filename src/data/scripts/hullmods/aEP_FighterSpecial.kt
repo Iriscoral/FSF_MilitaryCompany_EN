@@ -13,6 +13,7 @@ import com.fs.starfarer.api.loading.DamagingExplosionSpec
 import com.fs.starfarer.api.loading.HullModSpecAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
+import com.fs.starfarer.combat.entities.DamagingExplosion
 import combat.impl.VEs.aEP_MovingSmoke
 import combat.plugin.aEP_CombatEffectPlugin
 import combat.util.aEP_Tool
@@ -427,6 +428,54 @@ class aEP_MaoDianShield : aEP_BaseHullMod() {
       return false
     }
   }
+}
+
+//吞弹护盾
+class aEP_ProjectileDenialShield : aEP_BaseHullMod(){
+  override fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
+    if(!ship.hasListenerOfClass(ProjectileRemove::class.java)){
+      ship.addListener(ProjectileRemove(ship))
+    }
+  }
+
+  inner class ProjectileRemove(val ship: ShipAPI) :  DamageTakenModifier{
+
+    //先于实际施加伤害，对于同一帧的伤害，先全部过一遍这个修改函数，再逐一施加于船体上
+    //param是造成伤害的发射物，projectileAPI，missileAPI，beamAPI等
+    //进行装甲格移除也会进监听器，如果report的话
+    //return修改项的id
+    override fun modifyDamageTaken(param: Any?, target: CombatEntityAPI?, damage: DamageAPI?, point: Vector2f?, shieldHit: Boolean): String? {
+      if(!shieldHit) return null
+      //如果proj可以穿透战机护盾，直接吞掉同时战机自爆
+      if(param is DamagingProjectileAPI){
+        if(param.projectileSpec?.isPassThroughFightersOnlyWhenDestroyed == false
+          && param.projectileSpec?.isPassThroughFighters == true){
+
+          val damage = param.damage.damage
+          if(ship.maxFlux - ship.currFlux < damage){
+            Global.getCombatEngine().applyDamage(
+              ship,
+              ship.location,
+              (ship.hitpoints + ship.hullSpec.armorRating) * 5f,
+              DamageType.HIGH_EXPLOSIVE,
+              0f,
+              true,
+              false,
+              ship)
+            Global.getCombatEngine().removeEntity(ship)
+          }else{
+            ship.fluxTracker.increaseFlux(damage, true)
+          }
+
+          Global.getCombatEngine().removeEntity(param)
+
+        }
+      }
+
+      return null
+    }
+  }
+
 }
 
 //巡洋导弹引信插件

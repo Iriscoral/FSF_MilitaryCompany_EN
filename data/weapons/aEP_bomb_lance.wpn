@@ -1,7 +1,8 @@
 {
 	"id":"aEP_bomb_lance",
 	"specClass":"projectile",
-	"type":"BALLISTIC",
+	"type":"MISSILE",
+	"mountTypeOverride":"UNIVERSAL",
 	"size":"SMALL",
 	"turretSprite":"",
 	"hardpointSprite":"",
@@ -13,7 +14,7 @@
 	"barrelMode":"LINKED",
 	"renderHints":[RENDER_LOADED_MISSILES],
 	"interruptibleBurst":false,
-	"displayArcRadius":190,
+	"displayArcRadius":210,
 	"animationType":"NONE",
 	"projectileSpecId":"aEP_bomb_lance_shot",
 	"fireSoundTwo":"reaper_fire",

@@ -13,7 +13,7 @@ import java.awt.Color
 
 class aEP_BBLockOn : BaseShipSystemScript(){
   companion object{
-    const val WEAPON_FLUX_INCREASE_PERCENT = 100f;
+    const val WEAPON_FLUX_INCREASE_PERCENT = 200f;
     const val SYSTEM_RANGE = 1500f;
     val JITTER_COLOR = Color(80,160,235,25)
     var TEXT_COLOR = Color(120,190,255,215)

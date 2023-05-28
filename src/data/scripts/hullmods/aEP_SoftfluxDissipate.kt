@@ -1,6 +1,7 @@
 package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
+import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener
@@ -39,6 +40,10 @@ class aEP_SoftfluxDissipate internal constructor() : aEP_BaseHullMod() {
     }
   }
 
+  override fun applySmodEffectsAfterShipCreationImpl(ship: ShipAPI, stats: MutableShipStatsAPI, id: String) {
+
+  }
+
   override fun advanceInCombat(ship: ShipAPI, amount: Float) {
 
   }
@@ -65,13 +70,14 @@ class aEP_SoftfluxDissipate internal constructor() : aEP_BaseHullMod() {
     tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
     //先说常规加成会-5，再说给额外15浮动，这样符合逻辑
     tooltip.addPara("{%s}"+ txt("aEP_SoftfluxDissipate03") , 5f, arrayOf(Color.red), aEP_ID.HULLMOD_POINT, String.format("%.0f", PER_PUNISH))
+    
 
     tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
-    val image = tooltip.beginImageWithText(Global.getSettings().getHullModSpec(ID).spriteName, 48f)
-    image.addPara("{%s}"+ txt("aEP_SoftfluxDissipate02"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", PER_BONUS- PER_PUNISH), "0")
+    tooltip.addPara("{%s}"+ txt("aEP_SoftfluxDissipate02"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", PER_BONUS- PER_PUNISH), "0")
 
-    tooltip.addImageWithText(5f)
+
   }
+
 
 
   inner class FluxDissipationDynamic(val ship: ShipAPI, val maxBonus: Float, val maxPunish:Float):AdvanceableListener{

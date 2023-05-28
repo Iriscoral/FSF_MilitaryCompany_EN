@@ -28,7 +28,7 @@ aEP_DamperLA,SHIP_SYSTEM,"Accelerates the weapon's rate of fire and magazine rel
 ,,,,,,
 #护卫,,,,,,
 aEP_DamperRL,SHIP_SYSTEM,Briefly activates an energy field that massively improves armor effectiveness at the cost of disabling weapons and shields.,,,,
-aEP_FCLBurst,SHIP_SYSTEM,"After a short preparation time, fires a recoil cannon, boosting maximum speed but reducing acceleration before the barrel cools. Projectiles fired from the cannon has very high damage and impact which decays with distance",,,,
+aEP_CrowdControl,SHIP_SYSTEM,"Reduces shield damage when activated, continuously generating several arcs of electricity to attack enemies directly in front of you which deal a small amount of fragmentation and EMP damage and greatly reduce the maximum speed of the target. The slowing effect does not stack.",,,,
 aEP_WeaponResetXL,SHIP_SYSTEM,"Absorbs a percentage of built-up flux and uses it to speed up weapon rate-of-fire and reload of ballistic and energy weapons, then quickly returns the absorbed flux after activation",,,,
 aEP_FortressShield,SHIP_SYSTEM,"Toggleable; when activated reduces shield damage taken by {90%} and disables firing, generating hard flux.",,,,
 ,,,,,,
@@ -45,6 +45,7 @@ aEP_DroneCanister,SHIP_SYSTEM,"Fires close proximity anti-aircraft smoke grenade
 aEP_cap_biaobing_radar,WEAPON,"The Javelin class famously has a outsized weapon targeting radar. For a radar of this power, mere exposure can cause hull and EMP damage. It is recommended that frigates are to not expose themselves to such a high powered radar.",,,,
 aEP_cap_nuanchi_missile,WEAPON,"Another focal point of the striking ""Warmpool"" class, the size of the missile gives an indication of its unusual effectiveness. A slow tactical bombardment missile that generates enough EMP to bring the point defences of any unprepared battleship offline and become the next casualty of the Warmpool class.",,,,
 aEP_cap_duiliu_main,WEAPON,"A weapon used to break the tipping point, this system uses multi-stage electromagnetic acceleration to give its projectiles unimaginable kinetic energy, and a warship equipped with this weapon can devastate an enemy utterly.",,,,
+aEP_cap_requan_missile,WEAPON,"Large, built-in long-range anti-ship missiles, which can be fired continuously in conjunction with the Hotspring's tactical system, posing a significant threat to defenceless ships.",,,,
 aEP_cru_requan_missile,WEAPON,"The built-in medium anti-ship missile, although inferior in performance to its conventional counterpart, can be fired continuously in conjunction with tactical systems and is a significant threat to defenceless ships.",,,,
 aEP_des_yangji_sidegun,WEAPON,"These gallery gun arrays, which can be placed in large numbers, cost less flux to fire and do enough damage to threaten most ships. That said, one major problem is the very poor accuracy caused by the external placement of the gallery guns and the slow shell velocity of the overweight warheads.",,,,
 aEP_cap_neibo_main,WEAPON,"The result of a technology exchange, this weapon, which was once the main gun of some huge war machine, ended up mounted in the centre of the Internalwave-class in the form of a turret and connected to a specialized ammunition feeder. As such, it is capable of continuously firing anti-ship munitions at similar rates to rotary cannons, becoming a veritable killer of small and medium-sized ships.",,,,
@@ -53,6 +54,7 @@ aEP_tesla_gun,WEAPON,"By firing micro-particles mixed with conductive materials,
 aEP_cru_pingding_main,WEAPON,"A long-barrelled gun that fires rocket-extended rounds, allowing the user to snipe an opponent out of sensor range, with a charge comparable to most torpedoes and sufficient to destroy a frigate with a single strike. To mitigate the long-term damage to the hull structure caused by its massive recoil, and to achieve an acceptable level of accuracy, a compensator for attitude control must be turned on to provide additional angular torque and to allow the engines to recoil before firing. The other problem is that rocket-extended munitions can be intercepted just as well as torpedoes.
 
 ",,,,
+aEP_fga_yonglang_main,WEAPON,"A gun that fires a miniature Breaching Torpedo, this annoying weapon can be used to overload enemy shields while using the recoil to retreat to a safe distance.",,,,
 ,,,,,,
 ,,,,,,
 aEP_cap_duiliu,SHIP,"The ship, which only recently appeared in the Sector, is a symbol of the FSF Corporation's growing power and as such a new face compared to the many experienced designs in the field. For the longest time, the main ship used by the Company was the Javelin-Class, designed in the days of the Domain of Man, but since becoming a force in the Sector FSF needed a warship designed for itself, thus spurring the development of the Thermocline-Class. Neither heavily armoured nor fast; but with its large number of densely packed weapon slots, if you can seize the moment, a skilled captain can destroy the opponent with a moment's projection of power. This battleship thus represents the FSF against their rivals within the Sector.
@@ -77,10 +79,10 @@ Although the armour and structure are of military grade material, the Decomposer
 aEP_cap_shangshengliu,SHIP,"A heavily armored freighter only considered when the most dangerous routes are involved, the Upstream-Class, equipped with battleship-grade armor and structural design, is able to ignore most threats in the Sector. As the star of the special transport industry, it should never be treated as a mere cargo ship, especially considering its support systems, which can deploy additional armor to withstand massive damage until reinforcements arrive.
 
 Relative to its supply needs, the maintenance of this folding armor requires more effort than imagined. But in consideration against the threat profiles of the most turbulent areas of the sector, its not that big of a deal.",,,,
-aEP_cap_shangshengliu_mk2,SHIP,"This modified Upstream-Class, the work of retired FSF designers, removes the telescopic external armor and adds a series of gun galleries and auxiliary engines in the area of the original cargo hold.
+aEP_cap_shangshengliu_mk3,SHIP,"This modified Upstream-Class, the work of retired FSF designers, removes the telescopic external armor and adds a series of gun galleries and auxiliary engines in the area of the original cargo hold.
 
 The Upstream-Class has rarely been the target of pirate attacks, much less a successful victim, with only a few documented losses since its inception, thus there is some untold story behind the appearance of this ship. Apparently, someone took a Upstream and found a retired designer to build this large iron block that was as close to an official modification as a third-part design could be. ",,,,
-aEP_cap_shangshengliu_mk3,SHIP,"A modification based on the Upstream-Ckass for transporting antimatter fuel. Statistically, in the business field of special fuel transport, the risk reduction from minimizing exposure to high-risk areas is far better than a slapping on a few more layers of armor, but the MK.III chose to do both. It is supported by a giant engine made up of multiple large engines connected in parallel, exceeding any conventional option in size and fuel consumption. After a long acceleration phase, it can traverse the battlefield at speeds that destroyers can't even hope to match.
+aEP_cap_shangshengliu_mk2,SHIP,"A modification based on the Upstream-Ckass for transporting antimatter fuel. Statistically, in the business field of special fuel transport, the risk reduction from minimizing exposure to high-risk areas is far better than a slapping on a few more layers of armor, but the MK.III chose to do both. It is supported by a giant engine made up of multiple large engines connected in parallel, exceeding any conventional option in size and fuel consumption. After a long acceleration phase, it can traverse the battlefield at speeds that destroyers can't even hope to match.
 
 The fuel needed to operate this monster engine comes directly from the cargo of the MK.III, making its actual effective capacity lower than the marked value. Although it may have consumed half of its cargo while crossing dangerous area, its arrival with what cargo remains would be considered a success by most operators.",,,,
 ,,,,,,
@@ -205,6 +207,7 @@ aEP_ftr_ftr_helicop,SHIP,"A heavy helicopter gunship that can operate in the atm
 #战机武器,,,,,,
 aEP_ftr_ut_repair_beam,WEAPON,"A beamer that emits a torrent of nanomaterials that covers damaged armour and then cools and holds it in place, mostly used for emergency battlefield repairs, unable to repair armour to its original strength",,,,
 aEP_ftr_ut_supply_main,WEAPON,A siphon that remotely transfers flux from a target to itself.,,,,
+aEP_cru_maodian_ads,WEAPON,"An advanced active defence system that launches a solid, unpowered concrete block that crashes into enemy projectiles in its path.",,,,
 aEP_ftr_ut_maodian_ads,WEAPON,"An advanced active defence system that launches a solid, unpowered concrete block that crashes into enemy projectiles in its path.",,,,
 aEP_ftr_ut_decompose_beam,WEAPON,"A cutting beam with tractive force that has little effect on intact ships, but can quickly cut through damaged wreckage.",,,,
 aEP_ftr_icp_gunship_gun,WEAPON,Fires kinetic bullets with EMP payloads to break shields and paralyse opponents in strikecraft combat,,,,
@@ -244,19 +247,13 @@ aEP_IND_Piratestation,CUSTOM,"Given the distance between Lamdor X and the Core, 
 aEP_FSF_Earthstar,PLANET,"Once a testament to the conquest of known space by the Domain of Man, the DWR43 system was planned to be renamed after a great terraforming, relying on various stellar energy extraction stations that would allow it to become one of the beating hearts of interstellar industry. Now this blue giant shines with nothing but unfinished facilities and lifeless planets.",,,,
 aEP_FSF_Stationplanet,PLANET,"Once, a small mining colony existed on this planet, protected by a stellar shroud and remaining so after further plans for transformation were aborted with the Great Collapse. Despite the unbearably high temperatures, at least the ecologically modified soil could still grow some modified crops, and with enough time the people trapped here might be able to prepare enough supplies to leave.
 
-
-
 That all ended with the arrival of an AI fleet, which pushed one of the three stellar shrouds into a precisely calculated crash trajectory, hitting the centre of the city with a margin of error of less than 2km and burning 90 per cent of the population to a crisp in 30 seconds. With the loss of the shroud, the more than twofold increase in temperature and radiation killed the remaining 10 per cent of the population, leaving only a sandstorm of radiation-stained particles to ravage the planet's surface all day long.
 
 Even after redevelopment, that missing stellar shroud remains a monument to the tragedy that happened here.",,,,
 aEP_FSF_Earth,PLANET,"The jewel and planned capital of the DWR43 system, this heavily modified proto-tundra planet had not yet seen any inhabitants move in before the Collapse occurred, with only a unit of terraforming microbes working on terraforming the local ecology. The transformation process was almost complete when the system received an unexpected visitor - a fleet of automated ships comprised of multiple Alpha Cores.
 
-
-
 What happened afterwards is chilling; the AI fleet proceeded to take over the ecological modification system, transforming the planet into an anomalous terrestrial-like planet with a full ecosystem and breeding numerous species adapted to the environment, but in a manner that rendered the planet completely hostile to humans, as only a deliberately edited biological weapon could do. Why those AIs would do something like this that would be completely irrelevant to its given mission; if it truly was a failure of the logic-limiting algorithm onboard those cores, perhaps would be an even more horrific situation.",,,,
 aEP_SpaceFactory,CUSTOM,"The former Stellar Energy Extraction Station, which was converted into a military garrison by the FSF Corporation, unfortunately had most of its functions never come online. The vast available interior space houses the company's most secretive department, a testing ground for superior weaponry, with the presence of AI fleets in the galaxy making it the perfect place to conduct combat testing. In order to avoid the loss of personnel by engaging the AI without maintaining absolute superiority, and to avoid exposing their position by exchanging too much material with the outside world, the station requires the maximum possible use of the extraction station's energy and excavation base for energy and material self-sustainability.
-
-
 
 That said, it was a rather extravagant expense to make half of the facility an ecosphere, hence making the place feel more of a refuge from the next major collapse than a ship's weapons testing ground.",,越是接近这个造物，越是能感受到它的巨大，这个原来用于给星系中提供几乎无限能量的设施在建造终止前似乎连外壳都没有完全竣工，从一些接合处仍然能看到当代科技的痕迹,,
 ,,,,,,

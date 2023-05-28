@@ -10,7 +10,7 @@
   "hardpointSprite": "graphics/weapons/aEP_high_speed_HE/hp.png",
   "hardpointGunSprite": "graphics/weapons/aEP_high_speed_HE/hpbr.png",
   #"renderHints":[RENDER_BARREL_BELOW],
-  "visualRecoil": 4,
+  "visualRecoil": 6,
   "turretOffsets": [
     22,
     0
@@ -41,5 +41,5 @@
       120
     ]
   },
-  "fireSoundTwo": "aEP_high_speed_HE_fire"
+  "fireSoundTwo": "aEP_b_m_hv7_fire"
 }

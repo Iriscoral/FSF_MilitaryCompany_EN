@@ -115,11 +115,15 @@ class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
 
     val picker = WeightedRandomPicker<Array<Any>>()
     var newTarget: Array<Any>? = null
-    for(it in getDamagingProjectileInArc(weapon, 30f, 100f)) {
+    for(it in getDamagingProjectileInArc(weapon, 30f, 250f)) {
       //先计算一下有没有拦截的可能
       val targetEndPoint = AIUtils.getBestInterceptPoint(weapon.location, weapon.projectileSpeed, it.location, it.velocity)
       targetEndPoint?: continue
 
+      //伤害太低了不拦截
+      if(it.damage.type == DamageType.FRAGMENTATION && it.damage.baseDamage < 200) continue
+      if(it.damage.type == DamageType.KINETIC && it.damage.baseDamage < 100) continue
+      if(it.damage.type == DamageType.HIGH_EXPLOSIVE && it.damage.baseDamage < 100) continue
 
       //拦截点不能在武器射界外面
       if(weapon.distanceFromArc(targetEndPoint)?:1f > 0f) continue
@@ -128,7 +132,7 @@ class aEP_MaoDianDroneAutoFire(weapon: WeaponAPI) : aEP_BaseAutoFireAI(weapon){
       //弹丸本身，还有拦截点都不能处于队友的碰撞圈内（都已经打到队友了还拦啥）
       //弹丸必须指向某个友军
       //弹丸和拦截点画线不能碰到队友的碰撞圈
-      val dist = it.moveSpeed * 2.5f
+      val dist = 800f
       var cant = false
       var closestDist = 9999999f
       for(ally in AIUtils.getNearbyEnemies(it, dist)){

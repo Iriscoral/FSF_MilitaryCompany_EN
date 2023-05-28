@@ -12,6 +12,7 @@
   "shieldRadius": 78,
   "viewOffset": 0,
   "builtInMods": [
+    "aEP_ProjectileDenialShield",
     "aEP_MaoDianShield"
   ],
   "builtInWeapons": {

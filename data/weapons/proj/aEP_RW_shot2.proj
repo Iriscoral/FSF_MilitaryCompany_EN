@@ -14,5 +14,5 @@
   "coreColor":[242,222,200,255], # 弹体的颜色
 	"glowColor":[250,184,72,15],
 	"glowRadius":150,
-	"bulletSprite":"graphics/weapons/aEP_FCL/flame.png",
+	"bulletSprite":"graphics/aEP_empty.png",
 }

@@ -3,12 +3,13 @@ package data.scripts.hullmods
 import com.fs.starfarer.api.Global
 import combat.util.aEP_Tool.Util.addDebugLog
 import com.fs.starfarer.api.combat.BaseHullMod
+import com.fs.starfarer.api.combat.MutableShipStatsAPI
 import java.util.HashSet
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.ui.TooltipMakerAPI
-import combat.util.aEP_Tool
+import com.fs.starfarer.api.util.Misc
 import combat.util.aEP_DataTool
-import data.scripts.util.MagicIncompatibleHullmods
+import org.magiclib.util.MagicIncompatibleHullmods.removeHullmodWithWarning
 import java.lang.Exception
 import java.lang.StringBuffer
 
@@ -31,11 +32,11 @@ open class aEP_BaseHullMod : BaseHullMod() {
       }
     }
     if (shouldRemove) {
-      //如果本 mod是 built-in的话，移除发生冲突的另一个，反之移除本 mod
+      //如果本 mod 是 built-in的话，移除发生冲突的另一个，反之移除本 mod
       if (!ship.variant.nonBuiltInHullmods.contains(id)) {
-        MagicIncompatibleHullmods.removeHullmodWithWarning(ship.variant, conflictId, id)
+        removeHullmodWithWarning(ship.variant, conflictId, id)
       } else {
-        MagicIncompatibleHullmods.removeHullmodWithWarning(ship.variant, id, conflictId)
+        removeHullmodWithWarning(ship.variant, id, conflictId)
       }
     }
 
@@ -59,6 +60,10 @@ open class aEP_BaseHullMod : BaseHullMod() {
     //在对话的预览界面，会出现战斗未开始，但是已经生成船的情况
     try {
       applyEffectsAfterShipCreationImpl(ship, id)
+      if(isSMod(ship)){
+        applySmodEffectsAfterShipCreationImpl(ship, ship.mutableStats, id)
+      }
+
     } catch (e1: Exception) {
       addDebugLog("Error in hullmod: $id at applyEffectsAfterShipCreationImpl")
     }
@@ -122,13 +127,26 @@ open class aEP_BaseHullMod : BaseHullMod() {
   /**
    * 使用这个
    */
-  open fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {}
+  open fun applyEffectsAfterShipCreationImpl(ship: ShipAPI, id: String) {
 
-  private fun showModName(list: Set<String>): String {
+  }
+
+  open fun showModName(list: Set<String>): String {
     val toReturn = StringBuffer()
     for (id in list.toTypedArray()) {
-      toReturn.append(Global.getSettings().getHullModSpec(id).displayName + " ")
+      if(Misc.getMod(id) !=null){
+        toReturn.append(Global.getSettings().getHullModSpec(id).displayName + ", ")
+      }
     }
+    if(toReturn.length > 1) toReturn.replace(toReturn.length-2,toReturn.length-1,"")
     return toReturn.toString()
   }
+
+  /**
+   * 使用这个
+   */
+  open fun applySmodEffectsAfterShipCreationImpl(ship: ShipAPI, stats: MutableShipStatsAPI, id: String) {
+
+  }
+
 }

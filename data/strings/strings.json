@@ -13,21 +13,26 @@
 
 		"hard_diss":"Hard flux dispersion",
 		"hard_convert":"Hard Flux conversion in progress",
-		"overload_time_reduce":"Reduced Overload Time",
+
+		"aEP_MarkerDissipation03":"%s reduction in overload time ",
+		"aEP_MarkerDissipation01": "Maximum overload time will not exceed %s seconds",
+		"aEP_MarkerDissipation02": "If the flux level is consistently below %s for %s seconds, provide a %s bonus to max speed",
+		"aEP_MarkerDissipation04": "Maximum speed increase: %s",
+
 		"MD_des01":"Preheating level:",
 		"MD_des02":"Weapon flux generation reduced by %s and flux dispersion reduced by %s",
 		"MD_des03":"Reduction in damage taken",
 		"MD_des04":"* Does not take into account soft flux gain due to taking damage, such as beam weapon hits to shields",
 		"missile_health_up":"Missile health increased by",
-
+		
 		"MP_des00": "Overall Reloading Rate",
-		"MP_des01":"For small slots, the ship produces missiles equivalent to %s ordnance points every 100 seconds",
-		"MP_des02":"For medium slots, the ship produces missiles equivalent to %s ordnance points every 100 seconds",
-		"MP_des03":"For large slots, the ship produces missiles equivalent to %s ordnance points every 100 seconds",
-		"MP_des04":"Missile rate of fire increased",
-		"MP_des05":"Missile rate of fire reduced ",
-		"MP_des06":"When the overall loading rate is {%s}, the maximum production rates for different missile weapons are as follows: ",
-		"MP_des07":"Response rate of total loading rate, is calculated as {%s} of the sum of the maximum production rates of all missile weapons installed on this ship ",
+		"MP_des01":"For small slots, the ship produces missile ammo equivalent to %s ordnance points every 100 seconds",
+		"MP_des02":"For medium slots, the ship produces missile ammo equivalent to %s ordnance points every 100 seconds",
+		"MP_des03":"For large slots, the ship produces missile ammo equivalent to %s ordnance points every 100 seconds",
+		"MP_des04":"All missiles will have a reserve of no more than %s rounds fired",
+		"MP_des05":"Current overall reloading rate: ",
+		"MP_des06":"When the overall loading rate is %s, the maximum production rates for different missile weapons are as follows: ",
+		"MP_des07":"Response rate of total loading rate, is calculated as %s of the sum of the maximum production rates of all missile weapons installed on this ship ",
 		"MP_des08":"* For example, a missile weapon with an assembly point of 30 and a base reserve of 10 rounds would be worth 3 points per round",
 
 		"extra":"Extra",
@@ -37,9 +42,6 @@
 		"weapon_range_up4":"Weapon range increased by %s when nearby friendly ships are frigates",
 		"max_speed_down":"Max speed reduced",
 		"shield_damge_taken_reduce":"Shield damage reduction",
-		"ammo_regen_speed_up":"Ammo recovery rate increased by %s",
-		"HotLoader_desc02":"When the shipsystem is active, the ammo recovery rate is increased by a further %s",
-		"reduce_flux_per_hit":"Reduces flux by %s with each hit",
 
 		"add":"increased by ",
 		"reduce":"reduced by ",
@@ -48,9 +50,19 @@
 		"forward":"Forward",
 		"backward":"Backward",
 		"only_on_small_ship":"Can only be fitted to frigates and destroyers",
-		"VA_des01":"Each time the ship takes damage, there is a %s chance that the damage will be reduced by %s points",
 
-		"aEP_HotLoader01": "All non-built-in, non-missile weapons receive a resident {%s} bonus to reload speed",
+
+		"VA_des01":"Each time a ship takes damage, there is a %s chance that the damage will be reduced by %s points",
+		"VA_des02":"Reduces %s points of flux with each effect",
+
+		"VA_des03":"The probability of activation changes from %s to %s",
+		"VA_des04":"Effective damage reduction from %s to %s",
+		"VA_des05":"The reduction in flux per activation is changed from %s to %s",
+
+
+		"aEP_HotLoader01": "All non-built-in ballistic and energy weapons gain %s extra ammo return rate",
+		"aEP_HotLoader02":"Additional ammunition return rate is boosted again by %s",
+		"aEP_HotLoader03":"All ballistic and energy weapons gain %s extra ammunition return rate",
 
 		"CMCarrier01":"Loading of a cruise missile for this ship is complete",
 		"CMCarrier02":"CR too low for reloading",
@@ -106,7 +118,7 @@
 		"AWM01_desc02":"In return for handing them over to me, you will be given some of the Company's latest products",
 
 		"AWM02_title":"AWM02: Destroy the Target",
-		"AWM02_mission01":"The target is located in an asteroid field within {%s}",
+		"AWM02_mission01":"The target is located in an asteroid field within %s",
 		"mission_require":"Mission requirements",
 		"mission_destroy":"Destroy the target",
 		"mission_destroyed":"The target has been destroyed",
@@ -133,7 +145,7 @@
 		"MarineTrain04":"Your %s crew is in training and is expected to be completed in %s days",
 
 		"MissileEntity_after":"After a burst of flame, peace quickly returned to the universe",
-
+		
 		"compatible":"Conflict",
 		"NotCompatible":"Conflict with fitting：",
 		"HaveToBeWith":"Ships must have",
@@ -182,14 +194,14 @@
 		"aEP_CruiseMissileLoadIntel02":"Manage the loading status and type of missile for each ship here",
 		"aEP_CruiseMissileLoadIntel03":"Not loading",
 		"aEP_CruiseMissileLoadIntel04":"Select a cruise missile to load on this ship",
-		"aEP_CruiseMissileLoadIntel05":"Loading progress: {%s} ",
+		"aEP_CruiseMissileLoadIntel05":"Loading progress: %s ",
 
 		"aEP_Market00":"This is the Sales Floor",
 		"aEP_Market01":"Sorry, you seem to have a bad reputation here. (requires FSF - Neutral)",
 
-		"aEP_AttackCarrier00":"Increased radius of fighter wing operations: {%s}",
-		"aEP_AttackCarrier01":"A speed bonus is provided to fighter wings within {%s} of the mothership and with a base top speed below {%s}: ",
-		"aEP_AttackCarrier02":"When the ship's fighter replacement rate is very low and its flux is less than {%s}, the forge is activated to immediately replace all lost fighters, this ability has a cooldown of {%s} seconds and generates a large amount of flux",
+		"aEP_AttackCarrier00":"Increased radius of fighter wing operations: %s",
+		"aEP_AttackCarrier01":"A speed bonus is provided to fighter wings within %s of the mothership and with a base top speed below %s: ",
+		"aEP_AttackCarrier02":"When the ship's fighter replacement rate is very low and its flux is less than %s, the forge is activated to immediately replace all lost fighters, this ability has a cooldown of {%s} seconds and generates a large amount of flux",
 		"aEP_AttackCarrier03":"Forge cooling in progress",
 		"aEP_AttackCarrier04":"Cooling status: %s",
 
@@ -202,7 +214,7 @@
 		"aEP_RapidDissipate02":"* Damage taken by uncheckable modules can also provide dissipation to the body",
 
 		"aEP_BurstDissipate01": "Increase in normal bonus by %s per point of flux vent ",
-		"aEP_BurstDissipate02": "Each point in flux vents no longer provides a resident extra bonus, but instead causes a {%s} reduction in dissipation",
+		"aEP_BurstDissipate02": "Each point in flux vents no longer provides a resident extra bonus, but instead causes a %s reduction in flux dissipation",
 		"aEP_BurstDissipate03": "Variation in flux dissipation: ",
 		"aEP_BurstDissipate04": "Shield damage absorption rate reduced by %s",
 

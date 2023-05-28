@@ -11,7 +11,9 @@
 	"glowRadius":20,
 	"explosionColor":[255,225,50,255],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":100, # purely visual
-	"armingTime":0.1,	
+	"armingTime":0.1,
+	"noCollisionWhileFading":true,
+  "noDebrisWhenDestroyed": true,
 	"explosionSpec":{
 		"duration":0.01f, # not visual
 		"radius":75,

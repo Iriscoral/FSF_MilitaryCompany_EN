@@ -14,10 +14,10 @@ class aEP_DamperBoost : BaseShipSystemScript() {
   companion object{
     val ROF_MAG = HashMap<String,Float>()
     init {
-      ROF_MAG["aEP_fga_raoliu"] = 65f;
-      ROF_MAG["aEP_des_youjiyan"] = 65f;
-      ROF_MAG["aEP_des_youjiyan_mk2"] = 65f;
-      ROF_MAG["aEP_des_lianliu"] = 65f;
+      ROF_MAG["aEP_fga_raoliu"] = 50f;
+      ROF_MAG["aEP_des_youjiyan"] = 50f;
+      ROF_MAG["aEP_des_youjiyan_mk2"] = 50f;
+      ROF_MAG["aEP_des_lianliu"] = 50f;
     }
     val EFFECT_ARMOR_FLAT_BONUS = HashMap<String,Float>()
     init {
@@ -58,6 +58,7 @@ class aEP_DamperBoost : BaseShipSystemScript() {
   private val id = "aEP_DamperBoost"
   override fun apply(stats: MutableShipStatsAPI, id: String, state: ShipSystemStatsScript.State, effectLevel: Float) {
     ship = (stats.entity?:return) as ShipAPI
+
     var convertedLevel = effectLevel
     for (w in ship.allWeapons) {
       if (!w.slot.isDecorative) continue

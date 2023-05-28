@@ -71,9 +71,9 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       FLUX_RETURN_SPEED["aEP_des_cengliu"] = 0.8f
       FLUX_RETURN_SPEED["aEP_cru_zhongliu"] = 0.8f
 
-      WEAPON_ROF_PERCENT_BONUS["aEP_fga_xiliu"] = 125f
-      WEAPON_ROF_PERCENT_BONUS["aEP_des_cengliu"] = 125f
-      WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 125f
+      WEAPON_ROF_PERCENT_BONUS["aEP_fga_xiliu"] = 120f
+      WEAPON_ROF_PERCENT_BONUS["aEP_des_cengliu"] = 120f
+      WEAPON_ROF_PERCENT_BONUS["aEP_cru_zhongliu"] = 120f
     }
   }
 
@@ -107,9 +107,6 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       } else if(storedHardFlux+storedSoftFlux >= ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT * 2f){
         maxStoreMult = 1f - WORSEN_MULT
       }
-
-      //取消护盾维持，防止出现把盾维吸入导致每秒幅散散了个空气的问题
-      ship.mutableStats.shieldUpkeepMult.modifyMult(id,0f)
 
       //ACTIVE和IN的时候吸收幅能
       if( state == ShipSystemStatsScript.State.IN || state == ShipSystemStatsScript.State.ACTIVE){
@@ -218,11 +215,11 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
       //ballistic weapon buff
       stats.ballisticRoFMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
-      stats.ballisticAmmoRegenMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
+      //stats.ballisticAmmoRegenMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
 
       //energy weapon buff
       stats.energyRoFMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
-      stats.energyAmmoRegenMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
+      //stats.energyAmmoRegenMult.modifyPercent(id, rofPercentBonus * effectLevel * maxStoreMult)
 
       //non beam PD buff
       //stats.getNonBeamPDWeaponRangeBonus().modifyFlat(id,PD_RANGE_BONUS - RANGE_BONUS);
@@ -230,6 +227,9 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       //flux consume reduce
       //stats.ballisticWeaponFluxCostMod.modifyPercent(id, -FLUX_REDUCTION)
       //stats.energyWeaponRangeBonus.modifyPercent(id, -FLUX_REDUCTION)
+
+      //取消护盾维持，防止出现把盾维吸入导致每秒幅散散了个空气的问题
+      ship.mutableStats.shieldUpkeepMult.modifyMult(id,0f)
 
     } else{
       //回复盾维持
