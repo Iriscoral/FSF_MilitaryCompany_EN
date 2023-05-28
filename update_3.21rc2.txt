@@ -1,58 +1,117 @@
-/¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª/
+/â€”â€”â€”â€”â€”â€”â€”â€”/
 3.21rc2
-ÐÂÔö£º
+æ–°å¢žï¼š
 
-Æ½ºâÐÔ£º
-	±ê±ø¼¶£º
-		ÖÐÑëµÄ2¸öÖÐÐ­Í¬²ÛÎ»¸ÄÎªÖÐÍ¨ÓÃ
-		Õ½ÊõÏµÍ³Ã¿Ãë·ùÄÜÏûºÄ1200->800
-		Õ½ÊõÏµÍ³µÐ·½ÎäÆ÷·ùÄÜÏûºÄÔö¼Ó100%->200%
-	ÖÐÁ÷¼¶£º
-		²¿Êðµã23->22
-	Æ½¶¨¼¶£º
-		²¿Êðµã28->27
-		Ö÷ÅÚÃé×¼Ê±ÓµÓÐ2µÀ¹âÊøÔ¤Ãéµ¯µÀ
-		Ö÷ÅÚµÄµ¯Íè¿ÉÒÔ´©Í¸Õ½»úºÍµ¼µ¯¿ÉÒÔ¼ÌÐøÇ°½ø
-		Ö÷ÅÚµ¯Íè±¬Õ¨·¶Î§ÌáÉý
-		Ö÷ÅÚÉËº¦2000->2500
-	ÎÂÔ¾²ã¼¶£º
-		²¿Êðµã37->36
-	Ê¯Éºº÷¼¶£º
-		½¢´¬´îÔØµÄadsÏµÍ³²»ÔÙÎª·ÀÓùÆ½Ì¨°æ±¾£¬ÓÐ¸ü¸ßµÄµ¯Ò©»Ø¸´ËÙ¶È
-	Ñó¼¹¼¶£º
-		²¿Êðµã11->12
-		Õ½ÊõÏµÍ³·¢ÉäÁ¿¸üÉÙ£¬µ«µ¥·¢ÒýÐÅ·¶Î§/ÉËº¦¸ü´ó£¬×ÜÉËº¦Á¿²»±ä
-	Ó¿ÀË¼¶£º
-		»¤¶Ü¼õÉË50%->60%
-		Õ½ÊõÏµÍ³¼¤»îÊ±²»ÔÙ¼õÐ¡»¤¶Ü½Ç¶È
-		Õ½ÊõÏµÍ³µç»¡ÉËº¦50->150£¬ÉËº¦ÀàÐÍÄÜÁ¿->ÆÆÆ¬£¬ÄÜ¸üºÃµÄ·´µ¼µ¯
-		Õ½ÊõÏµÍ³×÷ÓÃ·¶Î§600->700
-	ÎäÆ÷£ºAA-40Í¨ÓÃÅÚ£º
-		µ¥·¢·ùÄÜÏûºÄ335->340£¬ÎäÆ÷Ð§ÂÊ1.34->1.36
-	ÎäÆ÷£ºSR-125×ªÌÅ×Ô¶¯ÅÚ£º
-		¸üÃûÎªZT-125×ªÌÅ×Ô¶¯ÅÚ
-    dph100->150£¬ÎäÆ÷Ð§ÂÊ1.12->1.2
-	ÎäÆ÷£º"Boom"±¬Õ¨³¤Ã¬£º
-		ÎäÆ÷ÀàÐÍ±äÎªµ¼µ¯
-		²ÛÎ»ÀàÐÍ±äÎªÍ¨ÓÃ
-		×°Åäµã0->1
-		×î´ó±¸µ¯²»ÔÙÏÞÖÆÎª1
-	ÎäÆ÷£ºÆø¶¤Ç¹ÏµÁÐ£º
-    ²»ÔÙÓµÓÐ°²È«¾àÀë£¬²»»áÔÚ½ü¾àÀë¶¥·ÉµÐÈË
-  ÎäÆ÷£º±¬ÆÆ´¸ÏµÁÐ£º
-    ÂÔÎ¢½µµÍÁËÎ²¼£µÄ³ÖÐøÊ±¼ä
-    ¼ÓËÙ¶ÈÂÔÎ¢ÌáÉý
-	²å¼þ£ºÊÜ¿Ø»¤¶Ü£º
-		ÉËº¦¼õÃâ25%->50%
-		×îÐ¡´¥·¢·¶Î§´ó·ù¶ÈÉÏµ÷
-	²å¼þ£ºÈÈÌîµ¯ÏµÍ³£º
-  	SmodÔöÒæ£º¶ÔÊµµ¯ºÍÄÜÁ¿ÎäÆ÷Ìá¹©50%µÄµ¯Ò©»Ø¸´ËÙ¶È
-  ²å¼þ£ºÏÈ·æÍâ¿Ç£º
-    SmodÔöÒæ£º¼õµÍ´¥·¢¸ÅÂÊ£¬Ôö¼ÓÃ¿´Î´¥·¢µÄ¼õÉËÁ¿
-  ²å¼þ£ºFSF½¢ÌåÉè¼Æ£º
-    µÍ·ùÄÜÏÂÌá¹©30µÄ¼«ËÙºÍ¼ÓËÙ¶È¼Ó³É
+å¹³è¡¡æ€§ï¼š
+	æ ‡å…µçº§ï¼š
+		ä¸­å¤®çš„2ä¸ªä¸­ååŒæ§½ä½æ”¹ä¸ºä¸­é€šç”¨
+		æˆ˜æœ¯ç³»ç»Ÿæ¯ç§’å¹…èƒ½æ¶ˆè€—1200->800
+		æˆ˜æœ¯ç³»ç»Ÿæ•Œæ–¹æ­¦å™¨å¹…èƒ½æ¶ˆè€—å¢žåŠ 100%->200%
+	ä¸­æµçº§ï¼š
+		éƒ¨ç½²ç‚¹23->22
+	å¹³å®šçº§ï¼š
+		éƒ¨ç½²ç‚¹28->27
+		ä¸»ç‚®çž„å‡†æ—¶æ‹¥æœ‰2é“å…‰æŸé¢„çž„å¼¹é“
+		ä¸»ç‚®çš„å¼¹ä¸¸å¯ä»¥ç©¿é€æˆ˜æœºå’Œå¯¼å¼¹å¯ä»¥ç»§ç»­å‰è¿›
+		ä¸»ç‚®å¼¹ä¸¸çˆ†ç‚¸èŒƒå›´æå‡
+		ä¸»ç‚®ä¼¤å®³2000->2500
+	æ¸©è·ƒå±‚çº§ï¼š
+		éƒ¨ç½²ç‚¹37->36
+	çŸ³çŠç‘šçº§ï¼š
+		èˆ°èˆ¹æ­è½½çš„adsç³»ç»Ÿä¸å†ä¸ºé˜²å¾¡å¹³å°ç‰ˆæœ¬ï¼Œæœ‰æ›´é«˜çš„å¼¹è¯å›žå¤é€Ÿåº¦
+	æ´‹è„Šçº§ï¼š
+		éƒ¨ç½²ç‚¹11->12
+		æˆ˜æœ¯ç³»ç»Ÿå‘å°„é‡æ›´å°‘ï¼Œä½†å•å‘å¼•ä¿¡èŒƒå›´/ä¼¤å®³æ›´å¤§ï¼Œæ€»ä¼¤å®³é‡ä¸å˜
+	æ¶Œæµªçº§ï¼š
+		æŠ¤ç›¾å‡ä¼¤50%->60%
+		æˆ˜æœ¯ç³»ç»Ÿæ¿€æ´»æ—¶ä¸å†å‡å°æŠ¤ç›¾è§’åº¦
+		æˆ˜æœ¯ç³»ç»Ÿç”µå¼§ä¼¤å®³50->150ï¼Œä¼¤å®³ç±»åž‹èƒ½é‡->ç ´ç‰‡ï¼Œèƒ½æ›´å¥½çš„åå¯¼å¼¹
+		æˆ˜æœ¯ç³»ç»Ÿä½œç”¨èŒƒå›´600->700
+	æ­¦å™¨ï¼šAA-40é€šç”¨ç‚®ï¼š
+		å•å‘å¹…èƒ½æ¶ˆè€—335->340ï¼Œæ­¦å™¨æ•ˆçŽ‡1.34->1.36
+	æ­¦å™¨ï¼šSR-125è½¬è†›è‡ªåŠ¨ç‚®ï¼š
+		æ›´åä¸ºZT-125è½¬è†›è‡ªåŠ¨ç‚®
+    dph100->150ï¼Œæ­¦å™¨æ•ˆçŽ‡1.12->1.2
+	æ­¦å™¨ï¼š"Boom"çˆ†ç‚¸é•¿çŸ›ï¼š
+		æ­¦å™¨ç±»åž‹å˜ä¸ºå¯¼å¼¹
+		æ§½ä½ç±»åž‹å˜ä¸ºé€šç”¨
+		è£…é…ç‚¹0->1
+		æœ€å¤§å¤‡å¼¹ä¸å†é™åˆ¶ä¸º1
+	æ­¦å™¨ï¼šæ°”é’‰æžªç³»åˆ—ï¼š
+    ä¸å†æ‹¥æœ‰å®‰å…¨è·ç¦»ï¼Œä¸ä¼šåœ¨è¿‘è·ç¦»é¡¶é£žæ•Œäºº
+  æ­¦å™¨ï¼šçˆ†ç ´é”¤ç³»åˆ—ï¼š
+    ç•¥å¾®é™ä½Žäº†å°¾è¿¹çš„æŒç»­æ—¶é—´
+    åŠ é€Ÿåº¦ç•¥å¾®æå‡
+	æ’ä»¶ï¼šå—æŽ§æŠ¤ç›¾ï¼š
+		ä¼¤å®³å‡å…25%->50%
+		æœ€å°è§¦å‘èŒƒå›´å¤§å¹…åº¦ä¸Šè°ƒ
+	æ’ä»¶ï¼šçƒ­å¡«å¼¹ç³»ç»Ÿï¼š
+  	Smodå¢žç›Šï¼šå¯¹å®žå¼¹å’Œèƒ½é‡æ­¦å™¨æä¾›50%çš„å¼¹è¯å›žå¤é€Ÿåº¦
+  æ’ä»¶ï¼šå…ˆé”‹å¤–å£³ï¼š
+    Smodå¢žç›Šï¼šå‡ä½Žè§¦å‘æ¦‚çŽ‡ï¼Œå¢žåŠ æ¯æ¬¡è§¦å‘çš„å‡ä¼¤é‡
+  æ’ä»¶ï¼šFSFèˆ°ä½“è®¾è®¡ï¼š
+    ä½Žå¹…èƒ½ä¸‹æä¾›30çš„æžé€Ÿå’ŒåŠ é€Ÿåº¦åŠ æˆ
 
-ÆäËû£º
-	Ê¹ÓÃÁË¸üÐÂµÄÎÞÈË»úÉú³É·½Ê½£¬²»ÔÙ»áÔÚ²¿ÊðÃæ°åÉÏÁôÏÂºÛ¼£
-	ÎäÆ÷ÖØÕñÏµÍ³²»ÔÙÌá¹©µ¯Ï»ÎäÆ÷µÄµ¯Ò©»Ø¸´ËÙ¶È
-	ÖØÖÃÁË²¿·ÖÎäÆ÷µÄÒôÐ§
+å…¶ä»–ï¼š
+	ä½¿ç”¨äº†æ›´æ–°çš„æ— äººæœºç”Ÿæˆæ–¹å¼ï¼Œä¸å†ä¼šåœ¨éƒ¨ç½²é¢æ¿ä¸Šç•™ä¸‹ç—•è¿¹
+	æ­¦å™¨é‡æŒ¯ç³»ç»Ÿä¸å†æä¾›å¼¹åŒ£æ­¦å™¨çš„å¼¹è¯å›žå¤é€Ÿåº¦
+	é‡ç½®äº†éƒ¨åˆ†æ­¦å™¨çš„éŸ³æ•ˆ
+	
+	
+Added:
+
+Balance:
+	Javelin Class:
+    Central 2 medium synergy slots changed to medium universal
+		Tactical system flux energy cost 1200->800 per second
+		Tactical system enemy weapon flux energy cost increased by 100% -> 200%
+    Midstream Class:
+		Deployment point 23->22
+    Pacifier Class:
+		Deployment point 28->27
+		Main gun has 2 beam pre-targeting trajectories when aimed
+		Main gun projectile can penetrate fighters and missiles and can continue to advance
+		Main gun projectile explosion range increased
+		Main gun damage 2000->2500
+	Thermocline Class:
+		Deployment point 37->36
+	Stony Coral Class:
+		Ship carries ADS system no longer in the defence platform variant, has higher ammunition return rate
+	Ocean Ridge Class:
+		Deployment point 11->12
+		Tactical systems fire less, but have greater single shot fuse range/damage, total damage remains the same
+	Surgewave class:
+		Shield damage reduction 50%->60%
+		Shipsystem no longer reduces shield angle when activated
+		Shipsystem arc damage 50->150, damage type energy-> fragmentation, better anti-missile
+		Shipsystem range 600->700
+    Weapon: AA-40 Universal Cannon:
+		Single shot amplitude energy consumption 335->340, weapon efficiency 1.34->1.36
+	Weapon: SR-125 Automatic Revolver Cannon:
+		Renamed ZT-125 bAutomatic Revolver Cannon
+        dph100->150, weapon efficiency 1.12->1.2
+	Weapon: "Boom" Explosive Spear:
+		Weapon type changed to Missile
+		Slot type changed to generic
+		Assembly point 0->1
+		Maximum ammunition reserve is no longer limited to 1
+	Weapon: Harpoon series:
+        No longer has a safe distance and will not fly over enemies at close range
+    Weapon: Blasting Hammer Series:
+        Slightly reduced the duration of the trails
+        Slight increase in acceleration speed
+    Plug-in: Controlled shield:
+		Damage reduction 25% -> 50%
+		Minimum trigger range has been significantly increased
+    Plug-in: Hot-fill ammunition system:
+  	    SMod benefit: 50% ammo regain speed for live and energy weapons
+    Plug-in: Vanguard Hull:
+        Smod Benefit: Reduced trigger probability, increased damage reduction per trigger
+    Plug-in: FSF Hull Design:
+        Provides a 30 bonus to top speed and acceleration at low flux
+
+Other:
+	Uses an updated drone generation method that no longer leaves a mark on the deployment panel
+	Weapon reboot system no longer provides ammo return rate for magazine-based weapons
+	Replaced the sound effects of some weapons
+
