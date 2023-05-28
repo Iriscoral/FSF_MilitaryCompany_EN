@@ -4,7 +4,8 @@
   "combatSmallForSmallFleet": {
     "aEP_fga_xiliu_mk2_Standard": 10,
     "aEP_fga_xiliu_Standard": 10,
-    "aEP_fga_yonglang_Mixed": 5,
+    "aEP_fga_yonglang_Mixed": 3,
+    "aEP_fga_yonglang_Standard": 4,
     "aEP_fga_raoliu_PD":4,
     "aEP_fga_raoliu_Standard":6,
 
@@ -12,7 +13,8 @@
   "combatSmall": {
     "aEP_fga_wanliu_Standard": 4,
     "aEP_fga_wanliu_Elite": 6,
-    "aEP_fga_yonglang_Mixed": 10,
+    "aEP_fga_yonglang_Standard": 6,
+    "aEP_fga_yonglang_Mixed": 4,
     "aEP_fga_xiliu_mk2_Standard": 10,
     "aEP_fga_xiliu_Standard": 5,
     "aEP_fga_raoliu_PD": 5,
@@ -77,9 +79,10 @@
     "aEP_des_shendu_Strike": 5,
 },
   "carrierLarge": {
-    "aEP_cru_shanhu_Standard":4,
+    "aEP_cru_shanhu_Standard":3,
     "aEP_cru_shanhu_Attack":3,
-    "aEP_cru_shanhu_Siege":3,
+    "aEP_cru_shanhu_Siege":2,
+    "aEP_cru_shanhu_Front":2,
     "aEP_cap_decomposer_Standard": 10,
     "aEP_cru_pubu_Elite": 2,
     "aEP_cru_pubu_Standard": 4,

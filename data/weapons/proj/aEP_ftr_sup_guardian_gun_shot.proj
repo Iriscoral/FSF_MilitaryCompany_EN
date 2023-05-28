@@ -4,16 +4,16 @@
   "spawnType":"BALLISTIC_AS_BEAM",
   "collisionClass":"RAY",
   "collisionClassByFighter":"RAY_FIGHTER",
-  "length":35.0,
-  "width":5,
+  "length":36.0,
+  "width":6,
   "fadeTime":0.2,
 
   #"onHitEffect":"data.scripts.weapons.aEP_WeaponEffect",
 	"fringeColor":[240,197,230,250],
-	"coreColor":[245,165,145,220],
-  "glowColor":[255,200,200,15],
-  "glowRadius":10,
-  "hitGlowRadius":20,
+	"coreColor":[245,165,95,220],
+  "glowColor":[255,150,70,75],
+  "glowRadius":15,
+  "hitGlowRadius":25,
 
   "textureType":"SMOOTH",  # only needed for BEAM spawnType
   #"textureType":["graphics/aEP_FX/trails/1.png","graphics/aEP_FX/trails/1.png"],

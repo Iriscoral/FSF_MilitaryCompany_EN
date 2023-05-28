@@ -1,7 +1,6 @@
 //by a111164
 package combat.util
 
-import com.fs.starfarer.api.EveryFrameScript
 import com.fs.starfarer.api.Global
 import com.fs.starfarer.api.campaign.CargoAPI
 import com.fs.starfarer.api.combat.*
@@ -18,7 +17,7 @@ import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
-import java.util.*
+import java.awt.geom.Line2D
 import kotlin.math.abs
 import kotlin.math.asin
 
@@ -120,7 +119,6 @@ class aEP_Tool {
         }
       }
     }
-
 
 
     //turn weapon to angle with accelerate
@@ -294,11 +292,11 @@ class aEP_Tool {
     }
 
     /**
-     * 用于飞行到目标点，会停在目标点上
+     * 用于直飞到目标点，会停在目标点上
      * 舰船类
      * */
     @JvmStatic
-    fun moveToPosition(entity: ShipAPI, toPosition: Vector2f?) {
+    fun moveToPosition(entity: ShipAPI, toPosition: Vector2f) {
       val directionVec = VectorUtils.getDirectionalVector(entity.location, toPosition)
       val directionAngle = VectorUtils.getFacing(directionVec)
       val distSq = MathUtils.getDistanceSquared(entity.location, toPosition)
@@ -533,9 +531,9 @@ class aEP_Tool {
     fun getLocationTurnedRightByDegrees(originPosition: Vector2f?, turnAroundWhere: Vector2f, degrees: Float): Vector2f {
       var angle = VectorUtils.getAngle(turnAroundWhere, originPosition)
       val dist = MathUtils.getDistance(turnAroundWhere, originPosition)
-      angle = angle + degrees
+      angle += degrees
       if (angle > 365) {
-        angle = angle - 365f
+        angle -= 365f
       }
       return getExtendedLocationFromPoint(turnAroundWhere, angle, dist)
     }
@@ -739,11 +737,12 @@ class aEP_Tool {
     }
 
     @JvmStatic
-    fun returnToParent(ship: ShipAPI, parentShip: ShipAPI, amount: Float) {
+    fun returnToParent(ship: ShipAPI, parentShip: ShipAPI?, amount: Float): Boolean {
       ship.giveCommand(ShipCommand.HOLD_FIRE, null, 0)
       val id = "aEP_ReturnToParent"
-      if (parentShip.launchBaysCopy.size <= 0) {
-        val callBackColor = if (ship.shield != null) ship.shield.innerColor else Color(100, 100, 200, 100)
+      //没有母舰直接自爆
+      if ( (parentShip?.launchBaysCopy?.size?:0) <= 0) {
+        val callBackColor = if (ship.shield != null) ship.shield.innerColor else Color(100, 100, 200, 200)
         Global.getCombatEngine().spawnExplosion(
           ship.location,  //loc
           Vector2f(0f, 0f),  //velocity
@@ -752,12 +751,15 @@ class aEP_Tool {
           0.5f
         ) //duration
         Global.getCombatEngine().removeEntity(ship)
+        return false
       }
+      val parentShip = parentShip as ShipAPI
 
       //landing check
       val landingStarted = ship.isLanding
       val toTargetPo = ship.wing.source.getLandingLocation(ship)
-      val dist = MathUtils.getDistance(ship.location, toTargetPo)
+      var dist = MathUtils.getDistance(ship.location, toTargetPo)
+
 
       //距离降落100外时，飞到100内，取消额外机动性
       if (dist > 100f) {
@@ -788,7 +790,9 @@ class aEP_Tool {
       //让飞机降落
       if (ship.isFinishedLanding) {
         ship.wing.source.land(ship)
+        return true
       }
+      return false
     }
 
     fun getSpriteRelPoint(spriteCenter: Vector2f, spriteSize: Vector2f, facing: Float, boundPoint: Vector2f?): Vector2f {
@@ -804,7 +808,7 @@ class aEP_Tool {
       val absoluteAngle = VectorUtils.getAngle(target.location, hitPoint)
       var angle = 0f
       angle = if (relativeToShield) {
-        angleAdd(absoluteAngle, -target.shield.facing)
+        angleAdd(absoluteAngle, -(target.shield?.facing?:target.facing) )
       } else {
         angleAdd(absoluteAngle, -target.facing)
       }
@@ -826,7 +830,7 @@ class aEP_Tool {
       val angle = relativeData.x
       val dist = relativeData.y
       return if (relativeToShield) {
-        val absoluteAngle = angleAdd(angle, target.shield.facing)
+        val absoluteAngle = angleAdd(angle, target.shield?.facing?:target.facing)
         getExtendedLocationFromPoint(target.location, absoluteAngle, dist)
       } else {
         val absoluteAngle = angleAdd(angle, target.facing)
@@ -921,7 +925,7 @@ class aEP_Tool {
 
     @JvmStatic
     fun getNearestFriendCombatShip(e: CombatEntityAPI?): ShipAPI? {
-      var distMost = 1000000f
+      var distMost = Float.MAX_VALUE
       var returnShip: ShipAPI? = null
       for (s in AIUtils.getAlliesOnMap(e)) {
         if (s.isFrigate || s.isDestroyer || s.isCruiser || s.isCapital) {
@@ -937,7 +941,7 @@ class aEP_Tool {
 
     @JvmStatic
     fun getNearestEnemyCombatShip(e: CombatEntityAPI?): ShipAPI? {
-      var distMost = 1000000f
+      var distMost = Float.MAX_VALUE
       var returnShip: ShipAPI? = null
       for (s in AIUtils.getEnemiesOnMap(e)) {
         if (s.isFrigate || s.isDestroyer || s.isCruiser || s.isCapital) {
@@ -996,9 +1000,9 @@ class aEP_Tool {
       var ableToFireCost = 0.01f
       for (w in group.weaponsCopy) {
         if (w.distanceFromArc(toTargetPo) == 0f && isNormalWeaponSlotType(w.slot, false)) {
-          allCost = allCost + w.spec.getOrdnancePointCost(null, null)
+          allCost += w.spec.getOrdnancePointCost(null, null)
           if (MathUtils.getDistance(w.location, toTargetPo) > w.range - rangeFix) {
-            ableToFireCost = ableToFireCost + w.spec.getOrdnancePointCost(null, null)
+            ableToFireCost += w.spec.getOrdnancePointCost(null, null)
           }
         }
       }
@@ -1010,7 +1014,11 @@ class aEP_Tool {
       if (shouldUse && systemShip.system.state == ShipSystemAPI.SystemState.IDLE) {
         systemShip.useSystem()
       }
-      if (!shouldUse && (systemShip.system.state == ShipSystemAPI.SystemState.IN || systemShip.system.state == ShipSystemAPI.SystemState.ACTIVE)) {
+      val isActived = (systemShip.system.state == ShipSystemAPI.SystemState.ACTIVE ||
+          systemShip.system.state == ShipSystemAPI.SystemState.IN ||
+          systemShip.system.state == ShipSystemAPI.SystemState.OUT)
+
+      if (!shouldUse && isActived) {
         systemShip.useSystem()
       }
     }
@@ -1203,6 +1211,14 @@ class aEP_Tool {
       return Vector2f(xAxis + basePoint.x, yAxis + basePoint.y)
     }
 
+    fun getAbsPos(angleAndLength: Vector2f, basePoint: Vector2f, baseAngle: Float): Vector2f {
+      val angle = angleAndLength.x
+      val length = angleAndLength.y
+      val xAxis = FastTrig.cos(Math.toRadians(angle.toDouble())).toFloat() * length
+      val yAxis = FastTrig.sin(Math.toRadians(angle.toDouble())).toFloat() * length
+      return Vector2f(xAxis + basePoint.x, yAxis + basePoint.y)
+    }
+
     fun firingSmoke(loc: Vector2f, facing: Float, param:FiringSmokeParam, ship: ShipAPI?) {
       val smokeSize = param.smokeSize
       val smokeRange = param.smokeSizeRange
@@ -1363,7 +1379,7 @@ class aEP_Tool {
     fun spawnCompositeSmoke(loc: Vector2f, radius: Float, lifeTime:Float, color:Color?){
       val c = color?: Color(240,240,240)
       Global.getCombatEngine().addNebulaSmokeParticle(loc,
-        Vector2f(0f,0f),
+        aEP_ID.VECTOR2F_ZERO,
         radius,
         1f,
         0f,
@@ -1374,7 +1390,7 @@ class aEP_Tool {
 
 
       Global.getCombatEngine().addNebulaSmokeParticle(loc,
-        Vector2f(0f,0f),
+        aEP_ID.VECTOR2F_ZERO,
         radius,
         1f,
         0f,
@@ -1408,6 +1424,56 @@ class aEP_Tool {
         i += 30
       }
     }
+    fun spawnCompositeSmoke(loc: Vector2f, radius: Float, lifeTime:Float, color:Color?, vel:Vector2f){
+      val c = color?: Color(240,240,240)
+      Global.getCombatEngine().addNebulaSmokeParticle(loc,
+        vel,
+        radius,
+        1f,
+        0f,
+        0f,
+        lifeTime,
+        getColorWithAlpha(c, 0.2f *(c.alpha/255f)))
+
+
+      Global.getCombatEngine().addNebulaSmokeParticle(loc,
+        vel,
+        radius,
+        1f,
+        0f,
+        0f,
+        lifeTime,
+        getColorWithAlpha(c, 0.2f *(c.alpha/255f)))
+
+      val smoke = aEP_MovingSmoke(loc)
+      smoke.size = radius * 3f/4f
+      smoke.fadeIn = 0.1f
+      smoke.fadeOut = 0.8f
+      smoke.lifeTime = lifeTime
+      smoke.sizeChangeSpeed = 0f
+      smoke.color = getColorWithAlpha(c, 0.4f *(c.alpha/255f))
+      smoke.setInitVel(vel)
+      aEP_CombatEffectPlugin.addEffect(smoke)
+
+
+      //生成烟雾
+      //生成雾气
+      var i = 0
+      while (i < 360) {
+        val p = getExtendedLocationFromPoint(loc, i.toFloat(), radius/2f)
+        val smoke = aEP_MovingSmoke(p)
+        smoke.size = radius/2f
+        smoke.fadeIn = 0.1f
+        smoke.fadeOut = 0.8f
+        smoke.lifeTime = lifeTime
+        smoke.sizeChangeSpeed = -(smoke.size/4f)/lifeTime
+        smoke.setInitVel(speed2Velocity(i.toFloat(),smoke.sizeChangeSpeed/2f))
+        smoke.setInitVel(vel)
+        smoke.color = getColorWithAlpha(c, 0.2f *(c.alpha/255f))
+        aEP_CombatEffectPlugin.addEffect(smoke)
+        i += 45
+      }
+    }
 
     fun spawnSingleCompositeSmoke(loc: Vector2f, radius: Float, lifeTime:Float, color:Color?){
       val c = color?: Color(240,240,240)
@@ -1430,95 +1496,95 @@ class aEP_Tool {
 
     }
 
-    fun computeDamageToShip(source:ShipAPI?, target: ShipAPI, weapon:WeaponAPI?, damage:Float, type:DamageType, hitShield:Boolean): Float {
+    fun computeDamageToShip(source:ShipAPI?, target: ShipAPI?, weapon:WeaponAPI?, damage:Float, type:DamageType?, hitShield:Boolean): Float {
       var d = damage
       var weaponSpec = weapon?.spec?.type?:WeaponAPI.WeaponType.DECORATIVE
+
+      val sourceStat : MutableShipStatsAPI? = source?.mutableStats
+      val targetStat : MutableShipStatsAPI? = target?.mutableStats
 
       //武器加成
       var weaponMult = 1f
       when (weaponSpec) {
         WeaponAPI.WeaponType.BALLISTIC ->
-          weaponMult = source?.mutableStats?.ballisticWeaponDamageMult?.modifiedValue ?: 1f
+          weaponMult = sourceStat?.ballisticWeaponDamageMult?.modifiedValue ?: 1f
         WeaponAPI.WeaponType.ENERGY ->
-          weaponMult = source?.mutableStats?.energyWeaponDamageMult?.modifiedValue ?: 1f
+          weaponMult = sourceStat?.energyWeaponDamageMult?.modifiedValue ?: 1f
         WeaponAPI.WeaponType.MISSILE ->
-          weaponMult = source?.mutableStats?.missileWeaponDamageMult?.modifiedValue ?: 1f
+          weaponMult = sourceStat?.missileWeaponDamageMult?.modifiedValue ?: 1f
       }
+
 
       //光束加成
       var beamMult = 1f
-      if(weapon?.isBeam == true) beamMult = source?.mutableStats?.beamWeaponDamageMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == true) beamMult = sourceStat?.beamWeaponDamageMult?.modifiedValue ?: 1f
 
       //对护盾易伤加成
-      var allDamageToShieldDealtMult = source?.mutableStats?.damageToTargetShieldsMult?.modifiedValue ?: 1f
+      var allDamageToShieldDealtMult = sourceStat?.damageToTargetShieldsMult?.modifiedValue ?: 1f
 
 
       //对舰体级别加成
       var targetSizeMult = 1f
       when (target?.hullSize?: ShipAPI.HullSize.DEFAULT) {
         ShipAPI.HullSize.CAPITAL_SHIP ->
-          targetSizeMult = source?.mutableStats?.damageToCapital?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToCapital?.modifiedValue ?: 1f
         ShipAPI.HullSize.CRUISER ->
-          targetSizeMult = source?.mutableStats?.damageToCruisers?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToCruisers?.modifiedValue ?: 1f
         ShipAPI.HullSize.DESTROYER ->
-          targetSizeMult = source?.mutableStats?.damageToDestroyers?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToDestroyers?.modifiedValue ?: 1f
         ShipAPI.HullSize.FRIGATE ->
-          targetSizeMult = source?.mutableStats?.damageToFrigates?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToFrigates?.modifiedValue ?: 1f
         ShipAPI.HullSize.FIGHTER ->
-          targetSizeMult = source?.mutableStats?.damageToFighters?.modifiedValue ?: 1f
+          targetSizeMult = sourceStat?.damageToFighters?.modifiedValue ?: 1f
       }
 
       //目标舰体/装甲易伤加成
       var targetDamageTakenMult = 1f
       when (type) {
         DamageType.KINETIC ->
-          targetDamageTakenMult = target?.mutableStats?.kineticDamageTakenMult?.modifiedValue ?: 1f
+          targetDamageTakenMult = targetStat?.kineticDamageTakenMult?.modifiedValue ?: 1f
         DamageType.ENERGY ->
-          targetDamageTakenMult = target?.mutableStats?.energyDamageTakenMult?.modifiedValue ?: 1f
+          targetDamageTakenMult = targetStat?.energyDamageTakenMult?.modifiedValue ?: 1f
         DamageType.HIGH_EXPLOSIVE ->
-          targetDamageTakenMult = target?.mutableStats?.highExplosiveDamageTakenMult?.modifiedValue ?: 1f
+          targetDamageTakenMult = targetStat?.highExplosiveDamageTakenMult?.modifiedValue ?: 1f
         DamageType.FRAGMENTATION ->
-          targetDamageTakenMult = target?.mutableStats?.fragmentationDamageTakenMult?.modifiedValue ?: 1f
-        DamageType.OTHER ->
-          targetDamageTakenMult = 1f
+          targetDamageTakenMult = targetStat?.fragmentationDamageTakenMult?.modifiedValue ?: 1f
       }
 
       //目标护盾易伤加成
       var targetShieldDamageTakenMult = 1f
       when (type) {
         DamageType.KINETIC ->
-          targetShieldDamageTakenMult = target?.mutableStats?.kineticShieldDamageTakenMult?.modifiedValue ?:1f
+          targetShieldDamageTakenMult = targetStat?.kineticShieldDamageTakenMult?.modifiedValue ?:1f
         DamageType.ENERGY ->
-          targetShieldDamageTakenMult = target?.mutableStats?.energyShieldDamageTakenMult?.modifiedValue ?: 1f
+          targetShieldDamageTakenMult = targetStat?.energyShieldDamageTakenMult?.modifiedValue ?: 1f
         DamageType.HIGH_EXPLOSIVE ->
-          targetShieldDamageTakenMult = target?.mutableStats?.highExplosiveShieldDamageTakenMult?.modifiedValue ?: 1f
+          targetShieldDamageTakenMult = targetStat?.highExplosiveShieldDamageTakenMult?.modifiedValue ?: 1f
         DamageType.FRAGMENTATION ->
-          targetShieldDamageTakenMult = target?.mutableStats?.fragmentationShieldDamageTakenMult?.modifiedValue ?: 1f
-        DamageType.OTHER ->
-          targetShieldDamageTakenMult = 1f
+          targetShieldDamageTakenMult = targetStat?.fragmentationShieldDamageTakenMult?.modifiedValue ?: 1f
       }
       targetShieldDamageTakenMult *= targetDamageTakenMult
 
       //目标船体易伤加成
-      var targetAllDamageTakenMult = target?.mutableStats?.hullDamageTakenMult?.modifiedValue ?: 1f
+      var targetAllDamageTakenMult = targetStat?.hullDamageTakenMult?.modifiedValue ?: 1f
       //目标护盾易伤加成
-      var targetShieldAllDamageTakenMult = target?.mutableStats?.shieldDamageTakenMult?.modifiedValue ?: 1f
+      var targetShieldAllDamageTakenMult = targetStat?.shieldDamageTakenMult?.modifiedValue ?: 1f
 
 
       //目标投射物易伤加成
       var projDamageTakenMult = 1f
-      if(weapon?.isBeam == false) projDamageTakenMult = target?.mutableStats?.projectileDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == false) projDamageTakenMult = targetStat?.projectileDamageTakenMult?.modifiedValue ?: 1f
       //目标投射物对护盾易伤加成
       var projShieldDamageTakenMult = 1f
-      if(weapon?.isBeam == false) projShieldDamageTakenMult = target?.mutableStats?.projectileShieldDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == false) projShieldDamageTakenMult = targetStat?.projectileShieldDamageTakenMult?.modifiedValue ?: 1f
       projShieldDamageTakenMult *= projDamageTakenMult
 
       //目标光束易伤加成
       var beamDamgeTakenMult = 1f
-      if(weapon?.isBeam == true) beamDamgeTakenMult = target?.mutableStats?.beamDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == true) beamDamgeTakenMult = targetStat?.beamDamageTakenMult?.modifiedValue ?: 1f
       //目标光束对护盾易伤加成
       var beamShieldDamgeTakenMult = 1f
-      if(weapon?.isBeam == true) beamShieldDamgeTakenMult = target?.mutableStats?.beamShieldDamageTakenMult?.modifiedValue ?: 1f
+      if(weapon?.isBeam == true) beamShieldDamgeTakenMult = targetStat?.beamShieldDamageTakenMult?.modifiedValue ?: 1f
       beamShieldDamgeTakenMult *= beamDamgeTakenMult
 
 
@@ -1566,6 +1632,12 @@ class aEP_Tool {
         target.syncWithArmorGridState()
       }
     }
+
+    fun isDead(ship: ShipAPI) : Boolean{
+      if(!ship.isAlive || ship.isHulk || !Global.getCombatEngine().isEntityInPlay(ship)) return true
+      return false
+    }
+
 
   }
   class FiringSmokeParam{

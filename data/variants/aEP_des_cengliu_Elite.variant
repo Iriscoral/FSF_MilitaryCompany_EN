@@ -6,7 +6,6 @@
     "hullId": "aEP_des_cengliu",
     "hullMods": [
         "aEP_HotLoader",
-        "aEP_TargetSystem"
     ],
     "permaMods": [],
     "sMods": [],
@@ -16,15 +15,15 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0001": "aEP_kinetic_flak",
-                "WS0002": "aEP_kinetic_flak",
-                "WS0005": "aEP_kinetic_flak"
+                "WS0001": "aEP_b_m_k125",
+                "WS0002": "aEP_b_m_k125",
+                "WS0005": "aEP_b_m_k125"
             }
         },
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0003": "aEP_EMP_pike"}
+            "weapons": {"WS0003": "aEP_b_m_rk107"}
         },
         {
             "autofire": true,

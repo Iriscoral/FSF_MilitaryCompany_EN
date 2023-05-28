@@ -5,7 +5,7 @@
 	"type":"ENGINE_MOD",
 	"aiType":"MANEUVERING_JETS",
 	#"aiScript":"data.shipsystems.scripts.ai.aEP_ApproachThrusterAI",
-	"statsScript":"data.shipsystems.scripts.aEP_NBFiringJet",
+	"statsScript":"data.scripts.shipsystems.aEP_NBFiringJet",
    
 	#"runScriptWhileIdle":true,  # this means unapply() never gets called	
 	
@@ -18,8 +18,8 @@
 	
 	"flameoutOnImpactChance":0,
 
-	"clampTurnRateAfter":false,
-	"clampMaxSpeedAfter":false,
+	"clampTurnRateAfter":true,
+	"clampMaxSpeedAfter":true,
 	#"alwaysAccelerate":true,
 
 	
@@ -41,7 +41,7 @@
 		
 	"aiHints":{
 		"activeSpeedIncrease":300,
-		"burstMovementPotential":500,
-		"averageSpeedIncrease":200,
+		"burstMovementPotential":600,
+		"averageSpeedIncrease":300,
 	}
 }

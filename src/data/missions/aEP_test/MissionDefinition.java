@@ -7,6 +7,7 @@ import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.mission.MissionDefinitionAPI;
 import com.fs.starfarer.api.mission.MissionDefinitionPlugin;
+import data.missions.aEP_MissionUtils;
 
 
 import java.util.List;
@@ -78,6 +79,9 @@ public class MissionDefinition implements MissionDefinitionPlugin
     api.addToFleet(FleetSide.PLAYER, "aEP_typeB28_variant", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_des_shendu_mk2_Standard", FleetMemberType.SHIP, "FSF ship", false);
     api.addToFleet(FleetSide.PLAYER, "aEP_cru_lengshe_Standard", FleetMemberType.SHIP, "FSF ship", false);
+
+    //取消filter
+    aEP_MissionUtils.restore();
 
 
     //在这加敌人的船，一样用装配文件里的ID，加了一艘统治者的Support装配

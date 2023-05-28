@@ -43,7 +43,7 @@ aEP_ConsultGreeting01,PickGreeting,"$isaEP_Consult
 ","$personName gives you a professional smile: ""Hello, welcome to the front desk to the FSF Corporation, what may I do for you?""
 ","0:aEP_offer_remain_part01:Ask $personName ""I heard that you are buying salvage parts?""
 #1:aEP_marine_training01:Ask $personName ""I want to train some Marines""
-#2:aEP_hair_security01:Want to hire a patrol to improve the security of a star system I control
+#2:aEP_hair_security01:I want to hire a patrol to improve the security of a star system I control
 3:cutCommLink:""I'm just browsing.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_ConsultGreeting02,PickGreeting,"$isaEP_Consult
 $faction.isHostile

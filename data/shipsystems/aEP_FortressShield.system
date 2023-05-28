@@ -3,10 +3,10 @@
 	"type":"SHIELD_MOD",
 	"aiType":"FORTRESS_SHIELD",
 
-	"statsScript":"data.shipsystems.scripts.FortressShieldStats",
+	"statsScript":"data.scripts.shipsystems.aEP_system.FortressShieldStats",
 	
 	"shieldRingColor":[255,255,255,255],
-	"shieldInnerColor":[255,100,255,75],
+	"shieldInnerColor":[125,100,255,75],
 	"shieldThicknessMult":1,
 	"shieldFluctuationMult":0,
 	

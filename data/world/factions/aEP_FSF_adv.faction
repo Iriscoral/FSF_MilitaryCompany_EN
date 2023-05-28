@@ -228,7 +228,7 @@
 			"aEP_researcher":{"name":"Researcher"},
 		},
 	},
-
+	
 	"fleetTypeNames":{
 		"trade": "Large Commercial Fleet",
 		"smallTrader": "Small Commercial Fleet",

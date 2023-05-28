@@ -10,14 +10,13 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
 
   var t: CombatEntityAPI? = null
   val m: ShipAPI
-  var s: ShipAPI? = null
-  var stat: Status = Status()
+  var parent: ShipAPI? = null
 
-  constructor(m: ShipAPI, ship: ShipAPI?) : super(ship) {
+  constructor(m: ShipAPI, parent: ShipAPI?) : super(m) {
     this.m = m
-    this.s = ship
-    if(ship?.shipTarget != null){
-      t = ship.shipTarget
+    this.parent = parent
+    if(parent != null && parent.shipTarget != null && !parent.shipTarget.isFighter && !parent.shipTarget.isDrone){
+      t = parent.shipTarget
       stat = StraightToTarget()
     }else{
       stat = Searching()
@@ -25,29 +24,23 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
 
   }
 
-  override fun advance(amount: Float) {
-    stat.advance(amount)
-  }
 
-  open class Status {
-    open fun advance(amount: Float){
 
-    }
-  }
 
-  inner class StraightToTarget() : Status() {
+  inner class StraightToTarget() : aEP_MissileAI.Status() {
     override fun advance(amount: Float) {
       if(t == null || !Global.getCombatEngine().isInPlay(t) || (t is ShipAPI && !(t as ShipAPI).isAlive)){
         stat = Searching()
         return
       }
+
       if(t is ShipAPI){
-        t = t as ShipAPI
-        if((t as ShipAPI).isPhased){
+        val t = t as ShipAPI
+        if(t.isPhased){
           m.giveCommand(ShipCommand.ACCELERATE,null,0)
         }else{
-          if(t?.location != null){
-            aEP_Tool.flyThroughPosition(m,t?.location)
+          if(t.location != null){
+            aEP_Tool.flyThroughPosition(m,t.location)
           }else{
             stat = Searching()
           }
@@ -57,15 +50,20 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
   }
 
 
-  inner class Searching() : Status() {
+  inner class Searching() : aEP_MissileAI.Status() {
     val searchTracker = IntervalUtil(0.25f,0.25f)
     override fun advance(amount: Float) {
+      //如果t被人为设置，或者上一帧已经找到了目标，就直接转入StraightToTarget
+      if(t != null){
+        stat = StraightToTarget()
+        return
+      }
+
       m.giveCommand(ShipCommand.ACCELERATE,null,0)
       searchTracker.advance(amount)
       if(!searchTracker.intervalElapsed()) return
       t = MagicTargeting.pickTarget(
-        m,
-        MagicTargeting.targetSeeking.LOCAL_RANDOM,
+        m, MagicTargeting.targetSeeking.LOCAL_RANDOM,
         9999999,
         360,
         0,
@@ -73,9 +71,7 @@ class aEP_CruiseMissileAI: aEP_BaseShipAI {
         10,
         40,
         60,
-        false
-      )
-      if(t != null)stat = StraightToTarget()
+        false)
     }
   }
 }

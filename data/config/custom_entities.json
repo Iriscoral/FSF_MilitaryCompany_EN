@@ -38,9 +38,9 @@
 		"layers":[STATIONS],# what layer(s) to render in. See CampaignEngineLayers.java for possible values
 	},
 	"aEP_FSF_DefStation":{
-		"defaultName":"Central Defense Station",# used if name=null in addCustomEntity()
-		"nameInText":"Central Defense Station",
-		"shortName":"Central Defense Station",
+		"defaultName":"FSF 星系中心防御站",# used if name=null in addCustomEntity()
+		"nameInText":"FSF 星系中心防御站",
+		"shortName":"FSF 防御站",
 		"defaultRadius":110,# used if radius<0 in addCustomEntity()
 		"customDescriptionId":"aEP_FSF_DefStation",
 		"interactionImage":"graphics/illustrations/orbital.jpg",
@@ -77,9 +77,9 @@
 		"pluginClass":"com.fs.starfarer.api.impl.campaign.CommRelayEntityPlugin",
 	},
 	"aEP_FSF_SpaceFactory":{
-		"defaultName":"FSF Cube Factory", # used if name=null in addCustomEntity()
-		"nameInText":"FSF Cube Factory",
-		"shortName":"FSF Cube Factory",
+		"defaultName":"FSF Armaments Factory", # used if name=null in addCustomEntity()
+		"nameInText":"FSF Armaments Factory",
+		"shortName":"FSF Armaments Factory",
 		"defaultRadius":150, # used if radius<0 in addCustomEntity()
 		"customDescriptionId":"aEP_SpaceFactory",
 		"interactionImage":"graphics/illustrations/coronal_tap.jpg",

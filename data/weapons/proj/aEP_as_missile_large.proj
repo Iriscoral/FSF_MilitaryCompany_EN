@@ -35,8 +35,8 @@
   #"dudProbabilityOnFlameout":0.5
 	"engineSpec":{"turnAcc":80,
 				  "turnRate":40,
-				  "acc":150,
-				  "dec":50},
+				  "acc":120,
+				  "dec":60},
 	"engineSlots":[{"id":"ES1",
                     "loc":[-15,0],
                     "style":"CUSTOM",

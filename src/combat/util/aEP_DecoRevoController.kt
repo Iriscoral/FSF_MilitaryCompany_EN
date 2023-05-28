@@ -1,8 +1,8 @@
 package combat.util
 
 import com.fs.starfarer.api.combat.WeaponAPI
-import java.util.HashMap
 import data.scripts.util.MagicAnim
+import java.util.HashMap
 import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.FastTrig
 

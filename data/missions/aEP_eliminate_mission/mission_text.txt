@@ -1,0 +1,8 @@
+﻿Location: DWR43 System
+Date: 201.5.29
+
+As intelligence received by the Exploration and Mapping Fleet indicates the presence of an inactive Coronal  Hypershunt in the DWR43 system, the Corporation has decided to send an annihilation fleet to clear out the wandering Remnant fleet orbiting the extraction station. Commander, you have been assigned this mission. 
+
+There is something odd about these unmanned warships as they have taken it upon themselves to carry out the cleansing of the population of planet DWR43X, despite no such protocol in place. As a precaution, the corporation will send out some of its most expensive warships for this operation.
+
+You can block out unusable armaments by holding F and reselecting this mission; to restore it simply reselect this mission without holding. Note that the blocking is global.

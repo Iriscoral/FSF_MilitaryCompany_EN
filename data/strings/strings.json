@@ -20,7 +20,7 @@
 		"MD_des04":"* Does not take into account soft flux gain due to taking damage, such as beam weapon hits to shields",
 		"missile_health_up":"Missile health increased by",
 
-		"MP_des00": "Overall Loading Rate",
+		"MP_des00": "Overall Reloading Rate",
 		"MP_des01":"For small slots, the ship produces missiles equivalent to %s ordnance points every 100 seconds",
 		"MP_des02":"For medium slots, the ship produces missiles equivalent to %s ordnance points every 100 seconds",
 		"MP_des03":"For large slots, the ship produces missiles equivalent to %s ordnance points every 100 seconds",
@@ -206,6 +206,8 @@
 		"aEP_BurstDissipate03": "Variation in flux dissipation: ",
 		"aEP_BurstDissipate04": "Shield damage absorption rate reduced by %s",
 
+		"aEP_FortressShieldStats01": "Shield damage reduction %s",
+
 		"aEP_ApproachingTo":"Approaching ",
 
 		"aEP_Mission01_01": "Your fleet",
@@ -220,6 +222,14 @@
 		"aEP_Mission02_04": "The Seaweight has run out of fuel and there is no way you can catch up with any of the enemy",
 		"aEP_Mission02_05": "Your peak performance time is longer than theirs, persistence is victory",
 
+		"aEP_Mission03_01": "Exploration and Mapping Fleet No. 019200",
+		"aEP_Mission03_02": "Remnant Patrol",
+		"aEP_Mission03_03": "Can't lose <Icebreaker>, <Raging>",
+		"aEP_Mission03_04": "Up to one battleship lost",
+		"aEP_Mission03_05": "Cannot use weapons, fighters or hullmods not of FSF make.",
 
+		"aEP_Mission04_01": "DWR43 Remnant Annihilation Fleet",
+		"aEP_Mission04_02": "Remnant Fleet",
+		"aEP_Mission04_03": "Cannot lose <Surge>",
 	}
 }

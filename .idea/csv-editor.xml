@@ -3,7 +3,7 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="C:\Games\Starsector\CN_mods\FSF_MilitaryCompany3.19\FSF_MilitaryCompany\data\campaign\industries.csv">
+        <entry key="\data\campaign\commodities.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -45,6 +45,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\sim_opponents_dev.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\campaign\special_items.csv">
           <value>
             <Attribute>
@@ -53,6 +67,13 @@
           </value>
         </entry>
         <entry key="\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\modFiles\magicTrail_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -73,6 +94,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\hullmods\hull_mods_CN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\hulls\ref.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\hulls\ship_data.csv">
           <value>
             <Attribute>
@@ -81,6 +116,20 @@
           </value>
         </entry>
         <entry key="\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\missions_CN\mission_list.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

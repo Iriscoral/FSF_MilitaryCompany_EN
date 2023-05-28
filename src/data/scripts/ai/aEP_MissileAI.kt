@@ -69,8 +69,7 @@ class aEP_MissileAI: GuidedMissileAI, MissileAIPlugin {
       searchTracker.advance(amount)
       if(!searchTracker.intervalElapsed()) return
       t = MagicTargeting.pickTarget(
-        m,
-        MagicTargeting.targetSeeking.LOCAL_RANDOM,
+        m, MagicTargeting.targetSeeking.LOCAL_RANDOM,
         ((m.spec.maxFlightTime - m.flightTime) * m.maxSpeed/2f).toInt(),
         360,
         0,
