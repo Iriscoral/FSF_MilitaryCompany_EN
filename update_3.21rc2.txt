@@ -62,7 +62,7 @@ Added:
 
 Balance:
 	Javelin Class:
-    Central 2 medium synergy slots changed to medium universal
+        Central 2 medium synergy slots changed to medium universal
 		Tactical system flux energy cost 1200->800 per second
 		Tactical system enemy weapon flux energy cost increased by 100% -> 200%
     Midstream Class:

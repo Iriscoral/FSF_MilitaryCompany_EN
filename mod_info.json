@@ -4,7 +4,7 @@
   "author": "a111164 && 北冰洋大海豹",
   "version": "3.19rc2",
   "description": "A development in the core worlds，Use the company's unique design to destroy enemies with bursts of firepower",
-  "gameVersion": "0.96",
+  "gameVersion": "0.96a",
   "jars": [
     "jars/a111164_ExtendPack.jar"
   ],

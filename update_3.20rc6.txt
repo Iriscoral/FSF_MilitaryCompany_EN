@@ -125,7 +125,7 @@
 3.20rc5
 Added:
 	Battle: First Contact
-	Campaign: Elimination Mission
+	Battle: Elimination Mission
 	Weapon: DF-1 Heavy Reactive Armor
 	Weapon: RK-107 Rocket Launcher - Medium Fragmentation Composite Weapon
 	Weapon: H-37 Anti-Ship Cannon - Small High Explosive Ballistic Weapon
@@ -135,7 +135,7 @@ Added:
 	Wing: Assistant Support Craft
 Balance:
 	Warmpool Class:
-	  Burn Level 6 -> 7
+	    Burn Level 6 -> 7
 	Javelin Class:
 		Radar no longer provides 10% extra damage
 		Radar range bonus of 80% -> 45%
@@ -244,5 +244,3 @@ Other:
 	Compensation has been added for missile-launched live weapons with eccm installed, which no longer results in a reduction in actual range
 	The launch platform design is no longer compatible with the missile autoloader
 	Fixed an issue where entry acceleration would hit a ship in front of you
-
-Translated with www.DeepL.com/Translator (free version)
