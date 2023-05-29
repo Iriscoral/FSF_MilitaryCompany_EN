@@ -89,6 +89,9 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
 
     //glPushAttrib()把绘制前的状态，推入栈保存起来，接下来要动参数了
     GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS)
+    GL11.glMatrixMode(GL11.GL_PROJECTION)
+    GL11.glPushMatrix()
+
     //开启模板处理
     GL11.glEnable(GL11.GL_STENCIL_TEST)
     //画模板测试
@@ -117,8 +120,10 @@ open class aEP_SpreadRing : aEP_BaseCombatEffect {
     GL11.glDisable(GL11.GL_STENCIL_TEST)
     //把glStencilFunc的设置还原到绘制之前
     GL11.glStencilFunc(GL11.GL_ALWAYS, 0, 255)
+
     //还原参数到绘制之前的状态
     GL11.glPopAttrib()
+    GL11.glPopMatrix()
   }
 
   @JvmName("setMinRadius1")

@@ -15,9 +15,11 @@ import org.lazywizard.lazylib.MathUtils
 import org.lazywizard.lazylib.VectorUtils
 import org.lazywizard.lazylib.combat.AIUtils
 import org.lazywizard.lazylib.combat.CombatUtils
+import org.lazywizard.lazylib.ui.LazyFont
+import org.lwjgl.opengl.Display
+import org.lwjgl.opengl.GL11
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
-import java.awt.geom.Line2D
 import kotlin.math.abs
 import kotlin.math.asin
 
@@ -1671,4 +1673,47 @@ class aEP_ID{
     const val RETURN = "Return"
     const val SELECT = "Select"
   }
+}
+
+
+class aEP_Render{
+  companion object{
+    //保持引用，节约资源
+    val FONT1 = LazyFont.loadFont("graphics/fonts/victor14.fnt").createText()
+
+
+    /**
+     * From MagicUI
+     * */
+    fun openGL1() {
+      //这些设定都要在begin之前设置好
+
+      GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS)
+      GL11.glMatrixMode(GL11.GL_PROJECTION)
+      GL11.glPushMatrix()
+
+      //设置视窗的起点(单位为像素)，长宽
+      GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight())
+      //设置投影方式，x坐标变为窗口width，y坐标变为窗口height
+      GL11.glOrtho(0.0, Display.getWidth().toDouble(), 0.0, Display.getHeight().toDouble(), -1.0, 1.0)
+
+      //画纯色图不需要材质，打开材质就一定要绑定，就会导致画不出东西
+      GL11.glDisable(GL11.GL_TEXTURE_2D)
+      //这里不做绑定
+      //GL11.glBindTexture(GL11.GL_TEXTURE_2D, Global.getSettings().getSprite("aEP_FX", "thick_smoke_all2").textureId)
+
+      GL11.glEnable(GL11.GL_BLEND)
+      GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
+    }
+    /**
+     * From MagicUI
+     * */
+    fun closeGL11() {
+      GL11.glDisable(GL11.GL_TEXTURE_2D)
+      GL11.glDisable(GL11.GL_BLEND)
+      GL11.glPopMatrix()
+      GL11.glPopAttrib()
+    }
+  }
+
 }

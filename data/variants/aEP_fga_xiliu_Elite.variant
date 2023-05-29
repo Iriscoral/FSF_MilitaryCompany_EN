@@ -1,11 +1,12 @@
 {
     "displayName": "Elite",
-    "fluxCapacitors": 3,
-    "fluxVents": 5,
+    "fluxCapacitors": 7,
+    "fluxVents": 10,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
-        "aEP_RapidDissipate",
+        "aEP_BurstDissipate",
+        "fluxbreakers",
         "aEP_VanguardHull"
     ],
     "permaMods": [],
@@ -16,8 +17,8 @@
             "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0007": "aEP_e_s_300k",
-                "WS0009": "aEP_e_s_300k"
+                "WS0002": "aEP_b_s_h37",
+                "WS0008": "aEP_b_s_h37"
             }
         },
         {
@@ -29,11 +30,11 @@
             }
         },
         {
-            "autofire": false,
+            "autofire": true,
             "mode": "LINKED",
             "weapons": {
-                "WS0002": "vulcan",
-                "WS0008": "vulcan"
+                "WS0007": "aEP_vulcan",
+                "WS0009": "aEP_vulcan"
             }
         }
     ]

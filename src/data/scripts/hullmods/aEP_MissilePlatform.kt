@@ -1,25 +1,30 @@
 package data.scripts.hullmods
 
 import com.fs.starfarer.api.Global
+import com.fs.starfarer.api.combat.CombatEngineLayers
 import com.fs.starfarer.api.combat.ShipAPI
 import com.fs.starfarer.api.combat.ShipAPI.HullSize
-import combat.util.aEP_DataTool
-import com.fs.starfarer.api.ui.TooltipMakerAPI
-import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.combat.WeaponAPI
-import com.fs.starfarer.api.impl.campaign.ids.HullMods
+import com.fs.starfarer.api.combat.listeners.AdvanceableListener
 import com.fs.starfarer.api.loading.MissileSpecAPI
-import java.util.WeakHashMap
 import com.fs.starfarer.api.ui.Alignment
+import com.fs.starfarer.api.ui.TooltipMakerAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import com.fs.starfarer.api.util.Misc
+import combat.util.aEP_DataTool
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_ID.Companion.HULLMOD_BULLET
 import combat.util.aEP_ID.Companion.HULLMOD_POINT
+import combat.util.aEP_Render
+import combat.util.aEP_Tool
 import org.lazywizard.lazylib.MathUtils
+import org.lwjgl.opengl.Display
+import org.lwjgl.opengl.GL11
+import org.lwjgl.util.vector.Vector2f
+import org.magiclib.util.MagicRender
+import org.magiclib.util.MagicUI
 import java.awt.Color
-import java.lang.Exception
 import kotlin.math.roundToInt
 
 class aEP_MissilePlatform : aEP_BaseHullMod() {
@@ -28,9 +33,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     private const val MISSILE_HITPOINT_BUFF = 10f //by percent
     private const val MISSILE_MAX_MULT = 2 //by percent
     private const val MIN_RATE = 0.35f //by percent
-    private const val MAX_RATE_MULT = 12f //
-    private const val RATE_INCREASE_SPEED_MULT = 0.75f
-    private const val RATE_DECREASE_SPEED_MULT = 1f
+    private const val MAX_RATE_MULT = 12f //池子大小等于所有武器装配点/100的总和的多少倍（多少秒消耗干净）
+    private const val RATE_INCREASE_SPEED_MULT = 0.75f //每个武器提供的回复速度等于自身装配点的多少倍
+    private const val RATE_DECREASE_SPEED_MULT = 1f //每个武器消耗总装率的速度是实际装填量的几倍
     const val ID = "aEP_MissilePlatform"
     private val MAX_RELOAD_SPEED = HashMap<WeaponAPI.WeaponSize,Float>()
     init {
@@ -38,6 +43,48 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
       MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.MEDIUM] = 0.18f
       MAX_RELOAD_SPEED[WeaponAPI.WeaponSize.SMALL] = 0.10f
     }
+
+    val UI_COLOR1 = Color(54,255,24,225)
+
+    private val INDICATOR_SIZE = HashMap<WeaponAPI.WeaponSize,Vector2f>()
+    init {
+      INDICATOR_SIZE[WeaponAPI.WeaponSize.LARGE] = Vector2f(36f,36f)
+      INDICATOR_SIZE[WeaponAPI.WeaponSize.MEDIUM] =Vector2f(28f,28f)
+      INDICATOR_SIZE[WeaponAPI.WeaponSize.SMALL] = Vector2f(16f,16f)
+    }
+
+
+
+    fun drawChargeBar(absLoc: Vector2f, ship: ShipAPI?, size:WeaponAPI.WeaponSize?, percent:Float){
+      if(ship != Global.getCombatEngine().playerShip) return
+
+      //aEP_Render.openGL1()
+
+      //val screenX = Global.getCombatEngine().viewport.convertWorldXtoScreenX(absLoc.x)
+      //val screenY = Global.getCombatEngine().viewport.convertWorldYtoScreenY(absLoc.y)
+
+      var level = percent
+      val angleAdd = 45f
+      var startingAngle = 0f
+      while (level > 0.125f){
+        val sprite = Global.getSettings().getSprite("aEP_FX","loading_ring")
+        val ringSize = INDICATOR_SIZE[size]?: Vector2f(20f,20f)
+        MagicRender.singleframe(
+          sprite,
+          absLoc,
+          ringSize,
+          startingAngle,
+          UI_COLOR1,
+          true,
+          CombatEngineLayers.ABOVE_SHIPS_AND_MISSILES_LAYER)
+
+        level -= 0.125f
+        startingAngle += angleAdd
+      }
+
+      //aEP_Render.closeGL11()
+    }
+
   }
 
   init {
@@ -73,7 +120,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     }
     if (!ship.customData.containsKey(ID)) {
       val loadingClass = LoadingMap(ship,maxRate * MAX_RATE_MULT)
-      ship.customData.set(ID,loadingClass)
+      ship.setCustomData(ID,loadingClass)
       ship.addListener(loadingClass)
     }
   }
@@ -121,8 +168,9 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
   }
 
   public inner class LoadingMap constructor(var ship: ShipAPI, val maxRate:Float) : AdvanceableListener {
-    val ammoLoaderTracker = IntervalUtil(0.5f,0.5f)
-    var MPTimerMap: MutableMap<WeaponAPI, Float> = WeakHashMap()
+    val ammoLoaderTracker = IntervalUtil(0.25f,0.25f)
+    //[ loadingProgress, ammoPerFire, ammoPerRegen, ammoPerRegenConvertedToOp ]
+    var MPTimerMap: MutableMap<WeaponAPI, kotlin.Array<Float>> = HashMap()
     var currRate = maxRate
 
     override fun advance(amount: Float) {
@@ -130,15 +178,42 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         return
       }
 
+
+//      aEP_Render.openGL11ForText()
+//      aEP_Render.FONT1.text = "sdsds32353462356b234sdfh4523d"
+//      aEP_Render.FONT1.baseColor = Color.white
+//      aEP_Render.FONT1.fontSize = 50f
+//      aEP_Render.FONT1.maxHeight = 50f
+//      aEP_Render.FONT1.maxWidth = 200f
+//      //相对于屏幕的位置
+//      aEP_Render.FONT1.draw(Vector2f(100f,100f))
+//      aEP_Render.closeGL11ForText()
+
+
       ammoLoaderTracker.advance(amount)
-      if(ammoLoaderTracker.intervalElapsed()){
-        for (w in ship.allWeapons) {
-          if(!isMissileWeapon(w)) continue
+      val level = currRate/maxRate
+      for (w in ship.allWeapons) {
+        if(!isMissileWeapon(w)) continue
+
+        //计算弹量增加，如果map里面不存在就创建一个
+        if(ammoLoaderTracker.intervalElapsed()){
           val reloadSpeed = (MAX_RELOAD_SPEED[w.size] ?: 0f)
           putInMap(w, reloadSpeed, ammoLoaderTracker.elapsed)
-
         }
+
+        //画进度条
+        val data = MPTimerMap[w]?: continue
+
+        val opNow = data[0]
+        val ammoPerFire = data[1].toInt()
+        val ammoPerRegen = data[2].toInt()
+        val ammoPerRegenConvertToOp = data[3]
+        val loadingProgress = opNow/ammoPerRegenConvertToOp
+        drawChargeBar(w.location, ship, w.size,loadingProgress)
+
+
       }
+
 
       //维持玩家左下角的提示
       if (Global.getCombatEngine().playerShip == ship) {
@@ -156,38 +231,51 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     }
 
     private fun putInMap(w: WeaponAPI, reloadSpeed: Float, amount: Float) {
-      //Global.getCombatEngine().addFloatingText(w.getLocation(),reloadSpeed+"",20f,new Color(100,100,100,100),w.getShip(),1f,5f);
+
+      //第一次记录时，计算一次单次回复量等等数据，存入list
       if (MPTimerMap[w] == null) {
-        MPTimerMap[w] = 0f
-      } else {
-        val level = currRate/maxRate
 
         //单轮装填弹数
         val ammoPerFire = getAmmoPerFire(w)
         val ammoPerRegen = (ammoPerFire).coerceAtMost(w.spec.maxAmmo)
-        //限制导弹的备弹
-        w.maxAmmo = (ammoPerFire * MISSILE_MAX_MULT ).coerceAtMost(w.spec.maxAmmo)
-
-        //存入map的是op数量，而不是具体的弹数
-        val opNow = MPTimerMap[w]?:0f
-        val newOp = opNow + reloadSpeed * amount * level
-
         //把map里面的op点转换为导弹数
         val op = w.spec.getOrdnancePointCost(null)
         val opPerMissile = op/w.spec.maxAmmo.coerceAtLeast(1)
         val ammoPerRegenConvertToOp = ammoPerRegen * opPerMissile
+        //记得记录数据的顺序
+        MPTimerMap[w] = arrayOf(
+          0f,
+          ammoPerFire.toFloat(),
+          ammoPerRegen.toFloat(),
+          ammoPerRegenConvertToOp)
+
+      } else {
+
+        val level = currRate/maxRate
+        val data = MPTimerMap[w] as kotlin.Array<Float>
+
+        val opNow = data[0]
+        val ammoPerFire = data[1].toInt()
+        val ammoPerRegen = data[2].toInt()
+        val ammoPerRegenConvertToOp = data[3]
+
+        //限制导弹的备弹
+        w.maxAmmo = (data[1].toInt() * MISSILE_MAX_MULT ).coerceAtMost(w.spec.maxAmmo)
+
+        //存入map的是op数量，而不是具体的弹数
+        val newOp = opNow + reloadSpeed * amount * level
 
         //需要装填，可以立刻回弹
         if(w.ammo <= (w.maxAmmo-ammoPerRegen) && newOp >= ammoPerRegenConvertToOp){
           //回复一颗
-          MPTimerMap[w] = (newOp - ammoPerRegenConvertToOp)
+          data[0] = (newOp - ammoPerRegenConvertToOp)
           w.ammo += ammoPerRegen
           //降低整备率，该武器需要装填，装了多少就从池子里面取出多少整备率
           currRate -= reloadSpeed * amount * level * RATE_DECREASE_SPEED_MULT
 
         //需要装填，但是尚且不能回弹
         }else if(w.ammo <= (w.maxAmmo-ammoPerRegen) && newOp < ammoPerRegenConvertToOp){
-          MPTimerMap[w] = newOp
+          data[0] = newOp
           //降低整备率，该武器需要装填，装了多少就从池子里面取出多少整备率
           currRate -= reloadSpeed * amount * level * RATE_DECREASE_SPEED_MULT
 
@@ -197,7 +285,7 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
         }
 
         //无论如何，每门导弹都会提供整备率
-        currRate += op / 100f * amount * RATE_INCREASE_SPEED_MULT
+        currRate += w.spec.getOrdnancePointCost(null) / 100f * amount * RATE_INCREASE_SPEED_MULT
 
         //限最低整备率
         currRate = MathUtils.clamp(currRate,MIN_RATE* maxRate, maxRate)
@@ -228,14 +316,14 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
     //如果是mirv，计算每个子弹丸的伤害来统计一共几发
     if(spec.projectileSpec is MissileSpecAPI) {
       val missileSpec = spec.projectileSpec as MissileSpecAPI
-      if(missileSpec.behaviorJSON != null){
 
+      if(missileSpec.behaviorJSON != null){
         //尝试读取json里面子弹丸的数量和伤害来除
         try {
           if(missileSpec.behaviorJSON.getString("behavior").equals("MIRV")){
             val damagePerWarhead = missileSpec.behaviorJSON.getString("damage").toFloat().coerceAtLeast(Float.MIN_VALUE)
             val numOfWarhead = missileSpec.behaviorJSON.getString("numShots").toFloat().coerceAtLeast(Float.MIN_VALUE)
-
+            //对于mirv，perShot读取的是一次发射的总和
             numPerBurst = (w.derivedStats.damagePerShot / (numOfWarhead * damagePerWarhead) )
           }
         }catch (e1: Exception){
@@ -249,5 +337,6 @@ class aEP_MissilePlatform : aEP_BaseHullMod() {
 
     return totalNumPerBurst
   }
+
 }
 

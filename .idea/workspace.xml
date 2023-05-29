@@ -5,8 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98de52b6-19ff-4e28-84f6-87890507b339" name="Changes" comment="3.21rc2 Update">
-      <change beforePath="$PROJECT_DIR$/update_3.20rc6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update_3.20rc6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update_3.21rc2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/update_3.21rc2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config/settings_CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/config/settings_CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Burst.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Burst.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_biaobing_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_decomposer_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cap_neibo_Elite.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_requan_Assault.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_requan_Assault.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Broadside.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_cru_zhongliu_Broadside.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_AntiSmall.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_AntiSmall.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_Elite.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_lianliu_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_des_yangji_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_des_yangji_Elite.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_wanliu_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_wanliu_Elite.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Elite.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_mk2_Elite.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_mk2_Elite.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_mk2_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_xiliu_mk2_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Mixed.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Mixed.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Standard.variant" beforeDir="false" afterPath="$PROJECT_DIR$/data/variants/aEP_fga_yonglang_Standard.variant" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/world/factions/default_ship_roles.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jars/a111164_ExtendPack.jar" beforeDir="false" afterPath="$PROJECT_DIR$/jars/a111164_ExtendPack.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat/impl/VEs/aEP_MovingSmoke.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/impl/VEs/aEP_MovingSmoke.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat/impl/VEs/aEP_SpreadRing.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/impl/VEs/aEP_SpreadRing.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat/impl/aEP_BaseCombatEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/impl/aEP_BaseCombatEffect.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat/impl/proj/aEP_StickOnHit.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/impl/proj/aEP_StickOnHit.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat/plugin/aEP_CombatEffectPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/plugin/aEP_CombatEffectPlugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/combat/util/aEP_Tool.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/a111164ModPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/a111164ModPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_BaseHullMod.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_BaseHullMod.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HotLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_HotLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MarkerDissipation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MarkerDissipation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/hullmods/aEP_MissilePlatform.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_ExtremeOverloadScript.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_WeaponReset.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/shipsystems/aEP_WeaponReset.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/scripts/weapons/aEP_WeaponEffect.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +76,12 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.21rc2/FSF_MilitaryCompany",
+    "last_opened_file_path": "C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.20rc3/FSF_MilitaryCompany",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "two.files.diff.last.used.file": "C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.19/FSF_MilitaryCompany/data/campaign/industries.csv",
-    "two.files.diff.last.used.folder": "C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.21rc2/FSF_MilitaryCompany"
+    "two.files.diff.last.used.folder": "C:/Games/Starsector/CN_mods/FSF_MilitaryCompany3.20rc3/FSF_MilitaryCompany"
   }
 }]]></component>
   <component name="RunManager">
@@ -217,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685282309224</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="3.21rc2 Update">
+      <created>1685282846420</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1685282846420</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

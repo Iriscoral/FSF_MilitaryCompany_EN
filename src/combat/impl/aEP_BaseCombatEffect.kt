@@ -19,7 +19,7 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
   var layers: EnumSet<CombatEngineLayers> = EnumSet.of(CombatEngineLayers.ABOVE_SHIPS_LAYER)
 
   //特效中心，如果拥有entity则默认为entity的位置，否则需要手动初始化
-  var loc = VECTOR2F_ZERO
+  var loc = Vector2f(0f,0f)
   //特效半径，特效中心距离窗口边缘距离大于特效半径时不再渲染
   var radius:Float = 9999999999f
   var renderInShader = false
@@ -71,7 +71,7 @@ open class aEP_BaseCombatEffect : CombatLayeredRenderingPlugin {
   override fun advance(amount: Float) {
     //若 entity不为空，则进行 entity检测，不过就直接结束
     if(entity != null) {
-      loc = entity?.location?:Vector2f(0f,0f)
+      loc.set(entity?.location?:Vector2f(0f,0f))
 
       if(!Global.getCombatEngine().isEntityInPlay(entity)){
         shouldEnd = true

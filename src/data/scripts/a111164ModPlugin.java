@@ -15,8 +15,7 @@ import data.scripts.campaign.a111164CampaignPlugin;
 import data.scripts.world.aEP_gen;
 
 
-public class a111164ModPlugin extends BaseModPlugin
-{
+public class a111164ModPlugin extends BaseModPlugin {
 
 
   //shipAI plugin pick

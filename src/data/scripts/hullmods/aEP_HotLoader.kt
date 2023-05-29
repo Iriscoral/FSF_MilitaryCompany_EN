@@ -14,6 +14,7 @@ import combat.util.aEP_DataTool
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
+import org.magiclib.util.MagicUI
 import java.awt.Color
 
 class aEP_HotLoader : aEP_BaseHullMod() {
@@ -22,7 +23,7 @@ class aEP_HotLoader : aEP_BaseHullMod() {
     //private final static float RELOAD_THRESHOLD = 2;//by seconds
     const val RELOAD_PERCENT = 0.25f
     const val EXTRA_SPEED_ON_FIRE = 0.25f
-    const val SMOD_BONUS = 0.5f
+    const val SMOD_BONUS = 50f
 
     const val EXTRA_SPEED_ON_SYSTEM = 0.5f
     const val ID = "aEP_HotLoader"
@@ -62,6 +63,8 @@ class aEP_HotLoader : aEP_BaseHullMod() {
         //排除不用子弹的，系统武器，内置武器，和系统槽位上面的普通武器
         if(!aEP_Tool.isNormalWeaponSlotType(w.slot, false)) continue
         if(!w.usesAmmo() || w.ammo == Int.MAX_VALUE) continue
+        //排除目前已经装满的
+        if(w.ammo >= w.maxAmmo) continue
 
         //获取当前这个武器装了多少
         var weaponTimer = 0f
@@ -71,13 +74,16 @@ class aEP_HotLoader : aEP_BaseHullMod() {
         //根据不同的武器类型计算弹药恢复速度
         var ammoPerSecond = w.spec.ammoPerSecond
         weaponTimer += ammoPerSecond * (RELOAD_PERCENT + extra) * timePassed
+
+
         //获取该武器一轮装填的量，cap到当前最大弹药数
-        val reloadSize = w.ammoTracker.reloadSize.coerceAtMost(w.maxAmmo.toFloat())
-        while (weaponTimer >= reloadSize) {
-          weaponTimer -= reloadSize
-          w.ammo = (w.ammo + reloadSize.toInt()).coerceAtMost(w.maxAmmo)
+        val needToReload = (w.maxAmmo - w.ammo).coerceAtLeast(0).coerceAtMost(w.ammoTracker.reloadSize.toInt())
+        while (weaponTimer >= needToReload && needToReload > 0) {
+          weaponTimer -= needToReload
+          w.ammo += needToReload
         }
         reloadingMap[w] = weaponTimer
+        w.ammoTracker.reloadProgress
 
       }
     }
@@ -130,7 +136,7 @@ class aEP_HotLoader : aEP_BaseHullMod() {
     //Smod自带一个绿色的标题，不需要再来个标题
     //tooltip.addSectionHeading(aEP_DataTool.txt("effect"),Alignment.MID, 5f)
 
-    tooltip.addPara("{%s}"+ txt("aEP_HotLoader03"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", SMOD_BONUS * 100f)+"%")
+    tooltip.addPara("{%s}"+ txt("aEP_HotLoader03"), 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", SMOD_BONUS)+"%")
 
     //tooltip.addSectionHeading(aEP_DataTool.txt("when_soft_up"),txtColor,barBgColor,Alignment.MID, 5f)
     //tooltip.addPara("{%s}"+ txt("aEP_HotLoader02") , 5f, arrayOf(Color.green), aEP_ID.HULLMOD_POINT, String.format("%.0f", EXTRA_SPEED_ON_FIRE * 100f)+"%")

@@ -1,12 +1,13 @@
 {
     "displayName": "Standard",
-    "fluxCapacitors": 4,
-    "fluxVents": 10,
+    "fluxCapacitors": 7,
+    "fluxVents": 8,
     "goalVariant": true,
     "hullId": "aEP_fga_xiliu",
     "hullMods": [
-        "targetingunit",
-        "aEP_SoftfluxDissipate"
+        "aEP_ControledShield",
+        "aEP_SoftfluxDissipate",
+        "fluxdistributor"
     ],
     "permaMods": [],
     "sMods": [],
@@ -15,38 +16,36 @@
         {
             "autofire": true,
             "mode": "LINKED",
-            "weapons": {"WS0009": "aEP_e_s_300k"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0002": "vulcan"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0008": "aEP_b_s_pom"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {"WS0007": "lightneedler"}
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
-            "weapons": {
-                "L01": "lightac",
-                "L02": "lightac"
-            }
-        },
-        {
-            "autofire": false,
-            "mode": "LINKED",
             "weapons": {
                 "R01": "lightac",
                 "R02": "lightac"
             }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "lightac",
+                "WS0008": "lightac"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "L01": "aEP_b_s_h37",
+                "L02": "aEP_b_s_h37"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0009": "aEP_e_s_300k"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS0007": "aEP_b_s_pom"}
         }
     ]
 }

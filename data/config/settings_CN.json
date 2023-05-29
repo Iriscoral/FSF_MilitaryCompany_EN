@@ -41,6 +41,8 @@
 
 			"noise":"graphics/aEP_FX/noise.png",
 			"noise02":"graphics/aEP_FX/noise02.png",
+
+			"loading_ring":"graphics/aEP_FX/ring_loading_18.png"
 		}, 
 		"fx":{
 			"aEP_trail_smoke":"graphics/aEP_FX/trails/3.png",

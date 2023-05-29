@@ -5,6 +5,7 @@ import com.fs.starfarer.api.combat.*
 import com.fs.starfarer.api.input.InputEventAPI
 import combat.impl.aEP_BaseCombatEffect
 import combat.util.aEP_Tool
+import data.scripts.hullmods.aEP_MissilePlatform
 import java.util.*
 /**
  * 自由特效类，实现自定义特效渲染
@@ -102,6 +103,7 @@ class aEP_CombatEffectPlugin :BaseEveryFrameCombatPlugin, CombatLayeredRendering
   override fun render(layer: CombatEngineLayers, viewport: ViewportAPI) {
     layer?:return
     viewport?:return
+
     for (e in effects) {
       if(!e.activeLayers.contains(layer)) continue
       if(e is aEP_BaseCombatEffect && e.renderInShader) continue

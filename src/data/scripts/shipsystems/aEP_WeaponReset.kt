@@ -33,31 +33,21 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
   companion object{
     //about visual effect
-    private val PARTICLE_CHANCE_PER_SEC = 20f
-    private val PARTICLE_COLOR = Color(251, 70, 40, 255)
     private val SMOKE_COLOR = Color(200, 200, 200, 80)
     private val SMOKE_EMIT_COLOR = Color(250, 250, 250, 180)
-    private val GLOW_COLOR = Color(222,50,199,49)
+    val GLOW_COLOR = Color(255,72,44,118)
+    val STOP_GLOW_COLOR = Color(255,235,215,150)
     private const val WORSEN_MULT = 0.5f
 
     private val MAX_FLUX_STORE_CAP_PERCENT = 1f
 
     private val JITTER_COLOR = Color(240, 50, 50, 85)
 
-    private val particleSize: MutableMap<WeaponSize, Float> = HashMap()
-    private val timeRange: MutableMap<WeaponSize, Float> = HashMap()
     private val FLUX_DECREASE_PERCENT: MutableMap<String, Float> = HashMap()
     private val FLUX_DECREASE_FLAT: MutableMap<String, Float> = HashMap()
     private val FLUX_RETURN_SPEED: MutableMap<String, Float> = HashMap()
     private val WEAPON_ROF_PERCENT_BONUS: MutableMap<String, Float> = HashMap()
     init {
-      particleSize[WeaponSize.LARGE] = 12f
-      particleSize[WeaponSize.MEDIUM] = 10f
-      particleSize[WeaponSize.SMALL] = 8f
-
-      timeRange[WeaponSize.LARGE] = 0.6f
-      timeRange[WeaponSize.MEDIUM] = 0.5f
-      timeRange[WeaponSize.SMALL] = 0.4f
 
       FLUX_DECREASE_PERCENT["aEP_fga_xiliu"] = 0.75f
       FLUX_DECREASE_PERCENT["aEP_des_cengliu"] = 0.66f
@@ -84,6 +74,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
   private val presmokeTracker = IntervalTracker(0.05f,0.05f)
 
 
+  //runInIdle == true, unapply()只有在被外界强制关闭时才会调用
   override fun apply(stats: MutableShipStatsAPI?, id: String?, state: ShipSystemStatsScript.State?, effectLevel: Float) {
     //复制粘贴这行
     ship = (stats?.entity?: return) as ShipAPI
@@ -100,11 +91,13 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         presmokeTracker.advance(999f)
       }
 
+      //储存的幅能超过极限容量的1倍但小于2倍时，性能下降，超过2倍时直接到底
       var maxStoreMult = 1f
       if(storedHardFlux+storedSoftFlux > ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT
         && storedHardFlux+storedSoftFlux < ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT * 2f) {
         maxStoreMult = 1f - WORSEN_MULT *MathUtils.clamp((storedHardFlux+storedSoftFlux-ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT)/ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT, 0f,1f)
-      } else if(storedHardFlux+storedSoftFlux >= ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT * 2f){
+      }
+      else if(storedHardFlux+storedSoftFlux >= ship.maxFlux * MAX_FLUX_STORE_CAP_PERCENT * 2f){
         maxStoreMult = 1f - WORSEN_MULT
       }
 
@@ -131,7 +124,7 @@ class aEP_WeaponReset: BaseShipSystemScript() {
           storedHardFlux += toReduce
         }
 
-        //在激活时，生成短的烟雾
+        //在激活时，从排幅口喷出短的烟雾
         if(presmokeTracker.intervalElapsed()) {
           for (w in ship.allWeapons) {
             if (!w.slot.isDecorative) continue
@@ -180,36 +173,16 @@ class aEP_WeaponReset: BaseShipSystemScript() {
         ship.mutableStats.beamDamageTakenMult.modifyMult(id,0.2f)
       }
 
+      //船体打光
       ship.isJitterShields = false
       ship.setJitter(ship, JITTER_COLOR, effectLevel, 1, 0f)
       ship.setJitterUnder(ship, JITTER_COLOR, effectLevel, 10, 4f + ship.collisionRadius*0.08f)
 
       //给武器打粒子
-      for (w in ship.allWeapons) {
-        if (isNormalWeaponSlotType(w.slot, false)) {
-          ship.setWeaponGlow(0.5f,
-            GLOW_COLOR,
-            EnumSet.of(WeaponAPI.WeaponType.BALLISTIC, WeaponAPI.WeaponType.ENERGY))
-
-          var chance = MathUtils.getRandomNumberInRange(0f,1f)
-          val t =  getAmount(null) * PARTICLE_CHANCE_PER_SEC
-          while(chance < t) {
-            val offsets = getWeaponOffsetInAbsoluteCoo(w)
-            val offset = offsets[(MathUtils.getRandom().nextFloat()*offsets.size).toInt()]
-            offset.set(MathUtils.getRandomPointInCircle(offset,10f))
-            val vel = speed2Velocity(w.currAngle, MathUtils.getRandomNumberInRange(100f, 100f))
-            val shipVel = ship.velocity
-            Global.getCombatEngine().addHitParticle(
-              offset,  //loc
-              Vector2f(vel.getX() + shipVel.getX(), vel.getY() + shipVel.getY()),  //vel
-              MathUtils.getRandomNumberInRange(particleSize[w.size]!! / 4f, particleSize[w.size]!!),  //size
-              1f,  //brightness
-              timeRange[w.size]!!,  //duration
-              PARTICLE_COLOR)
-            chance += t
-          }
-        }
-      }
+      ship.setWeaponGlow(
+        effectLevel,
+        GLOW_COLOR,
+        EnumSet.of(WeaponAPI.WeaponType.BALLISTIC, WeaponAPI.WeaponType.ENERGY))
 
       val rofPercentBonus = WEAPON_ROF_PERCENT_BONUS[ship.hullSpec.hullId]?: 100f
 
@@ -231,36 +204,13 @@ class aEP_WeaponReset: BaseShipSystemScript() {
       //取消护盾维持，防止出现把盾维吸入导致每秒幅散散了个空气的问题
       ship.mutableStats.shieldUpkeepMult.modifyMult(id,0f)
 
+
     } else{
-      //回复盾维持
-      //ship.mutableStats.shieldUpkeepMult.modifyMult(id,1f)
 
-      //激活结束运行一次
+    //系统为IDLE时
+      //激活结束后运行一次
       if(didActive){
-        didActive = false
-        //ballistic weapon buff
-        stats.ballisticRoFMult.unmodify(id)
-        stats.ballisticAmmoRegenMult.unmodify(id)
-
-        //energy weapon buff
-        stats.energyRoFMult.unmodify(id)
-        stats.energyAmmoRegenMult.unmodify(id)
-
-        //flux consume reduce
-        stats.ballisticWeaponFluxCostMod.unmodify(id)
-        stats.energyWeaponRangeBonus.unmodify(id)
-
-        //取消玩梗的光束伤害减免
-        stats.beamDamageTakenMult.unmodify(id)
-
-        //还原护盾维持
-        ship.mutableStats.shieldUpkeepMult.unmodify(id)
-
-        spawnSmoke(ship, 30)
-
-        ship.setWeaponGlow(0f,
-          GLOW_COLOR,
-          EnumSet.of(WeaponAPI.WeaponType.BALLISTIC, WeaponAPI.WeaponType.ENERGY))
+        unapply(stats, id)
       }
 
       //返还幅能
@@ -289,11 +239,34 @@ class aEP_WeaponReset: BaseShipSystemScript() {
 
   override fun unapply(stats: MutableShipStatsAPI, id: String?) {
     //复制粘贴这行
-    ship = (stats?.entity?: return) as ShipAPI
+    ship = (stats.entity?: return) as ShipAPI
     val ship = ship as ShipAPI
 
+    didActive = false
+    //ballistic weapon buff
+    stats.ballisticRoFMult.unmodify(id)
+    stats.ballisticAmmoRegenMult.unmodify(id)
 
+    //energy weapon buff
+    stats.energyRoFMult.unmodify(id)
+    stats.energyAmmoRegenMult.unmodify(id)
 
+    //flux consume reduce
+    stats.ballisticWeaponFluxCostMod.unmodify(id)
+    stats.energyWeaponRangeBonus.unmodify(id)
+
+    //取消玩梗的光束伤害减免
+    stats.beamDamageTakenMult.unmodify(id)
+
+    //还原护盾维持
+    ship.mutableStats.shieldUpkeepMult.unmodify(id)
+
+    spawnSmoke(ship, 30)
+
+    ship.setWeaponGlow(
+      0f,
+      GLOW_COLOR,
+      EnumSet.of(WeaponAPI.WeaponType.BALLISTIC, WeaponAPI.WeaponType.ENERGY))
 
   }
 

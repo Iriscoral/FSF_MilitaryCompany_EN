@@ -15,10 +15,10 @@ import combat.util.aEP_DataTool.floatDataRecorder
 import combat.util.aEP_DataTool.txt
 import combat.util.aEP_ID
 import combat.util.aEP_Tool
-import data.scripts.weapons.aEP_b_m_rk107_shot
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.util.vector.Vector2f
 import java.awt.Color
+import kotlin.reflect.jvm.internal.impl.renderer.DescriptorRenderer
 
 class aEP_MarkerDissipation : aEP_BaseHullMod() {
 
@@ -29,12 +29,24 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
     const val DECREASE_PERCENT= 0.5f // 缓冲区每秒下降实际幅能降低的多少
     const val OVERLOAD_TIME_DECREASE = 0.25f
 
-    const val ZERO_FLUX_SPEED_BONUS = 30f
-    const val ZERO_FLUX_EXTRA_THREHOLD = 2f
-    const val TIME_TO_BUFF = 6f
+    val ZERO_FLUX_SPEED_BONUS = LinkedHashMap<String, Float>()
+    val DEFAULT_BOOST_BONUS = 35f
+    init {
+      ZERO_FLUX_SPEED_BONUS["aEP_cap_nuanchi"] = 45f
+
+      ZERO_FLUX_SPEED_BONUS["aEP_cru_pubu"] = 40f
+      ZERO_FLUX_SPEED_BONUS["aEP_cru_requan"] = 40f
+
+    }
+    const val ZERO_FLUX_EXTRA_THREHOLD = 2f //百分之几以下触发加速装填，航母派出飞机是1%，所以这里给2%
+    const val TIME_TO_BUFF = 6f //几秒达到满速加成
+
+    val BOOST_COLOR1 = Color(255,0,0)
+    val BOOST_COLOR2 = Color(225,125,75,100)
 
     const val MAX_OVERLOAD_TIME = 8f
     const val ID = "aEP_MarkerDissipation"
+
     @JvmStatic
     fun getBufferLevel(ship: ShipAPI?): Float {
       if (ship == null || !ship.isAlive || ship.isHulk || !ship.variant.hasHullMod(ID)) return 0f
@@ -59,6 +71,7 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
     //修改护盾贴图
     if (ship.shield != null) {
       //set shield inner, outer ring
+      ship.hullStyleId
       ship.shield.setRadius(
         ship.shield.radius,
         Global.getSettings().getSpriteName("aEP_hullstyle", "aEP_shield_inner"),
@@ -116,7 +129,7 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
       aEP_ID.HULLMOD_POINT,
       String.format("%.0f", TIME_TO_BUFF),
       String.format("%.0f", ZERO_FLUX_EXTRA_THREHOLD)+ "%",
-      String.format("%.0f", ZERO_FLUX_SPEED_BONUS))
+      String.format("%.0f", ZERO_FLUX_SPEED_BONUS[ship?.hullSpec?.hullId]?: DEFAULT_BOOST_BONUS))
 
 
     //灰字额外说明
@@ -135,25 +148,35 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
       val maxFlux = ship.fluxTracker.maxFlux
       val softFlux = ship.fluxTracker.currFlux - ship.fluxTracker.hardFlux
       val totalDiss = aEP_Tool.getRealDissipation(ship)
+      val zeroBoost = ZERO_FLUX_SPEED_BONUS[ship.hullSpec.hullId]?:DEFAULT_BOOST_BONUS
 
       //0幅能加成
       if(ship.fluxLevel <= ZERO_FLUX_EXTRA_THREHOLD/100f){
-
         zeroBuffTime += amount
-        if(!ship.mutableStats.maxSpeed.flatMods.containsKey(ID) && zeroBuffTime > TIME_TO_BUFF){
-          ship.mutableStats.maxSpeed.modifyFlat(ID, ZERO_FLUX_SPEED_BONUS)
-          ship.mutableStats.acceleration.modifyFlat(ID, ZERO_FLUX_SPEED_BONUS/2f)
-          ship.mutableStats.deceleration.modifyFlat(ID, ZERO_FLUX_SPEED_BONUS/2f)
+
+      }else{
+        zeroBuffTime -= amount * TIME_TO_BUFF
+      }
+
+      zeroBuffTime = zeroBuffTime.coerceAtMost(TIME_TO_BUFF).coerceAtLeast(0f)
+      var level = zeroBuffTime/ TIME_TO_BUFF
+      level *= (level * level)
+      if(level > 0f){
+        if(ship.mutableStats.maxSpeed.flatMods.get(ID)?.value != (level * zeroBoost) ){
+          ship.mutableStats.maxSpeed.modifyFlat(ID, zeroBoost * level)
+          ship.mutableStats.acceleration.modifyFlat(ID, zeroBoost/2f * level)
+          ship.mutableStats.deceleration.modifyFlat(ID, zeroBoost/2f * level)
         }
       }else{
-
-        zeroBuffTime = 0f
         if(ship.mutableStats.maxSpeed.flatMods.containsKey(ID) ){
           ship.mutableStats.maxSpeed.unmodify(ID)
           ship.mutableStats.acceleration.unmodify(ID)
           ship.mutableStats.deceleration.unmodify(ID)
         }
       }
+      ship.engineController.fadeToOtherColor(ID, BOOST_COLOR1, BOOST_COLOR2, level, 0.35f )
+      ship.engineController.extendFlame(ID,0.25f * level,0.25f * level,0.25f *level)
+
 
       //更新上一帧幅能变化
       var fluxDecreaseCompareToLastFrame = 0f
@@ -189,12 +212,12 @@ class aEP_MarkerDissipation : aEP_BaseHullMod() {
           aEP_DataTool.txt("MD_des01") + (bufferLevel * 100).toInt() + "%",  //data
           false) //is debuff
 
-        if(zeroBuffTime > TIME_TO_BUFF){
+        if(level > 0.1f){
           Global.getCombatEngine().maintainStatusForPlayerShip(
             this.javaClass.simpleName+"01",  //key
             "graphics/aEP_hullsys/marker_dissipation.png",  //sprite name,full, must be registed in setting first
             Global.getSettings().getHullModSpec(ID).displayName,  //title
-            txt("aEP_MarkerDissipation04").format(String.format("%.0f", ZERO_FLUX_SPEED_BONUS)) ,  //data
+            txt("aEP_MarkerDissipation04").format(String.format("%.0f", zeroBoost * level)) ,  //data
             false) //is debuff
         }
 

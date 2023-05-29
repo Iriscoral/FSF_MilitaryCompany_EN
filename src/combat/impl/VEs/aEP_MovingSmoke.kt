@@ -6,6 +6,7 @@ import com.fs.starfarer.api.combat.ViewportAPI
 import com.fs.starfarer.api.util.IntervalUtil
 import combat.impl.aEP_BaseCombatEffect
 import combat.util.aEP_Tool
+import data.scripts.hullmods.aEP_MissilePlatform
 import org.lazywizard.lazylib.MathUtils
 import org.lwjgl.opengl.GL11
 import org.lwjgl.util.vector.Vector2f
@@ -99,10 +100,10 @@ class aEP_MovingSmoke : aEP_BaseCombatEffect{
 
     //begin
     GL11.glBegin(GL11.GL_QUADS)
-    val red = changingColor.red
-    val green = changingColor.green
-    val blue = changingColor.blue
-    val alpha = changingColor.alpha
+    var red = changingColor.red
+    var green = changingColor.green
+    var blue = changingColor.blue
+    var alpha = changingColor.alpha
 
     GL11.glColor4ub(red.toByte(), green.toByte(), blue.toByte(), alpha.toByte())
     val X = usingX

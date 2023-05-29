@@ -149,4 +149,7 @@ open class aEP_BaseHullMod : BaseHullMod() {
 
   }
 
+  override fun showInRefitScreenModPickerFor(ship: ShipAPI?): Boolean {
+    return super.showInRefitScreenModPickerFor(ship)
+  }
 }
