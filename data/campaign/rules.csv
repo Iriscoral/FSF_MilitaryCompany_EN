@@ -178,7 +178,7 @@ aEP_AdvanceWeaponMission check1 SCORE:100
 ","ShowPersonVisual
 $faction.AWM_1Complete = true
 aEP_AdvanceWeaponMission complete1
-aEP_HandInParts aEP_long_barrel_chaingunAP -2 none 0","""Very well done, just as I expected. Here's to a fulfilling future partnership!""","0:aEP_researcher_stage0_Complete_talk01:""So, let me see what's so special about the payment.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+aEP_HandInParts aEP_b_m_lighting -2 none 0","""Very well done, just as I expected. Here's to a fulfilling future partnership!""","0:aEP_researcher_stage0_Complete_talk01:""So, let me see what's so special about the payment.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_researcher_stage0_Complete_talk01,DialogOptionSelected,$option == aEP_researcher_stage0_Complete_talk01,,"""As the name of the department suggests, we are responsible for weapons development in the Company. Naturally there were many projects that were close to success but were dropped because they were either too costly or too unreliable in harsh environments, and we don't want these 'experiments' to just sit in storage and rot.""","0:cutCommLink:""Let's hope that these 'failed experiments' have that value in the field.""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ##任务线第二节（stage1） 摧毁无人舰,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 aEP_researcher_stage1,MarketPostOpen,"$id == aEP_FSF_DefStation
