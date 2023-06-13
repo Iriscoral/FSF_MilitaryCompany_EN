@@ -1,3 +1,4 @@
+  package data.scripts.campaign.intel;
 package data.scripts.campaign.intel;
 
 import com.fs.starfarer.api.Global;

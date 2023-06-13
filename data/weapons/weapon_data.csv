@@ -40,7 +40,7 @@ Howitzer Shrapnel,,aEP_high_speed_HE2,SYSTEM,HIGH_EXPLOSIVE,,150,0,,150,,,0,,600
 MB-32 Multipurpose Cannon,,aEP_b_m_mb32,"PD, NO_TURN_RATE_BOOST_WHEN_IDLE ",FRAGMENTATION,12,800,180,,30,,,6,,800,,,0,0.15,,,,,,,0,3,0.06,6,,,FSF Manufacturing,Point Defence,1/2,"All projectiles fired will reach half of the weapon's final range, but %s of them will decay, with only the rest reaching the maximum range.",0.75,900,"pd13, FSF_bp",,1,,,,,,,,,
 RK-107 Rocket Launcher,,aEP_b_m_rk107,STRIKE,FRAGMENTATION,15,1500,9,,250,,,50,,800,,,0,0.25,,,12,1,4,,0,10,0.5,10,300,300,FSF Manufacturing,Finisher,0.2,"Increases damage on hitting armour by {%s} times the target's maximum armour
 Projectile is a missile and can be intercepted",0.5,1600,"he11, FSF_bp, rare_bp",,3,,,,,,,,,
-H-88 Anti-Ship Cannon,,aEP_b_m_h88,_,HIGH_EXPLOSIVE,9,800,7,,310,,,420,,600,,,0,1.67,,,,,,,0,15,5,30,,,FSF Manufacturing,Anti-Armor,,,0.8,800,"he12, FSF_bp",,0,,,,,,,,,
+H-88 Anti-Ship Cannon,,aEP_b_m_h88,,HIGH_EXPLOSIVE,9,800,7,,310,,,420,,600,,,0,1.67,,,,,,,0,15,5,30,,,FSF Manufacturing,Anti-Armor,,,0.8,800,"he12, FSF_bp",,0,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
